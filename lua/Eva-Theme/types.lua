@@ -26,5 +26,3 @@
 ---@field cterm? {}
 ---@field force? boolean if true force update the highlight group when it exists.
 ---@field altfont? boolean enable alternative font in nvim 0.9
-
----@alias EditorHighlightGroup 'CursorLine' | ''
