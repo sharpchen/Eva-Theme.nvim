@@ -3,8 +3,10 @@ local scope = require('scope_match')
 local Theme = require('Eva-Theme.palette')
 
 local M = {}
----@param variant ThemeName
+---@param variant? ThemeName
 M.colorscheme = function(variant)
+    variant = variant or 'dark'
+    vim.opt.termguicolors = true
     if vim.g.colors_name then
         vim.cmd('hi clear')
         vim.cmd("syntax reset")
@@ -14,6 +16,8 @@ M.colorscheme = function(variant)
         vim.api.nvim_set_hl(0, group, style)
     end
 end
+M.setup = function(option)
 
+end
 
 return M

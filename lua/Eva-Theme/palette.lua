@@ -2,6 +2,7 @@
 local Theme = {
     ---@type Palette
     light = {
+        name = 'light',
         declarative = '#7C4DFF',
         func = '#437AED',
         type = '#00BEC4',
@@ -18,6 +19,7 @@ local Theme = {
     },
     ---@type Palette
     light_bold = {
+        name = 'light_bold',
         declarative = '#7C4DFF',
         func = '#437AED',
         type = '#00BEC4',
@@ -34,6 +36,7 @@ local Theme = {
     },
     ---@type Palette
     light_italic = {
+        name = 'light_italic',
         declarative = '#7C4DFF',
         func = '#437AED',
         type = '#00BEC4',
@@ -50,6 +53,7 @@ local Theme = {
     },
     ---@type Palette
     light_italic_bold = {
+        name = 'light_italic_bold',
         declarative = '#7C4DFF',
         func = '#437AED',
         type = '#00BEC4',
@@ -67,6 +71,7 @@ local Theme = {
     ,
     ---@type Palette
     dark = {
+        name = 'dark',
         declarative = '#A78CFA',
         func = '#6495EE',
         type = '#56B7C3',
@@ -104,6 +109,7 @@ local Theme = {
     ,
     ---@type Palette
     dark_italic = {
+        name = 'dark_italic',
         declarative = '#A78CFA',
         func = '#6495EE',
         type = '#56B7C3',
@@ -123,6 +129,7 @@ local Theme = {
     ,
     ---@type Palette
     dark_italic_bold = {
+        name = 'dark_italic_bold',
         declarative = '#A78CFA',
         func = '#6495EE',
         type = '#56B7C3',

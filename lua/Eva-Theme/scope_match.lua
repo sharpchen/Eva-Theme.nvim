@@ -46,7 +46,8 @@ return make_scope()
     --#region treesitter
     :match('type', { '@attribute', '@constructor' })
     :match('func', { '@function.method', '@function.method.call' })
-    :match('text', {}, function(palette, as) return { fg = palette[as] } end)
+    :match('text', {},
+        function(palette, as) return { fg = palette[as], bold = IsBold(palette) } end)
     :match('digit', { '@number', '@constant', '@constant.builtin', '@constant.macro', '@number.float' })
     :match('logical', { '@boolean' })
     :match('operator', { '@operator' })
