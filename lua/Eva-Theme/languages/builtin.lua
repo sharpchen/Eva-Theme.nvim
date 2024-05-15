@@ -1,12 +1,12 @@
 ---@type StaticImporter
 local function builtin(h)
     h
-        :match('type', 'Type')
+        :match('type', { 'Type', 'Special' })
         :match('func', 'Function')
         :match('text',
             { 'String', 'Character', 'SpecialComment', 'Todo', })
         :match('digit',
-            { 'Constant', 'Number', 'Float', 'Special', 'SpecialChar', })
+            { 'Constant', 'Number', 'Float', 'SpecialChar', })
         :match('logical', { 'Boolean', 'Conditional', 'Repeat', 'Label', 'Exception', 'PreCondit' })
         :match('operator', 'Operator')
         :match('declarative',

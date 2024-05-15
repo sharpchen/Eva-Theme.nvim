@@ -1,2 +1,2 @@
-package.loaded['Eva-Theme.scope_match'] = nil;
+package.loaded['Eva-Theme.highlight_registration'] = nil;
 require('Eva-Theme').colorscheme()

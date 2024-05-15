@@ -3,7 +3,7 @@ local function default_selector(palette, as)
     return { fg = palette[as] }
 end
 local function create_highlights()
-    ---@type HighlightRegistartionWithFunction
+    ---@type HighlightRegistrationWithFunction
     local instance = {}
     ---Add highlight group to syntax type
     ---@type Match
@@ -39,7 +39,7 @@ local function create_highlights()
     end
 
     ---@type Import
-    function instance:import(procedure)
+    function instance:with(procedure)
         procedure(self)
         return self
     end
@@ -49,6 +49,8 @@ end
 
 
 return create_highlights()
-    :import(require('Eva-Theme.languages.builtin'))
-    :import(require('Eva-Theme.languages.treesitter'))
-    :import(require('Eva-Theme.languages.csharp'))
+    :with(require('Eva-Theme.languages.builtin'))
+    :with(require('Eva-Theme.languages.treesitter'))
+    :with(require('Eva-Theme.languages.csharp'))
+    :with(require('Eva-Theme.languages.lua'))
+    :with(require('Eva-Theme.ui.builtin'))

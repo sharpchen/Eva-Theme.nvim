@@ -1,5 +1,5 @@
 -- Entry file of the theme
-local scope = require('lua.Eva-Theme.highlight_registration')
+local scope = require('Eva-Theme.highlight_registration')
 local Theme = require('Eva-Theme.palette')
 ---@param variant ThemeName
 local function variant_name(variant)
@@ -14,6 +14,7 @@ local M = {}
 M.colorscheme = function(variant)
     variant = variant or 'dark'
     vim.opt.termguicolors = true
+    vim.cmd('set cursorline')
     if vim.g.colors_name then
         vim.cmd('hi clear')
         vim.cmd("syntax reset")

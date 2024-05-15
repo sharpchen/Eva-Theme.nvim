@@ -8,6 +8,10 @@ local function builtin(h)
             { 'DiagnosticHint', 'DiagnosticVirtualTextHint', 'DiagnosticFloatingHint', 'DiagnosticSignHint' })
         :match('instanceReference',
             { 'Error', 'DiagnosticError', 'DiagnosticVirtualTextError', 'DiagnosticFloatingError', 'DiagnosticSignError' })
+        :match('variable', { 'CursorLineNr', 'Command', 'Directory', 'SpecialKey' })
+        :match('comment', { 'LineNrAbove', 'LineNrBelow' })
+        :match('background', 'Normal')
+        :match('panelBackground', { 'StatusLine' })
 end
 
 return builtin
