@@ -1,4 +1,4 @@
----@type Importor
+---@type StaticImporter
 local function csharp(h)
     --#region treesitter
     h:match('type', { '@attribute', '@constructor' })

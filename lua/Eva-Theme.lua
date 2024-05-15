@@ -1,5 +1,5 @@
 -- Entry file of the theme
-local scope = require('Eva-Theme.scope_match')
+local scope = require('lua.Eva-Theme.highlight_registration')
 local Theme = require('Eva-Theme.palette')
 ---@param variant ThemeName
 local function variant_name(variant)

@@ -4,9 +4,7 @@ local function default_selector(palette, as)
 end
 local function create_highlights()
     ---@type HighlightRegistartionWithFunction
-    local instance = {
-
-    }
+    local instance = {}
     ---Add highlight group to syntax type
     ---@param syntax SyntaxType syntax type
     ---@param scope string | string[] highlight scope
@@ -43,7 +41,7 @@ local function create_highlights()
         return highlight_group
     end
 
-    ---@type Importor
+    ---@type Importer
     function instance:import(procedure)
         procedure(self)
         return self
