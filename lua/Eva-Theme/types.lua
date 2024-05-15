@@ -2,6 +2,13 @@
 ---@alias Palette { name: string, text: string, declarative: string, func: string, digit: string, primitive: string, property: string, operator: string, variable: string, logical: string, parameter: string, instanceReference: string, type: string, comment: string }
 ---@alias ThemeName 'light' | 'light_bold' | 'light_italic' | 'light_italic_bold' | 'dark' | 'dark_bold' | 'dark_italic' | 'dark_italic_bold'
 ---@alias Theme table<ThemeName, Palette>
+---@alias Selector fun(palette: Palette, as: SyntaxType): TokenStyle
+---@alias Importor fun(h: HighlightRegistartionWithFunction): HighlightRegistartionWithFunction
+---@alias Match fun(syntax: SyntaxType, scope: string | string[], selector?: Selector): HighlightRegistartionWithFunction
+---@alias HighlightCreator fun(palette: Palette)
+
+---@alias HighlightRegistartion table<SyntaxType, { scope: string, selector?: Selector }[]>
+---@alias HighlightRegistartionWithFunction { match: Match, import: Importor, create_highlights: HighlightCreator }
 
 ---@class TokenStyle
 ---@field fg? string #RRGGBB

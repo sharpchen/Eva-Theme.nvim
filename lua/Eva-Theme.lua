@@ -1,7 +1,14 @@
 -- Entry file of the theme
-local scope = require('scope_match')
+local scope = require('Eva-Theme.scope_match')
 local Theme = require('Eva-Theme.palette')
-
+---@param variant ThemeName
+local function variant_name(variant)
+    local function capitalize_first_letter(word)
+        return word:sub(1, 1):upper() .. word:sub(2):lower()
+    end
+    local result = variant:gsub("(%a+)", capitalize_first_letter)
+    return 'Eva-' .. result:gsub("_", "-")
+end
 local M = {}
 ---@param variant? ThemeName
 M.colorscheme = function(variant)
@@ -11,8 +18,8 @@ M.colorscheme = function(variant)
         vim.cmd('hi clear')
         vim.cmd("syntax reset")
     end
-    vim.g.colors_name = 'Eva-Theme'
-    for group, style in pairs(scope:create_highlight_groups(Theme[variant])) do
+    vim.g.colors_name = variant_name(variant)
+    for group, style in pairs(scope:highlight_groups(Theme[variant])) do
         vim.api.nvim_set_hl(0, group, style)
     end
 end

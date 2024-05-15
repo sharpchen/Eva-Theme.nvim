@@ -11,3 +11,4 @@ end
 function IsItalic(palette)
     return palette.name:find('italic') and true or false
 end
+
