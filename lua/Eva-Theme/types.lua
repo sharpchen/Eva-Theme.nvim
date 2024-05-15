@@ -3,13 +3,13 @@
 ---@alias ThemeName 'light' | 'light_bold' | 'light_italic' | 'light_italic_bold' | 'dark' | 'dark_bold' | 'dark_italic' | 'dark_italic_bold'
 ---@alias Theme table<ThemeName, Palette>
 ---@alias Selector fun(palette: Palette, as: SyntaxType): TokenStyle
----@alias Importer fun(self, h: StaticImporter): HighlightRegistartionWithFunction
+---@alias Import fun(self, h: StaticImporter): HighlightRegistartionWithFunction
 ---@alias StaticImporter fun(h: HighlightRegistartionWithFunction)
 ---@alias Match fun(self, syntax: SyntaxType, scope: string | string[], selector?: Selector): HighlightRegistartionWithFunction
 ---@alias HighlightCreator fun(self, palette: Palette): table<string, TokenStyle>
 
 ---@alias HighlightRegistartion table<SyntaxType, { scope: string, selector?: Selector }[]>
----@alias HighlightRegistartionWithFunction { match: Match, import: Importer, highlight_groups: HighlightCreator }
+---@alias HighlightRegistartionWithFunction { match: Match, import: Import, highlight_groups: HighlightCreator }
 
 ---@class TokenStyle
 ---@field fg? string #RRGGBB

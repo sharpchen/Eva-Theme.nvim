@@ -1,4 +1,4 @@
----@type fun(palette: Palette, as: SyntaxType): TokenStyle
+---@type Selector
 local function default_selector(palette, as)
     return { fg = palette[as] }
 end
@@ -6,10 +6,7 @@ local function create_highlights()
     ---@type HighlightRegistartionWithFunction
     local instance = {}
     ---Add highlight group to syntax type
-    ---@param syntax SyntaxType syntax type
-    ---@param scope string | string[] highlight scope
-    ---@param selector? fun(palette: Palette, as: SyntaxType): TokenStyle
-    ---@return self
+    ---@type Match
     function instance:match(syntax, scope, selector)
         if (not self[syntax]) then
             self[syntax] = {}
@@ -41,7 +38,7 @@ local function create_highlights()
         return highlight_group
     end
 
-    ---@type Importer
+    ---@type Import
     function instance:import(procedure)
         procedure(self)
         return self
@@ -51,4 +48,7 @@ local function create_highlights()
 end
 
 
-return create_highlights():import(require('Eva-Theme.languages.csharp'))
+return create_highlights()
+    :import(require('Eva-Theme.languages.builtin'))
+    :import(require('Eva-Theme.languages.treesitter'))
+    :import(require('Eva-Theme.languages.csharp'))
