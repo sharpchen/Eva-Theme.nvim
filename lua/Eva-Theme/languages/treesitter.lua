@@ -6,12 +6,13 @@ local function treesitter(h)
         :match('digit', { '@number', '@constant', '@constant.builtin', '@constant.macro', '@number.float' })
         :match('logical', { '@boolean' })
         :match('operator', { '@operator' })
-        :match('property', { '@label', '@variable.member', '@property' })
+        :match('property', { '@variable.member', '@property' })
         :match('variable', { '@variable' })
         :match('parameter', { '@variable.parameter', '@variable.parameter.builtin' })
         :match('primitive', { '@type.builtin' })
         :match('declarative', { '@keyword.directive.define', '@namespace.builtin', '@keyword', '@keyword.function' })
         :match('instanceReference', { '@variable.builtin', '@module.builtin' })
+        :match('text', '@label')
 end
 
 return treesitter

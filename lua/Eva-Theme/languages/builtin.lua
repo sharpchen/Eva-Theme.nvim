@@ -14,6 +14,7 @@ local function builtin(h)
         :match('variable', 'Identifier')
         :match('instanceReference',
             {})
+        :match('comment', 'Comment')
 end
 
 return builtin
