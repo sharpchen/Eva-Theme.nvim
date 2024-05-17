@@ -10,8 +10,12 @@ local function builtin(h)
             { 'Error', 'DiagnosticError', 'DiagnosticVirtualTextError', 'DiagnosticFloatingError', 'DiagnosticSignError' })
         :match('variable', { 'CursorLineNr', 'Command', 'Directory', 'SpecialKey' })
         :match('comment', { 'LineNrAbove', 'LineNrBelow' })
-        :match('background', 'Normal')
-        :match('panelBackground', { 'StatusLine' })
+        :match('background', 'Normal', function(palette, as)
+            return { bg = palette[as], fg = palette['variable'] }
+        end)
+        :match('panelBackground', { 'StatusLine' }, function(palette, as)
+            return { bg = palette[as], fg = palette['variable'] }
+        end)
 end
 
 return builtin
