@@ -1,7 +1,3 @@
----@type Selector
-local function default_selector(palette, as)
-    return { fg = palette[as] }
-end
 local function create_highlights()
     ---@type HighlightRegistrationWithFunction
     local instance = {}
@@ -30,7 +26,10 @@ local function create_highlights()
             -- instance functions are part of the table, so skip it
             if (type(scope_list) == 'function') then goto next end
             for _, item in ipairs(scope_list) do
-                local selector = item.selector or default_selector
+                local selector = item.selector or function(palette, as)
+                    return { fg = palette[as] }
+                end
+
                 highlight_group[item.scope] = selector(palette, syntax_type)
             end
             ::next::
@@ -51,6 +50,7 @@ end
 return create_highlights()
     :with(require('Eva-Theme.languages.builtin'))
     :with(require('Eva-Theme.languages.treesitter'))
+    :with(require('Eva-Theme.languages.lsp'))
     :with(require('Eva-Theme.languages.csharp'))
     :with(require('Eva-Theme.languages.lua'))
     :with(require('Eva-Theme.ui.builtin'))
