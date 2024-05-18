@@ -1,14 +1,4 @@
----@param this table
----@param other table
-function table.union(this, other)
-    for key, value in pairs(other) do
-        if not this[key] then
-            this[key] = value
-        end
-    end
-    return this
-end
-
+require('Eva-Theme.utils')
 ---@type Palette
 local light_base = {
     declarative = '#7C4DFF',
