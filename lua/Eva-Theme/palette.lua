@@ -39,20 +39,20 @@ local dark_base = {
 ---@type Theme
 local Theme = {
     ---@type Palette
-    light = table.union(light_base, { name = 'light' }),
+    light = table.extend(light_base, { name = 'light' }),
     ---@type Palette
-    light_bold = table.union(light_base, { name = 'light_bold' }),
+    light_bold = table.extend(light_base, { name = 'light_bold' }),
     ---@type Palette
-    light_italic = table.union(light_base, { name = 'light_italic' }),
+    light_italic = table.extend(light_base, { name = 'light_italic' }),
     ---@type Palette
-    light_italic_bold = table.union(light_base, { name = 'light_italic_bold' }),
+    light_italic_bold = table.extend(light_base, { name = 'light_italic_bold' }),
     ---@type Palette
-    dark = table.union(dark_base, { name = 'dark' }),
+    dark = table.extend(dark_base, { name = 'dark' }),
     ---@type Palette
-    dark_bold = table.union(dark_base, { name = 'dark_bold' }),
+    dark_bold = table.extend(dark_base, { name = 'dark_bold' }),
     ---@type Palette
-    dark_italic = table.union(dark_base, { name = 'dark_italic' }),
+    dark_italic = table.extend(dark_base, { name = 'dark_italic' }),
     ---@type Palette
-    dark_italic_bold = table.union(dark_base, { name = 'dark_italic_bold' })
+    dark_italic_bold = table.extend(dark_base, { name = 'dark_italic_bold' })
 }
 return Theme

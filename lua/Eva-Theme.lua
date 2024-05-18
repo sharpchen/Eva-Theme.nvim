@@ -1,5 +1,5 @@
 -- Entry file of the theme
-local scope = require('Eva-Theme.highlight_registration')
+local registration = require('Eva-Theme.highlight_registration')
 local Theme = require('Eva-Theme.palette')
 ---@param variant ThemeName
 local function variant_name(variant)
@@ -20,7 +20,7 @@ M.colorscheme = function(variant)
         vim.cmd("syntax reset")
     end
     vim.g.colors_name = variant_name(variant)
-    for group, style in pairs(scope:highlight_groups(Theme[variant])) do
+    for group, style in pairs(registration:highlight_groups(Theme[variant])) do
         vim.api.nvim_set_hl(0, group, style)
     end
 end

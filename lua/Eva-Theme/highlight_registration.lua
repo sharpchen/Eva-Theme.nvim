@@ -1,17 +1,36 @@
 local function create_highlights()
     ---@type HighlightRegistrationWithFunction
-    local instance = {}
+    local instance = {
+        syntax = {},
+        ---@type { color: string, group: string | string[], func: fun(color: string): TokenStyle }[]
+        color = {}
+    }
     ---Add highlight group to syntax type
     ---@type Match
-    function instance:match(syntax, scope, selector)
-        if (not self[syntax]) then
-            self[syntax] = {}
+    function instance:match(syntax, group, selector)
+        if (not self.syntax[syntax]) then
+            self.syntax[syntax] = {}
         end
-        if (type(scope) == 'string') then
-            table.insert(self[syntax], { scope = scope, selector = selector })
+        if (type(group) == 'string') then
+            table.insert(self.syntax[syntax], { group = group, selector = selector })
         else
-            for _, scp in ipairs(scope) do
-                table.insert(self[syntax], { scope = scp, selector = selector })
+            for _, g in ipairs(group) do
+                table.insert(self.syntax[syntax], { group = g, selector = selector })
+            end
+        end
+        return self
+    end
+
+    ---comment
+    ---@param color string
+    ---@param group string | string[]
+    ---@param proc function
+    function instance:match_color(color, group, proc)
+        if type(group) == 'string' then
+            table.insert(self.color, { color = color, group = group, func = proc })
+        else
+            for _, g in ipairs(group) do
+                table.insert(self.color, { color = color, func = proc })
             end
         end
         return self
@@ -22,17 +41,17 @@ local function create_highlights()
     function instance:highlight_groups(palette)
         ---@type table<string, TokenStyle>
         local highlight_group = {}
-        for syntax_type, scope_list in pairs(self) do
-            -- instance functions are part of the table, so skip it
-            if (type(scope_list) == 'function') then goto next end
-            for _, item in ipairs(scope_list) do
-                local selector = item.selector or function(palette, as)
-                    return { fg = palette[as] }
-                end
-
-                highlight_group[item.scope] = selector(palette, syntax_type)
+        for syntax_type, group_list in pairs(self.syntax) do
+            for _, item in ipairs(group_list) do
+                local selector = item.selector or require('Eva-Theme.selector_handler'):handle(palette, item.group)
+                highlight_group[item.group] = selector(palette, syntax_type)
             end
-            ::next::
+        end
+        for _, item in ipairs(self.color) do
+            local func = item.func or function(color)
+                return { bg = color }
+            end
+            highlight_group[item.group] = func(item.color)
         end
         return highlight_group
     end
