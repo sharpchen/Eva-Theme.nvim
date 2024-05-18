@@ -18,6 +18,16 @@ function IsNormal(palette)
     return not palette.name:find('bold') and not palette.name:find('italic')
 end
 
+---@param palette Palette
+function IsDark(palette)
+    return palette.name:find('dark') ~= nil
+end
+
+---@param palette Palette
+function IsLight(palette)
+    return palette.name:find('light') ~= nil
+end
+
 --- extend a table with another returning new instance
 ---@param this table
 ---@param other table

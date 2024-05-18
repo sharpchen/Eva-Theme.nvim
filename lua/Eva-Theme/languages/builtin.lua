@@ -1,20 +1,20 @@
 ---@type StaticImporter
 local function builtin(h)
     h
-        :match('type', { 'Type', 'Special' })
-        :match('func', 'Function')
-        :match('text',
+        :map('type', { 'Type', 'Special' })
+        :map('func', 'Function')
+        :map('text',
             { 'String', 'Character', 'SpecialComment', 'Todo', })
-        :match('digit',
+        :map('digit',
             { 'Constant', 'Number', 'Float', 'SpecialChar', })
-        :match('logical', { 'Boolean', 'Conditional', 'Repeat', 'Label', 'Exception', 'PreCondit' })
-        :match('operator', 'Operator')
-        :match('declarative',
+        :map('logical', { 'Boolean', 'Conditional', 'Repeat', 'Label', 'Exception', 'PreCondit' })
+        :map('operator', 'Operator')
+        :map('declarative',
             { 'Keyword', 'Preproc', 'Include', 'Define', 'Macro', 'StorageClass', 'Structure', 'Typedef' })
-        :match('variable', 'Identifier')
-        :match('instanceReference',
+        :map('variable', { 'Identifier', 'Statement' })
+        :map('instanceReference',
             {})
-        :match('comment', 'Comment')
+        :map('comment', 'Comment')
 end
 
 return builtin

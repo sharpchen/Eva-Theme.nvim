@@ -5,11 +5,11 @@
 ---@alias Selector fun(palette: Palette, as: SyntaxType): TokenStyle
 ---@alias Import fun(self, h: StaticImporter): HighlightRegistrationWithFunction
 ---@alias StaticImporter fun(h: HighlightRegistrationWithFunction)
----@alias Match fun(self, syntax: SyntaxType, scope: string | string[], selector?: Selector): HighlightRegistrationWithFunction
+---@alias MapSyntax fun(self, syntax: SyntaxType, group: string | string[], selector?: Selector): HighlightRegistrationWithFunction
 ---@alias HighlightCreator fun(self, palette: Palette): table<string, TokenStyle>
-
----@alias HighlightRegistartion table<SyntaxType, { scope: string, selector?: Selector }[]>
----@alias HighlightRegistrationWithFunction { match: Match, with: Import, highlight_groups: HighlightCreator }
+---@alias MapDarkOrLight fun(self, color: string, group: string | string[], func?: fun(color: string, dark: boolean): TokenStyle): HighlightRegistrationWithFunction
+---@alias HighlightRegistartion table<SyntaxType, { group: string, selector?: Selector }[]>
+---@alias HighlightRegistrationWithFunction { map: MapSyntax, with: Import, highlight_groups: HighlightCreator, map_dark: MapDarkOrLight, map_light: MapDarkOrLight }
 
 ---@class TokenStyle
 ---@field fg? string #RRGGBB
