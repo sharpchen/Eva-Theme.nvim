@@ -1,7 +1,7 @@
 ---@type StaticImporter
 local function builtin(h)
     h
-        :map('type', { 'Type', 'Special' })
+        :map('type', { 'Type', 'StorageClass', 'Structure' })
         :map('func', 'Function')
         :map('text',
             { 'String', 'Character', 'SpecialComment', 'Todo', })
@@ -10,8 +10,8 @@ local function builtin(h)
         :map('logical', { 'Boolean', 'Conditional', 'Repeat', 'Label', 'Exception', 'PreCondit' })
         :map('operator', 'Operator')
         :map('declarative',
-            { 'Keyword', 'Preproc', 'Include', 'Define', 'Macro', 'StorageClass', 'Structure', 'Typedef' })
-        :map('variable', { 'Identifier', 'Statement' })
+            { 'Keyword', 'Preproc', 'Include', 'Define', 'Macro', 'Typedef' })
+        :map('variable', { 'Identifier', 'Statement', 'Special' })
         :map('instanceReference',
             {})
         :map('comment', 'Comment')

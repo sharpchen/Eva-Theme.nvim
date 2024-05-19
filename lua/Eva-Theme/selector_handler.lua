@@ -33,11 +33,7 @@ end
 ---@param group string
 ---@return Selector
 function handler_base:handle(palette, group)
-    if self.should_handle(palette) then
-        return self.get_selector(group)
-    else
-        return self.next:handle(palette, group)
-    end
+    return self.should_handle(palette) and self.get_selector(group) or self.next:handle(palette, group)
 end
 
 ---@type SelectorHandler

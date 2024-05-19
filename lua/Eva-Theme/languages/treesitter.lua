@@ -1,18 +1,30 @@
 ---@type StaticImporter
 local function treesitter(h)
     h
-        :map('type', { '@attribute', '@constructor' })
-        :map('func', { '@function.method', '@function.method.call' })
-        :map('digit', { '@number', '@constant', '@constant.builtin', '@constant.macro', '@number.float' })
-        :map('logical', { '@boolean' })
-        :map('operator', { '@operator' })
-        :map('property', { '@variable.member', '@property' })
-        :map('variable', { '@variable' })
-        :map('parameter', { '@variable.parameter', '@variable.parameter.builtin' })
+        :map('type', { '@attribute', '@constructor', '@type.definition', '@punctuation.delimiter', '@tag.attribute' })
+        :map('func',
+            { '@function.method', '@function.method.call', '@function', '@function.macro', '@function.method',
+                '@function.method.call', '@comment.todo', '@local.definition.function', '@local.definition.method' })
+        :map('digit',
+            { '@number', '@constant', '@constant.builtin', '@constant.macro', '@number.float', '@string.escape',
+                '@local.definition.constant' })
+        :map('logical',
+            { '@boolean', '@keyword.coroutine', '@keyword.repeat', '@keyword.return',
+                '@keyword.exception', '@keyword.conditional' })
+        :map('operator', { '@operator', '@keyword.conditional.ternary' })
+        :map('property',
+            { '@variable.member', '@property', '@tag.xml', '@comment.error', '@tag', '@tag.builtin',
+                '@local.definition.namespace' })
+        :map('variable', { '@variable', '@local.definition.var' })
+        :map('parameter',
+            { '@variable.parameter', '@variable.parameter.builtin', '@comment.warning', '@local.definition.parameter' })
         :map('primitive', { '@type.builtin' })
-        :map('declarative', { '@keyword.directive.define', '@namespace.builtin', '@keyword', '@keyword.function' })
+        :map('declarative',
+            { '@keyword.directive.define', '@namespace.builtin', '@keyword', '@keyword.import', '@keyword.function',
+                '@keyword.function', '@keyword.type', '@keyword.modifier', '@keyword.operator' })
         :map('instanceReference', { '@variable.builtin', '@module.builtin' })
-        :map('text', '@label')
+        :map('text', { '@label', '@string', '@string.regexp', '@comment.note' })
+        :map('comment', { '@string.documentation', '@comment.documentation' })
 end
 
 return treesitter
