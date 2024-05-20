@@ -1,3 +1,4 @@
+require('Eva-Theme.utils')
 ---@type StaticImporter
 local function builtin(h)
     h
@@ -6,15 +7,18 @@ local function builtin(h)
         :map('text',
             { 'String', 'Character', 'SpecialComment', 'Todo', })
         :map('digit',
-            { 'Constant', 'Number', 'Float', 'SpecialChar', })
+            { 'Constant', 'Number', 'Float', 'SpecialChar', 'Format' })
         :map('logical', { 'Boolean', 'Conditional', 'Repeat', 'Label', 'Exception', 'PreCondit' })
         :map('operator', 'Operator')
         :map('declarative',
             { 'Keyword', 'Preproc', 'Include', 'Define', 'Macro', 'Typedef' })
-        :map('variable', { 'Identifier', 'Statement', 'Special' })
+        :map('variable', { 'Identifier', 'Statement' })
         :map('instanceReference',
             {})
         :map('comment', 'Comment')
+        :map('NONE', 'Special', function(palette, _) -- escape characters
+            return { fg = IsDark(palette) and '#8A97C3' or '#888888' }
+        end)
 end
 
 return builtin
