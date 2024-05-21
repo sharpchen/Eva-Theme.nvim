@@ -16,7 +16,7 @@ local function builtin(h)
         :map('instanceReference',
             {})
         :map('comment', 'Comment')
-        :map('NONE', 'Special', function(palette, _) -- escape characters
+        :map('NONE', 'Special', function(palette, _) -- escaped characters
             return { fg = IsDark(palette) and '#8A97C3' or '#888888' }
         end)
 end

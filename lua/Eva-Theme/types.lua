@@ -1,5 +1,5 @@
----@alias SyntaxType 'NONE' | 'error' | 'warning' | 'info' | 'diffAdded' | 'diffDeleted' | 'diffModified' |'declarative' | 'text' | 'func' | 'property' | 'primitive' | 'type' | 'digit' | 'parameter' | 'comment' | 'variable' | 'instanceReference' | 'logical' | 'operator' | 'background' | 'panelBackground'
----@alias Palette { name: string, text: string, declarative: string, func: string, digit: string, primitive: string, property: string, operator: string, variable: string, logical: string, parameter: string, instanceReference: string, type: string, comment: string }
+---@alias SyntaxType 'NONE' | 'error' | 'warning' | 'info' | 'declarative' | 'text' | 'func' | 'property' | 'primitive' | 'type' | 'digit' | 'parameter' | 'comment' | 'variable' | 'instanceReference' | 'logical' | 'operator' | 'background' | 'panelBackground'
+---@alias Palette { git: GitPalette, name: string, text: string, declarative: string, func: string, digit: string, primitive: string, property: string, operator: string, variable: string, logical: string, parameter: string, instanceReference: string, type: string, comment: string }
 ---@alias ThemeName 'light' | 'light_bold' | 'light_italic' | 'light_italic_bold' | 'dark' | 'dark_bold' | 'dark_italic' | 'dark_italic_bold'
 ---@alias Theme table<ThemeName, Palette>
 ---@alias Selector fun(palette: Palette, as: SyntaxType): TokenStyle
@@ -10,7 +10,7 @@
 ---@alias MapDarkOrLight fun(self, color: string, group: string | string[], func?: fun(color: string, dark: boolean): TokenStyle): HighlightRegistrationWithFunction
 ---@alias HighlightRegistartion table<SyntaxType, { group: string, selector?: Selector }[]>
 ---@alias HighlightRegistrationWithFunction { map: MapSyntax, with: Import, highlight_groups: HighlightCreator, map_dark: MapDarkOrLight, map_light: MapDarkOrLight }
-
+---@alias GitPalette { diffAdded: string, diffDeleted: string, diffModified: string, stagedAdded: string, ignored: string, renamed: string, stagedDeleted: string, stagedModified: string, untracked: string }
 ---@class TokenStyle
 ---@field fg? string #RRGGBB
 ---@field bg? string #RRGGBB

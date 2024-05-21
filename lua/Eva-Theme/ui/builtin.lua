@@ -21,34 +21,42 @@ local function builtin(h)
         :map('NONE', { 'LineNrAbove', 'LineNrBelow', }, function(palette, _)
             return { fg = IsDark(palette) and '#50567C' or '#C8CACE' }
         end)
-        :map('diffAdded', 'healthSuccess')
+        :map('NONE', 'healthSuccess', function(palette, _) --neovim checkhealth report
+            return { fg = palette['git']['diffAdded'] }
+        end)
         :map('background', 'Normal', function(palette, as)
             return { bg = palette[as], fg = palette['variable'] }
         end)
-        :map('background', 'EndOfBuffer')
+        :map('background', 'EndOfBuffer') -- ~ sign at th end of each buffer
         :map('background', 'SignColumn', function(palette, as)
             return { bg = palette[as] }
         end)
-        :map('panelBackground', { 'StatusLine' }, function(palette, as)
+        :map('panelBackground', { 'StatusLine', 'StatusLineNC' }, function(palette, as)
             return { bg = palette[as], fg = palette['variable'] }
         end)
         :map('panelBackground', 'Pmenu', function(palette, as)
             return { bg = palette[as], fg = palette['variable'] }
         end)
-        :map('type', 'PmenuSel', function(palette, as)
-            return { bg = palette[as], fg = palette['panelBackground'] }
+        :map('NONE', 'PmenuSel', function(palette, _)
+            return { bg = IsDark(palette) and '#2F3F5C' or '#CAD7ED', fg = IsDark(palette) and '#D7DAE0' or '#5D5D5F' }
         end)
         :map('digit', 'TermCursor')
         :map('variable', 'DiagnosticUnderlineHint', function(palette, as)
             return { underdotted = true, sp = palette[as] }
         end)
-        :map('diffAdded', { 'DiffAdd' })
-        :map('diffModified', { 'DiffChange' })
-        :map('diffDeleted', { 'DiffDelete' })
-        :map_dark('#394e75', { 'VisualNOS', 'Visual' }) -- selection background in visual mode
-        :map_dark('#2f323c', 'CursorLine')
-        :map_light('#b0cbf7', { 'VisualNOS', 'Visual' })
-        :map_light('#e3e6ed', 'CursorLine')
+        :map('NONE', { 'DiffAdd' }, function(p, _)
+            return { fg = p['git']['diffAdded'] }
+        end)
+        :map('NONE', { 'DiffChange' }, function(p, _)
+            return { fg = p['git']['diffModified'] }
+        end)
+        :map('NONE', { 'DiffDelete' }, function(p, _)
+            return { fg = p['git']['diffDeleted'] }
+        end)
+        :map_dark('#394E75', { 'VisualNOS', 'Visual' }) -- selection background in visual mode
+        :map_dark('#2F323C', 'CursorLine')
+        :map_light('#B0CBF7', { 'VisualNOS', 'Visual' })
+        :map_light('#E3E6ED', 'CursorLine')
         :map('digit', { 'MatchParen' }, function(palette, as)
             return { fg = palette[as] }
         end)
