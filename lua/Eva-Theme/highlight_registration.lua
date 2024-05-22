@@ -1,24 +1,20 @@
 local function create_highlights()
     ---@type HighlightRegistrationWithFunction
     local instance = {
-        syntaxes = {},
+        syntax = {},
         ui = {},
-        ---@type { color: string, group: string | string[], func: fun(color: string): TokenStyle }[]
-        dark = {},
-        ---@type { color: string, group: string | string[], func: fun(color: string): TokenStyle }[]
-        light = {},
     }
     ---Add highlight group to syntax type
     ---@type MapProc
     function instance:map_token(syntax, group, selector)
-        if (not self.syntaxes[syntax]) then
-            self.syntaxes[syntax] = {}
+        if (not self.syntax[syntax]) then
+            self.syntax[syntax] = {}
         end
         if type(group) == 'string' then
-            table.insert(self.syntaxes[syntax], { group = group, selector = selector })
+            table.insert(self.syntax[syntax], { group = group, selector = selector })
         else
             for _, g in ipairs(group) do
-                table.insert(self.syntaxes[syntax], { group = g, selector = selector })
+                table.insert(self.syntax[syntax], { group = g, selector = selector })
             end
         end
         return self
@@ -39,40 +35,12 @@ local function create_highlights()
         return self
     end
 
-    ---@param color string
-    ---@param group string | string[]
-    ---@param func? fun(color: string, dark: boolean): TokenStyle
-    function instance:map_dark(color, group, func)
-        if type(group) == 'string' then
-            table.insert(self.dark, { color = color, group = group, func = func })
-        else
-            for _, g in ipairs(group) do
-                table.insert(self.dark, { color = color, group = g, func = func })
-            end
-        end
-        return self
-    end
-
-    ---@param color string
-    ---@param group string | string[]
-    ---@param func? fun(color: string, dark: boolean): TokenStyle
-    function instance:map_light(color, group, func)
-        if type(group) == 'string' then
-            table.insert(self.light, { color = color, group = group, func = func })
-        else
-            for _, g in ipairs(group) do
-                table.insert(self.light, { color = color, group = g, func = func })
-            end
-        end
-        return self
-    end
-
     ---create highlight group by palette
     ---@param palette Palette theme variant
     function instance:highlight_groups(palette)
         ---@type table<string, TokenStyle>
         local highlight_group = {}
-        for syntax_type, group_list in pairs(self.syntaxes) do
+        for syntax_type, group_list in pairs(self.syntax) do
             for _, item in ipairs(group_list) do
                 local selector = item.selector or require('Eva-Theme.selector_handler'):handle(palette, item.group)
                 highlight_group[item.group] = selector(palette, syntax_type)
@@ -85,12 +53,6 @@ local function create_highlights()
                 end
                 highlight_group[item.group] = selector(palette, group_type)
             end
-        end
-        for _, item in ipairs(IsDark(palette) and self.dark or self.light) do
-            local func = item.func or function(color)
-                return { bg = color }
-            end
-            highlight_group[item.group] = func(item.color)
         end
         return highlight_group
     end

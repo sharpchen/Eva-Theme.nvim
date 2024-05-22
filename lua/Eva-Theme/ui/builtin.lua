@@ -53,10 +53,12 @@ local function builtin(h)
         :map_ui('NONE', { 'DiffDelete' }, function(p, _)
             return { fg = p['git']['diffDeleted'] }
         end)
-        :map_dark('#394E75', { 'VisualNOS', 'Visual' }) -- selection background in visual mode
-        :map_dark('#2F323C', 'CursorLine')
-        :map_light('#B0CBF7', { 'VisualNOS', 'Visual' })
-        :map_light('#E3E6ED', 'CursorLine')
+        :map_ui('NONE', { 'VisualNOS', 'Visual' }, function(p, _) -- selection background in visual mode
+            return { bg = IsDark(p) and '#394E75' or '#B0CBF7' }
+        end)
+        :map_ui('NONE', 'CursorLine', function(p, _)
+            return { bg = IsDark(p) and '#2F323C' or '#E3E6ED' }
+        end)
         :map_ui('digit', { 'MatchParen' }, function(palette, as)
             return { fg = palette[as] }
         end)
