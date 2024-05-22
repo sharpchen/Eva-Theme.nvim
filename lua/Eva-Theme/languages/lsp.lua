@@ -1,7 +1,7 @@
 ---@type StaticImporter
 local function lsp(h)
-    h:map('parameter', { '@lsp.type.parameter', '@lsp.type.typeParameter' })
-        :map('property', '@lsp.type.property')
+    h:map_token('parameter', { '@lsp.type.parameter', '@lsp.type.typeParameter' })
+        :map_token('property', '@lsp.type.property')
     -- :map('digit', { '@lsp.typemod.variable.readonly' })
 end
 

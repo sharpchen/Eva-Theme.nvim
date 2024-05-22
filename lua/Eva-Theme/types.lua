@@ -5,11 +5,11 @@
 ---@alias Selector fun(palette: Palette, as: SyntaxType): TokenStyle
 ---@alias Import fun(self, h: StaticImporter): HighlightRegistrationWithFunction
 ---@alias StaticImporter fun(h: HighlightRegistrationWithFunction)
----@alias MapSyntax fun(self, syntax: SyntaxType, group: string | string[], selector?: Selector): HighlightRegistrationWithFunction
+---@alias MapProc fun(self, syntax: SyntaxType, group: string | string[], selector?: Selector): HighlightRegistrationWithFunction
 ---@alias HighlightCreator fun(self, palette: Palette): table<string, TokenStyle>
 ---@alias MapDarkOrLight fun(self, color: string, group: string | string[], func?: fun(color: string, dark: boolean): TokenStyle): HighlightRegistrationWithFunction
 ---@alias HighlightRegistartion table<SyntaxType, { group: string, selector?: Selector }[]>
----@alias HighlightRegistrationWithFunction { map: MapSyntax, with: Import, highlight_groups: HighlightCreator, map_dark: MapDarkOrLight, map_light: MapDarkOrLight }
+---@alias HighlightRegistrationWithFunction { map_token: MapProc, map_ui: MapProc, with: Import, highlight_groups: HighlightCreator, map_dark: MapDarkOrLight, map_light: MapDarkOrLight }
 ---@alias GitPalette { diffAdded: string, diffDeleted: string, diffModified: string, stagedAdded: string, ignored: string, renamed: string, stagedDeleted: string, stagedModified: string, untracked: string }
 ---@class TokenStyle
 ---@field fg? string #RRGGBB

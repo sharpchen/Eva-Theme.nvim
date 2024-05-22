@@ -2,14 +2,15 @@ local function create_highlights()
     ---@type HighlightRegistrationWithFunction
     local instance = {
         syntaxes = {},
+        ui = {},
         ---@type { color: string, group: string | string[], func: fun(color: string): TokenStyle }[]
         dark = {},
         ---@type { color: string, group: string | string[], func: fun(color: string): TokenStyle }[]
-        light = {}
+        light = {},
     }
     ---Add highlight group to syntax type
-    ---@type MapSyntax
-    function instance:map(syntax, group, selector)
+    ---@type MapProc
+    function instance:map_token(syntax, group, selector)
         if (not self.syntaxes[syntax]) then
             self.syntaxes[syntax] = {}
         end
@@ -18,6 +19,21 @@ local function create_highlights()
         else
             for _, g in ipairs(group) do
                 table.insert(self.syntaxes[syntax], { group = g, selector = selector })
+            end
+        end
+        return self
+    end
+
+    ---@type MapProc
+    function instance:map_ui(group_type, group, selector)
+        if (not self.ui[group_type]) then
+            self.ui[group_type] = {}
+        end
+        if type(group) == 'string' then
+            table.insert(self.ui[group_type], { group = group, selector = selector })
+        else
+            for _, g in ipairs(group) do
+                table.insert(self.ui[group_type], { group = g, selector = selector })
             end
         end
         return self
@@ -62,6 +78,14 @@ local function create_highlights()
                 highlight_group[item.group] = selector(palette, syntax_type)
             end
         end
+        for group_type, group_list in pairs(self.ui) do
+            for _, item in ipairs(group_list) do
+                local selector = item.selector or function(palette, as)
+                    return { fg = palette[as] }
+                end
+                highlight_group[item.group] = selector(palette, group_type)
+            end
+        end
         for _, item in ipairs(IsDark(palette) and self.dark or self.light) do
             local func = item.func or function(color)
                 return { bg = color }
@@ -98,3 +122,4 @@ return create_highlights()
     :with(require('Eva-Theme.ui.cmp'))
     :with(require('Eva-Theme.ui.gitsigns'))
     :with(require('Eva-Theme.ui.neo-tree'))
+    :with(require('Eva-Theme.ui.vim-illuminate'))
