@@ -1,8 +1,9 @@
 ---@type StaticImporter
 local function lua(h)
     h:map('logical',
-        { '@keyword.conditional.lua', '@keyword.repeat.lua', '@keyword.return.lua', '@keyword.operator.lua' })
-        :map('type', { '@punctuation.special.luadoc', '@function.macro.luadoc' })
+        { '@keyword.conditional.lua', '@keyword.repeat.lua', '@keyword.return.lua', '@keyword.operator.lua',
+            '@constant.builtin.lua' })
+        :map('type', { '@punctuation.special.luadoc', '@function.macro.luadoc', '@lsp.type.macro.lua' })
         :map('NONE', { '@punctuation.bracket.luadoc', '@punctuation.bracket.lua', '@constructor.lua' },
             function(palette, _)
                 return { fg = IsDark(palette) and '#838FA7' or '#727376' }

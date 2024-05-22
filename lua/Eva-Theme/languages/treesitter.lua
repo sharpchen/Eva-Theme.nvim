@@ -5,17 +5,17 @@ local function treesitter(h)
         :map('type', { '@attribute', '@constructor', '@type.definition', '@tag.attribute' })
         :map('func',
             { '@function.method', '@function.method.call', '@function', '@function.macro', '@function.method',
-                '@function.method.call', '@comment.todo', '@local.definition.function', '@local.definition.method' })
+                '@comment.todo', '@local.definition.function', '@local.definition.method' })
         :map('digit',
             { '@number', '@constant', '@constant.builtin', '@constant.macro', '@number.float',
                 '@local.definition.constant' })
         :map('logical',
             { '@boolean', '@keyword.coroutine', '@keyword.repeat', '@keyword.return',
-                '@keyword.exception', '@keyword.conditional', })
-        :map('NONE', { '@punctuation.bracket', }, function(palette, _)
+                '@keyword.exception', '@keyword.conditional', '@keyword.conditional.ternary', })
+        :map('NONE', { '@punctuation.bracket', '@punctuation.delimiter' }, function(palette, _)
             return { fg = IsDark(palette) and '#838FA7' or '#727376' }
         end)
-        :map('operator', { '@operator', '@keyword.conditional.ternary' })
+        :map('operator', { '@operator', })
         :map('property',
             { '@property', '@tag.xml', '@comment.error', '@tag', '@tag.builtin',
                 '@local.definition.namespace' })

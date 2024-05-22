@@ -2,6 +2,8 @@
 ---@alias SelectorPicker fun(group: string): Selector
 ---@alias CanHandle fun(palette: Palette): boolean
 require('Eva-Theme.utils')
+local shouldbe_bold = require('Eva-Theme.shouldbe_bold')
+local shouldnotbe_italic = require('Eva-Theme.shouldnotbe_italic')
 ---@type Selector
 local normal_selector = function(palette, as)
     return { fg = palette[as] }
@@ -56,8 +58,7 @@ local bold_handler = table.extend(handler_base, {
     end,
     ---@type SelectorPicker
     get_selector = function(group)
-        local _ = {}
-        return table.contains(_, group) and bold_selector or normal_selector
+        return table.contains(shouldbe_bold, group) and bold_selector or normal_selector
     end,
 })
 
@@ -68,8 +69,7 @@ local italic_handler = table.extend(handler_base, {
     end,
     ---@type SelectorPicker
     get_selector = function(group)
-        local _ = {}
-        return table.contains(_, group) and italic_selector or normal_selector
+        return not table.contains(shouldnotbe_italic, group) and italic_selector or normal_selector
     end,
 })
 
@@ -80,8 +80,18 @@ local italic_bold_handler = table.extend(handler_base, {
     end,
     ---@type SelectorPicker
     get_selector = function(group)
-        local _ = {}
-        return table.contains(_, group) and italic_bold_selector or normal_selector
+        local be_bold = table.contains(shouldbe_bold, group)
+        local be_italic = not table.contains(shouldnotbe_italic, group)
+        local be_italic_bold = be_bold and be_italic
+        if be_italic_bold then
+            return italic_bold_selector
+        elseif be_italic then
+            return italic_selector
+        elseif be_bold then
+            return bold_selector
+        else
+            return normal_selector
+        end
     end,
 })
 
