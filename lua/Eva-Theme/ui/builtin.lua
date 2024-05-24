@@ -88,5 +88,8 @@ local function builtin(h)
             return { fg = p[as], bg = IsDark(p) and '#37496C' or '#B9CDF5' }
         end)
     --#endregion
+        :map_ui('NONE', 'WinSeparator', function(p, _)
+            return { fg = IsDark(p) and '#181A1F' or '#c4c7ce' }
+        end)
 end
 return builtin

@@ -15,6 +15,7 @@ local function lua(h)
         :map_token('property', { '@lsp.type.property.lua', '@variable.member.lua' })
         :map_token('digit', '@lsp.mod.defaultLibrary.lua')
         :map_token('instanceReference', '@lsp.typemod.variable.definition.lua')
+        :map_token('declarative', '@comment.documentation.lua')
 end
 
 return lua
