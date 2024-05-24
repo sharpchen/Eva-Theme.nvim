@@ -68,3 +68,39 @@ table.contains = function(this, target)
     end
     return false
 end
+
+function Lighten(color, percent)
+    -- Validate input color format
+    local r, g, b = color:match("#(%x%x)(%x%x)(%x%x)")
+    if not (r and g and b) then
+        return nil
+    end
+    -- Convert hexadecimal values to decimal
+    r, g, b = tonumber(r, 16), tonumber(g, 16), tonumber(b, 16)
+    -- Calculate lightening amount for each color component
+    local amount = 255 * (percent / 100)
+    -- Apply lightening amount to each color component
+    r = math.min(math.floor(r + amount), 255)
+    g = math.min(math.floor(g + amount), 255)
+    b = math.min(math.floor(b + amount), 255)
+    -- Convert back to hexadecimal and format the color string
+    return string.format("#%02x%02x%02x", r, g, b)
+end
+
+function Darken(color, percent)
+    -- Validate input color format
+    local r, g, b = color:match("#(%x%x)(%x%x)(%x%x)")
+    if not (r and g and b) then
+        return nil
+    end
+    -- Convert hexadecimal values to decimal
+    r, g, b = tonumber(r, 16), tonumber(g, 16), tonumber(b, 16)
+    -- Calculate lightening amount for each color component
+    local amount = 255 * (percent / 100)
+    -- Apply lightening amount to each color component
+    r = math.min(math.floor(r - amount), 255)
+    g = math.min(math.floor(g - amount), 255)
+    b = math.min(math.floor(b - amount), 255)
+    -- Convert back to hexadecimal and format the color string
+    return string.format("#%02x%02x%02x", r, g, b)
+end

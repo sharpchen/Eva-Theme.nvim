@@ -3,18 +3,18 @@ require('Eva-Theme.utils')
 local function builtin(h)
     h:map_ui('declarative', { 'DiagnosticOk', 'DiagnosticVirtualTextOk', 'DiagnosticFloatingOk', 'DiagnosticSignOk' })
         :map_ui('info',
-            { 'MoreMsg', 'Question', 'DiagnosticInfo', 'DiagnosticVirtualTextInfo', 'DiagnosticFloatingInfo',
+            { 'MoreMsg', 'Question', 'DiagnosticInfo', 'DiagnosticFloatingInfo',
                 'DiagnosticSignInfo', 'RedrawDebugComposed' })
         :map_ui('warning',
-            { 'Diagnosticarn', 'DiagnosticVirtualTextWarn', 'DiagnosticFloatingWarn', 'DiagnosticSignWarn',
+            { 'Diagnosticarn', 'DiagnosticFloatingWarn', 'DiagnosticSignWarn',
                 'RedrawDebugClear', 'WarningMsg' })
         :map_ui('NONE',
-            { 'DiagnosticHint', 'DiagnosticVirtualTextHint', 'DiagnosticFloatingHint', 'DiagnosticSignHint' },
+            { 'DiagnosticHint', 'DiagnosticFloatingHint', 'DiagnosticSignHint' },
             function(palette, _)
                 return { fg = IsDark(palette) and '#50567C' or '#C8CACE' }
             end)
         :map_ui('error',
-            { 'Error', 'ErrorMsg', 'DiagnosticError', 'DiagnosticVirtualTextError', 'DiagnosticFloatingError',
+            { 'Error', 'ErrorMsg', 'DiagnosticError', 'DiagnosticFloatingError',
                 'DiagnosticSignError', 'RedDebugRecompose', 'NvimInternalError' })
         :map_ui('variable', { 'CursorLineNr', 'Command', 'Directory', 'SpecialKey', 'Title', 'RedrawDebugNormal' })
         :map_ui('comment', { 'LineNr', 'ColorColumn' })
@@ -31,7 +31,7 @@ local function builtin(h)
         :map_ui('background', 'SignColumn', function(palette, as)
             return { bg = palette[as] }
         end)
-        :map_ui('panelBackground', { 'StatusLine', 'StatusLineNC' }, function(palette, as)
+        :map_ui('panelBackground', { 'StatusLine', 'StatusLineNC', 'NormalFloat' }, function(palette, as)
             return { bg = palette[as], fg = palette['variable'] }
         end)
         :map_ui('panelBackground', 'Pmenu', function(palette, as)
@@ -74,5 +74,19 @@ local function builtin(h)
         :map_ui('NONE', 'FloatBorder', function(palette, _)
             return { fg = IsDark(palette) and '#181A1F' or '#CED1D7' }
         end)
+    --#region inline diagnostic
+        :map_ui('NONE', 'DiagnosticVirtualTextError', function(p, _)
+            return { fg = IsDark(p) and '#F36464' or '#E45454', bg = IsDark(p) and '#3D3037' or '#EBDAE0' }
+        end)
+        :map_ui('NONE', 'DiagnosticVirtualTextWarn', function(p, _)
+            return { fg = IsDark(p) and '#EF973A' or '#FB942F', bg = IsDark(p) and '#463D3A' or '#E7DBD4' }
+        end)
+        :map_ui('text', 'DiagnosticVirtualTextHint', function(p, as)
+            return { fg = p[as], bg = IsDark(p) and '#495949' or '#BED7C5' }
+        end)
+        :map_ui('info', 'DiagnosticVirtualTextInfo', function(p, as)
+            return { fg = p[as], bg = IsDark(p) and '#37496C' or '#B9CDF5' }
+        end)
+    --#endregion
 end
 return builtin

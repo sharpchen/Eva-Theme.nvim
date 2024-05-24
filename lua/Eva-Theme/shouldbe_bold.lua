@@ -38,5 +38,7 @@ return {
     '@constructor',
     '@keyword.return.lua',
     '@keyword.repeat.lua',
-    '@keyword.conditional.lua'
+    '@keyword.conditional.lua',
+    '@keyword.operator.lua',
+    '@keyword.conditional.ternary'
 }

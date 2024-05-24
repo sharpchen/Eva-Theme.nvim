@@ -20,5 +20,7 @@ return {
     '@string.escape',
     '@operator',
     '@keyword.conditional.ternary',
-    '@punctuation.bracket.luadoc'
+    '@punctuation.bracket.luadoc',
+    '@punctuation.special',
+    '@punctuation.special.javascript'
 }

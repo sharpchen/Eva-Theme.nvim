@@ -2,32 +2,38 @@ require('Eva-Theme.utils')
 ---@type StaticImporter
 local function treesitter(h)
     h
-        :map_token('type', { '@attribute', '@constructor', '@type.definition', '@tag.attribute' })
+        :map_token('type',
+            { '@attribute', '@constructor', '@type.definition', '@tag.attribute', '@markup.list.markdown' })
         :map_token('func',
             { '@function.method', '@function.method.call', '@function', '@function.macro', '@function.method',
-                '@comment.todo', '@local.definition.function', '@local.definition.method' })
+                '@comment.todo', '@local.definition.function', '@local.definition.method',
+                '@markup.link.label' })
         :map_token('digit',
             { '@number', '@constant', '@constant.builtin', '@constant.macro', '@number.float',
                 '@local.definition.constant' })
         :map_token('logical',
             { '@boolean', '@keyword.coroutine', '@keyword.repeat', '@keyword.return',
                 '@keyword.exception', '@keyword.conditional', '@keyword.conditional.ternary', })
-        :map_token('NONE', { '@punctuation.bracket', '@punctuation.delimiter' }, function(palette, _)
-            return { fg = IsDark(palette) and '#838FA7' or '#727376' }
-        end)
+        :map_token('NONE', { '@punctuation.bracket', '@punctuation.delimiter', '@punctuation.special', },
+            function(palette, _)
+                return { fg = IsDark(palette) and '#838FA7' or '#727376', nocombine = true }
+            end)
         :map_token('operator', { '@operator', })
         :map_token('property',
             { '@property', '@tag.xml', '@comment.error', '@tag', '@tag.builtin',
                 '@local.definition.namespace' })
-        :map_token('variable', { '@variable', '@variable.member', '@local.definition.var', '@punctuation.delimiter', })
+        :map_token('variable', { '@variable', '@variable.member', '@local.definition.var', })
         :map_token('parameter',
-            { '@variable.parameter', '@variable.parameter.builtin', '@comment.warning', '@local.definition.parameter' })
-        :map_token('primitive', { '@type.builtin' })
+            { '@variable.parameter', '@variable.parameter.builtin', '@comment.warning', '@local.definition.parameter',
+                '@character.special', '@string.regexp' })
+        :map_token('primitive', { '@type.builtin', '@label.markdown' })
         :map_token('declarative',
             { '@keyword.directive.define', '@namespace.builtin', '@keyword', '@keyword.import', '@keyword.function',
                 '@keyword.function', '@keyword.type', '@keyword.modifier', '@keyword.operator' })
         :map_token('instanceReference', { '@variable.builtin', '@module.builtin' })
-        :map_token('text', { '@label', '@string', '@string.regexp', '@comment.note', '@string.special.path.diff' })
+        :map_token('text',
+            { '@label', '@string', '@comment.note', '@string.special.path.diff', '@string.special.url',
+                '@string.special.path', '@markup.link.url', '@markup.raw', '@markup.raw.block', '@markup.list' })
         :map_token('comment', { '@string.documentation', '@comment.documentation' })
         :map_token('NONE', '@string.escape', function(palette, _)
             return { fg = IsDark(palette) and '#8A97C3' or '#888888' }
@@ -37,6 +43,21 @@ local function treesitter(h)
         end)
         :map_token('NONE', '@diff.plus.diff', function(palette, _)
             return { fg = palette['git']['diffAdded'] }
+        end)
+        :map_token('NONE', '@diff.delta', function(palette, _)
+            return { fg = palette.git.diffModified }
+        end)
+        :map_token('property',
+            { '@markup.heading', '@markup.heading.1', '@markup.heading.2', '@markup.heading.3', '@markup.heading.4',
+                '@markup.heading.5', '@markup.heading.6' })
+        :map_token('NONE', '@markup.italic', function(_, _)
+            return { fg = '#C57BDB', italic = true }
+        end)
+        :map_token('NONE', '@markup.strong', function(p, _)
+            return { fg = IsDark(p) and '#E4BF7F' or '#F0AA0B', bold = true }
+        end)
+        :map_token('NONE', '@markup.raw.block.markdown', function(palette, _)
+            return { fg = IsDark(palette) and '#8792AA' or '#A0A1A7' }
         end)
 end
 
