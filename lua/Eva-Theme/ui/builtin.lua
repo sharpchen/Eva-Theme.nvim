@@ -6,12 +6,12 @@ local function builtin(h)
             { 'MoreMsg', 'Question', 'DiagnosticInfo', 'DiagnosticFloatingInfo',
                 'DiagnosticSignInfo', 'RedrawDebugComposed' })
         :map_ui('warning',
-            { 'Diagnosticarn', 'DiagnosticFloatingWarn', 'DiagnosticSignWarn',
+            { 'DiagnosticWarn', 'DiagnosticFloatingWarn', 'DiagnosticSignWarn',
                 'RedrawDebugClear', 'WarningMsg' })
         :map_ui('text',
             { 'DiagnosticHint', 'DiagnosticFloatingHint', 'DiagnosticSignHint' },
             function(palette, as)
-                return { fg = palette[as] }--IsDark(palette) and '#50567C' or '#C8CACE' }
+                return { fg = palette[as] } --IsDark(palette) and '#50567C' or '#C8CACE' }
             end)
         :map_ui('error',
             { 'Error', 'ErrorMsg', 'DiagnosticError', 'DiagnosticFloatingError',
