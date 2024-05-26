@@ -20,11 +20,11 @@ local function treesitter(h)
             end)
         :map_token('operator', { '@operator', })
         :map_token('property',
-            { '@property', '@tag.xml', '@comment.error', '@tag', '@tag.builtin',
+            { '@property', '@tag.xml', '@tag', '@tag.builtin',
                 '@local.definition.namespace' })
         :map_token('variable', { '@variable', '@variable.member', '@local.definition.var', })
         :map_token('parameter',
-            { '@variable.parameter', '@variable.parameter.builtin', '@comment.warning', '@local.definition.parameter',
+            { '@variable.parameter', '@variable.parameter.builtin', '@local.definition.parameter',
                 '@character.special', '@string.regexp' })
         :map_token('primitive', { '@type.builtin', '@label.markdown' })
         :map_token('declarative',
@@ -32,9 +32,15 @@ local function treesitter(h)
                 '@keyword.function', '@keyword.type', '@keyword.modifier', '@keyword.operator' })
         :map_token('instanceReference', { '@variable.builtin', '@module.builtin' })
         :map_token('text',
-            { '@label', '@string', '@comment.note', '@string.special.path.diff', '@string.special.url',
+            { '@label', '@string', '@string.special.path.diff', '@string.special.url',
                 '@string.special.path', '@markup.link.url', '@markup.raw', '@markup.raw.block', '@markup.list' })
-        :map_token('comment', { '@string.documentation', '@comment.documentation' })
+        :map_token('comment', { '@string.documentation', })
+        :map_token('info', { '@comment.note', })
+        :map_token('warning', { '@comment.warning', })
+        :map_token('error', { '@comment.error', })
+        :map_token('comment', '@comment.documentation', function(p, as)
+            return { fg = p[as], italic = true }
+        end)
         :map_token('NONE', '@string.escape', function(palette, _)
             return { fg = IsDark(palette) and '#8A97C3' or '#888888' }
         end)

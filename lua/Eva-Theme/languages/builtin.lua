@@ -15,7 +15,9 @@ local function builtin(h)
         :map_token('variable', { 'Identifier', 'Statement' })
         :map_token('instanceReference',
             {})
-        :map_token('comment', 'Comment')
+        :map_token('comment', 'Comment', function(p, as)
+            return { fg = p[as], italic = true }
+        end)
         :map_token('NONE', 'Special', function(palette, _) -- escaped characters
             return { fg = IsDark(palette) and '#8A97C3' or '#888888' }
         end)

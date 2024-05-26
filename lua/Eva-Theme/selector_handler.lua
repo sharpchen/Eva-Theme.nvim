@@ -6,11 +6,11 @@ local shouldbe_bold = require('Eva-Theme.shouldbe_bold')
 local shouldnotbe_italic = require('Eva-Theme.shouldnotbe_italic')
 ---@type Selector
 local normal_selector = function(palette, as)
-    return { fg = palette[as] }
+    return { fg = palette[as], nocombine = true }
 end
 ---@type Selector
 local bold_selector = function(palette, as)
-    return { fg = palette[as], bold = true }
+    return { fg = palette[as], bold = true, nocombine = true }
 end
 
 ---@type Selector
