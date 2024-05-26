@@ -22,5 +22,6 @@ return {
     '@keyword.conditional.ternary',
     '@punctuation.bracket.luadoc',
     '@punctuation.special',
-    '@punctuation.special.javascript'
+    '@punctuation.special.javascript',
+    '@constructor.lua'
 }

@@ -40,5 +40,6 @@ return {
     '@keyword.repeat.lua',
     '@keyword.conditional.lua',
     '@keyword.operator.lua',
-    '@keyword.conditional.ternary'
+    '@keyword.conditional.ternary',
+    '@lsp.typemod.variable.definition.lua'
 }

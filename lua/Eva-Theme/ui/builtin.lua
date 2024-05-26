@@ -8,10 +8,10 @@ local function builtin(h)
         :map_ui('warning',
             { 'Diagnosticarn', 'DiagnosticFloatingWarn', 'DiagnosticSignWarn',
                 'RedrawDebugClear', 'WarningMsg' })
-        :map_ui('NONE',
+        :map_ui('text',
             { 'DiagnosticHint', 'DiagnosticFloatingHint', 'DiagnosticSignHint' },
-            function(palette, _)
-                return { fg = IsDark(palette) and '#50567C' or '#C8CACE' }
+            function(palette, as)
+                return { fg = palette[as] }--IsDark(palette) and '#50567C' or '#C8CACE' }
             end)
         :map_ui('error',
             { 'Error', 'ErrorMsg', 'DiagnosticError', 'DiagnosticFloatingError',

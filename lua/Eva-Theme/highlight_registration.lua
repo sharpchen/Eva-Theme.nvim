@@ -42,8 +42,10 @@ local function create_highlights()
         local highlight_group = {}
         for syntax_type, group_list in pairs(self.syntax) do
             for _, item in ipairs(group_list) do
-                local selector = item.selector or require('Eva-Theme.selector_handler'):handle(palette, item.group)
-                highlight_group[item.group] = selector(palette, syntax_type)
+                local style_selector = require('Eva-Theme.selector_handler'):handle(palette, item.group)
+                local selector = item.selector
+                highlight_group[item.group] = table.merge(style_selector(palette, syntax_type),
+                    item.selector and selector(palette, syntax_type) or {})
             end
         end
         for group_type, group_list in pairs(self.ui) do
@@ -75,6 +77,7 @@ return create_highlights()
     :with(require('Eva-Theme.languages.csharp'))
     :with(require('Eva-Theme.languages.lua'))
     :with(require('Eva-Theme.languages.javascript'))
+    :with(require('Eva-Theme.languages.typescript'))
     :with(require('Eva-Theme.languages.markdown'))
     :with(require('Eva-Theme.languages.html'))
     :with(require('Eva-Theme.languages.vue'))

@@ -15,12 +15,12 @@ end
 
 ---@type Selector
 local italic_selector = function(palette, as)
-    return { fg = palette[as], italic = true }
+    return { fg = palette[as], italic = true, nocombine = true }
 end
 
 ---@type Selector
 local italic_bold_selector = function(palette, as)
-    return { fg = palette[as], bold = true, italic = true }
+    return { fg = palette[as], bold = true, italic = true, nocombine = true }
 end
 
 ---@type SelectorHandler
