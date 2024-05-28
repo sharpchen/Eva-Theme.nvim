@@ -6,11 +6,13 @@ Supports both Dark and Light modes, with four styles available for each mode: No
 
 ## Dark
 
-![dark](https://github.com/sharpchen/Eva-Theme.nvim/assets/77432836/440069c2-a817-43e4-aae8-be29a91663d2)
+![dark1](https://github.com/sharpchen/Eva-Theme.nvim/assets/77432836/66c72a69-146d-4232-b72f-4559916c7c20)
+
 
 ## Light
 
-![light](https://github.com/sharpchen/Eva-Theme.nvim/assets/77432836/d39f8459-c2b1-4aac-88ad-a607e4413b4d)
+![light2](https://github.com/sharpchen/Eva-Theme.nvim/assets/77432836/77e98199-78fe-4725-8c9b-389a9ee0d8b2)
+
 
 ## 🛠 Installation
 
