@@ -92,7 +92,7 @@ local function builtin(h)
             return { fg = IsDark(p) and '#181A1F' or '#c4c7ce' }
         end)
         :map_ui('NONE', 'LspInlayHint', function(palette, _)
-            return { fg = IsDark(palette) and '#8A97C3' or '#888888' }
+            return { fg = IsDark(palette) and '#8A97C3' or '#888888', bg = IsDark(palette) and '#343744' or '#e5e8ee' }
         end)
 end
 return builtin
