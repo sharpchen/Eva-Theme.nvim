@@ -132,7 +132,7 @@ return create_highlights()
     :with(require('Eva-Theme.languages.html'))
     :with(require('Eva-Theme.languages.vue'))
     :with(require('Eva-Theme.languages.xml'))
-    :with(require('Eva-Theme.language.<language_name>')) -- your language here!
+    :with(require('Eva-Theme.languages.<language_name>')) -- your language here!
 ```
 
 ### Font-style handeling
