@@ -42,7 +42,7 @@ If to adapt a plugin that currently not supported, please add a new lua file as 
 local function plugin_name(h)
     h:map_ui('func', 'NeoTreeCursorLine') -- highlight `NeoTreeCursorLine` with the color `func` from a palette
      :map_ui('property', { 'some_group', 'other_group' }) -- can be a array that maps multiple highlight groups with a same rule
-     :map_ui('NONE', 'some_group', function(palette, as) return { IsDark(palette) and 'red' or 'blue' })
+     :map_ui('NONE', 'some_group', function(palette, as) return { bg = IsDark(palette) and 'red' or 'blue' } end)
     -- use any color to handle dark and light variants
 end
 
@@ -66,7 +66,7 @@ There's some global functions to check whether a palette is certain variants to 
 -- lua/Eva-Theme/ui/plugin_name.lua
 ---@type StaticImporter
 local function plugin_name(h)
-    h:map_ui('NONE', 'some_group', function(palette, as) return { IsDark(palette) and 'red' or 'blue' })
+    h:map_ui('NONE', 'some_group', function(palette, as) return { bg = IsDark(palette) and 'red' or 'blue' } end)
 end
 
 return plugin_name
