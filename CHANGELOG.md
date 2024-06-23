@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0
+## 0.1.0(2024-6-23)
 
 - Better support for `xml`, `rust` and `bash`
 - Change color `DiagnosticVirtualTextInfo` to align with `ErrorLen` extension in vscode
