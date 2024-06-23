@@ -20,7 +20,7 @@ Supports both Dark and Light modes, with four styles available for each mode: No
 
 ```lua
 {
-  "sharpchen/Eva-Theme.nvim",
+  'sharpchen/Eva-Theme.nvim',
   lazy = false,
   priority = 1000,
 }
@@ -53,4 +53,3 @@ vim.cmd('colo Eva-Dark') -- or any variant
 
 Currently no option is opened. If you need any, please create a feature request.
 
-## Contribution Guide

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.0
+
+- Better support for `xml`, `rust` and `bash`
+- Change color `DiagnosticVirtualTextInfo` to align with `ErrorLen` extension in vscode
+- Add `InlayHInt`
+
 ## 0.0.1 (2024-5-28)
 
 - Support NeoVim most builtin highlight groups
