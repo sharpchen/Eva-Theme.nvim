@@ -9,7 +9,7 @@ PRs are welcomed if there's any issue about highlighting and options. The follow
 [Eva-Theme](https://github.com/fisheva/Eva-Theme) was created to fit the concept of *semantic highlighting*, different color has specific semantic in context.
 
 |dark|light|semantic|alias|
-|---|---|---|
+|---|---|---|---|
 |`#6495EE`|`#437AED`|function-like names|func|
 |`#A78CFA`|`#7C4DFF`|declaration keywords|declarative|
 |`#E4BF7F`|`#F0AA0B`|parameter name and typeparameter|parameter|
