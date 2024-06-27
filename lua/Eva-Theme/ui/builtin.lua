@@ -71,8 +71,8 @@ local function builtin(h)
         :map_ui('panelBackground', 'TabLine', function(palette, as)
             return { bg = palette[as], fg = palette['comment'] }
         end)
-        :map_ui('NONE', 'FloatBorder', function(palette, _)
-            return { fg = IsDark(palette) and '#181A1F' or '#CED1D7' }
+        :map_ui('digit', { 'FloatBorder', 'FloatTitle' }, function(palatte, as)
+            return { fg = palatte[as], bg = palatte.panelBackground }
         end)
     --#region inline diagnostic
         :map_ui('NONE', 'DiagnosticVirtualTextError', function(p, _)

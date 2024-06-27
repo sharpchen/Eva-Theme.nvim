@@ -20,8 +20,8 @@ local function neo_tree(h)
             return { bg = palette[as], fg = palette.variable }
         end)
         :map_ui('info', { 'NeoTreeDirectoryIcon', 'NeoTreeDirectoryName' })
-        :map_ui('panelBackground', 'NeoTreeTitleBar', function(palette, as)
-            return { bg = palette[as] }
+        :map_ui('digit', 'NeoTreeTitleBar', function(palette, as)
+            return { bg = palette[as], fg = palette.panelBackground }
         end)
         :map_ui('error', 'NeoTreeGitConflict')
         :map_ui('NONE', 'NeoTreeGitIgnored', function(p, _)

@@ -1,5 +1,5 @@
 ---@alias SyntaxType 'NONE' | 'error' | 'warning' | 'info' | 'declarative' | 'text' | 'func' | 'property' | 'primitive' | 'type' | 'digit' | 'parameter' | 'comment' | 'variable' | 'instanceReference' | 'logical' | 'operator' | 'background' | 'panelBackground'
----@alias Palette { git: GitPalette, name: string, text: string, declarative: string, func: string, digit: string, primitive: string, property: string, operator: string, variable: string, logical: string, parameter: string, instanceReference: string, type: string, comment: string }
+---@alias Palette { git: GitPalette, name: string, text: string, declarative: string, func: string, digit: string, primitive: string, property: string, operator: string, variable: string, logical: string, parameter: string, instanceReference: string, type: string, comment: string, panelBackground: string, background: string }
 ---@alias ThemeName 'light' | 'light_bold' | 'light_italic' | 'light_italic_bold' | 'dark' | 'dark_bold' | 'dark_italic' | 'dark_italic_bold'
 ---@alias Theme table<ThemeName, Palette>
 ---@alias Selector fun(palette: Palette, as: SyntaxType): TokenStyle
