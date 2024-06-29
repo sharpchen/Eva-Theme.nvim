@@ -88,8 +88,8 @@ local function builtin(h)
             return { fg = IsDark(p) and '#00b7cb' or '#00c1ea', bg = IsDark(p) and '#233e4b' or '#cde7f3' }
         end)
     --#endregion
-        :map_ui('NONE', 'WinSeparator', function(p, _)
-            return { fg = IsDark(p) and '#181A1F' or '#c4c7ce' }
+        :map_ui('type', 'WinSeparator', function(p, as)
+            return { fg = p[as] } --IsDark(p) and '#181A1F' or '#c4c7ce' }
         end)
         :map_ui('NONE', 'LspInlayHint', function(palette, _)
             return { fg = IsDark(palette) and '#8A97C3' or '#888888', bg = IsDark(palette) and '#343744' or '#e5e8ee' }

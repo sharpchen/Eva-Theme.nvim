@@ -16,7 +16,7 @@ local function treesitter(h)
                 '@keyword.exception', '@keyword.conditional', '@keyword.conditional.ternary', })
         :map_token('NONE', { '@punctuation.bracket', '@punctuation.delimiter', '@punctuation.special', },
             function(palette, _)
-                return { fg = IsDark(palette) and '#838FA7' or '#727376', nocombine = true, bg = palette.background }
+                return { fg = IsDark(palette) and '#838FA7' or '#727376' }
             end)
         :map_token('operator', { '@operator', })
         :map_token('property',
