@@ -7,6 +7,7 @@ local function typescript(h)
         :map_token('func', '@punctuation.special.typescript', function(p, as)
             return { fg = p[as], nocombine = true }
         end)
+        :map_token('digit', '@lsp.typemod.variable.defaultLibrary.typescript')
 end
 
 return typescript
