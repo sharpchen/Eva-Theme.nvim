@@ -84,11 +84,11 @@ local function builtin(h)
         :map_ui('text', 'DiagnosticVirtualTextHint', function(p, as)
             return { fg = p[as], bg = IsDark(p) and '#495949' or '#BED7C5' }
         end)
-        :map_ui('NONE', 'DiagnosticVirtualTextInfo', function(p, as)
+        :map_ui('NONE', 'DiagnosticVirtualTextInfo', function(p, _)
             return { fg = IsDark(p) and '#00b7cb' or '#00c1ea', bg = IsDark(p) and '#233e4b' or '#cde7f3' }
         end)
     --#endregion
-        :map_ui('type', 'WinSeparator', function(p, as)
+        :map_ui('declarative', 'WinSeparator', function(p, as)
             return { fg = p[as] } --IsDark(p) and '#181A1F' or '#c4c7ce' }
         end)
         :map_ui('NONE', 'LspInlayHint', function(palette, _)
