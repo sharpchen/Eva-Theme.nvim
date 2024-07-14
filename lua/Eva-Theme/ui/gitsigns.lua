@@ -1,3 +1,4 @@
+local utils = require('Eva-Theme.utils')
 ---@type StaticImporter
 local function gitsigns(h)
   h:map_ui('NONE', { 'GitSignsUntracked' }, function(palette, _)
@@ -13,7 +14,7 @@ local function gitsigns(h)
       return { fg = palette['git']['diffDeleted'] }
     end)
     :map_ui('NONE', 'GitSignsCurrentLineBlame', function(palette, _) -- inline blame
-      return { fg = IsDark(palette) and '#50567C' or '#C8CACE' }
+      return { fg = utils.isDark(palette) and '#50567C' or '#C8CACE' }
     end)
 end
 

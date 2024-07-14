@@ -1,4 +1,4 @@
-require('Eva-Theme.utils')
+local utils = require('Eva-Theme.utils')
 ---@type Palette
 local light_base = {
   declarative = '#7C4DFF',
@@ -59,7 +59,7 @@ local dark_base = {
   property = '#E06C75',
   logical = '#CF68E1',
   comment = '#676E95',
-  operator = Lighten('#56B7C3', 15),
+  operator = utils.lighten('#56B7C3', 15),
   variable = '#B0B7C3',
   background = '#282C34',
 }

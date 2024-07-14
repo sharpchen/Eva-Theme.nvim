@@ -1,7 +1,7 @@
 ---@alias SelectorHandler { handle: (fun(self, palette: Palette, group: string): Selector), should_handle: CanHandle, get_selector: SelectorPicker, next: SelectorHandler, chain: fun(self: SelectorHandler, next: SelectorHandler): SelectorHandler }
 ---@alias SelectorPicker fun(group: string): Selector
 ---@alias CanHandle fun(palette: Palette): boolean
-require('Eva-Theme.utils')
+local utils = require('Eva-Theme.utils')
 local shouldbe_bold = require('Eva-Theme.shouldbe_bold')
 local shouldnotbe_italic = require('Eva-Theme.shouldnotbe_italic')
 ---@type Selector
@@ -42,7 +42,7 @@ end
 local normal_handler = vim.tbl_extend('keep', handler_base, {
   ---@param palette Palette
   should_handle = function(palette)
-    return IsNormal(palette)
+    return utils.isNormal(palette)
   end,
   ---@type SelectorPicker
   get_selector = function(_)
@@ -53,7 +53,7 @@ local normal_handler = vim.tbl_extend('keep', handler_base, {
 local bold_handler = vim.tbl_extend('keep', handler_base, {
   ---@param palette Palette
   should_handle = function(palette)
-    return IsBold(palette)
+    return utils.isBold(palette)
   end,
   ---@type SelectorPicker
   get_selector = function(group)
@@ -64,7 +64,7 @@ local bold_handler = vim.tbl_extend('keep', handler_base, {
 local italic_handler = vim.tbl_extend('keep', handler_base, {
   ---@param palette Palette
   should_handle = function(palette)
-    return IsItalic(palette)
+    return utils.isItalic(palette)
   end,
   ---@type SelectorPicker
   get_selector = function(group)
@@ -75,7 +75,7 @@ local italic_handler = vim.tbl_extend('keep', handler_base, {
 local italic_bold_handler = vim.tbl_extend('keep', handler_base, {
   ---@param palette Palette
   should_handle = function(palette)
-    return IsItalicBold(palette)
+    return utils.isItalicBold(palette)
   end,
   ---@type SelectorPicker
   get_selector = function(group)

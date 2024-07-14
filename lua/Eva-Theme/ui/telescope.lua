@@ -3,7 +3,7 @@ local function telescope(h)
   h:map_ui('panelBackground', 'TelescopeNormal', function(palette, as)
     return { bg = palette[as] }
   end)
-    :map_ui('NONE', 'TelescopeTitle', function(palette, as)
+    :map_ui('NONE', 'TelescopeTitle', function(palette, _)
       return { fg = palette.panelBackground, bg = palette.func }
     end)
     :map_ui('text', 'TelescopePreviewTitle', function(palette, as)
