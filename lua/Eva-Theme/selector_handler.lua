@@ -39,7 +39,7 @@ function handler_base:handle(palette, group)
 end
 
 ---@type SelectorHandler
-local normal_handler = table.extend(handler_base, {
+local normal_handler = vim.tbl_extend('keep', handler_base, {
   ---@param palette Palette
   should_handle = function(palette)
     return IsNormal(palette)
@@ -50,37 +50,37 @@ local normal_handler = table.extend(handler_base, {
   end,
 })
 
-local bold_handler = table.extend(handler_base, {
+local bold_handler = vim.tbl_extend('keep', handler_base, {
   ---@param palette Palette
   should_handle = function(palette)
     return IsBold(palette)
   end,
   ---@type SelectorPicker
   get_selector = function(group)
-    return table.contains(shouldbe_bold, group) and bold_selector or normal_selector
+    return vim.list_contains(shouldbe_bold, group) and bold_selector or normal_selector
   end,
 })
 
-local italic_handler = table.extend(handler_base, {
+local italic_handler = vim.tbl_extend('keep', handler_base, {
   ---@param palette Palette
   should_handle = function(palette)
     return IsItalic(palette)
   end,
   ---@type SelectorPicker
   get_selector = function(group)
-    return not table.contains(shouldnotbe_italic, group) and italic_selector or normal_selector
+    return not vim.list_contains(shouldnotbe_italic, group) and italic_selector or normal_selector
   end,
 })
 
-local italic_bold_handler = table.extend(handler_base, {
+local italic_bold_handler = vim.tbl_extend('keep', handler_base, {
   ---@param palette Palette
   should_handle = function(palette)
     return IsItalicBold(palette)
   end,
   ---@type SelectorPicker
   get_selector = function(group)
-    local be_bold = table.contains(shouldbe_bold, group)
-    local be_italic = not table.contains(shouldnotbe_italic, group)
+    local be_bold = vim.list_contains(shouldbe_bold, group)
+    local be_italic = not vim.list_contains(shouldnotbe_italic, group)
     local be_italic_bold = be_bold and be_italic
     if be_italic_bold then
       return italic_bold_selector

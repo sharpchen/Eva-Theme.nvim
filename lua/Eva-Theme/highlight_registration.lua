@@ -43,15 +43,17 @@ local function create_highlights()
     for syntax_type, group_list in pairs(self.syntax) do
       for _, item in ipairs(group_list) do
         local style_selector = require('Eva-Theme.selector_handler'):handle(palette, item.group)
-        local selector = item.selector
-        highlight_group[item.group] =
-          table.merge(style_selector(palette, syntax_type), item.selector and selector(palette, syntax_type) or {})
+        highlight_group[item.group] = vim.tbl_deep_extend(
+          'keep',
+          style_selector(palette, syntax_type),
+          item.selector and item.selector(palette, syntax_type) or {}
+        )
       end
     end
     for group_type, group_list in pairs(self.ui) do
       for _, item in ipairs(group_list) do
-        local selector = item.selector or function(palette, as)
-          return { fg = palette[as] }
+        local selector = item.selector or function(p, as)
+          return { fg = p[as] }
         end
         highlight_group[item.group] = selector(palette, group_type)
       end

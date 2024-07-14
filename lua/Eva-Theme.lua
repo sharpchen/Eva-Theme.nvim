@@ -24,6 +24,7 @@ M.colorscheme = function(variant)
     vim.api.nvim_set_hl(0, group, style)
   end
 end
+M.palettes = Theme
 M.setup = function(option) end
 
 return M
