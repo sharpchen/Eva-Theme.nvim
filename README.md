@@ -48,9 +48,9 @@ vim.cmd('colo Eva-Dark') -- or any variant
 
 ### Override palette
 
-Specifiy colors for dark and light variants, specified values will be take while the rest remain default.
+Specifiy colors for dark and light variants, specified values will be taken while the rest remains default.
 
-**All highlight groups uses certain overrided color will be affected, to override more specificly, use `override_highlight`**
+**All highlight groups uses certain overrided color will be affected, something unexpected might happen. To override more specificly, use `override_highlight`**
 
 > For palette structure, see: [palette.lua](https://github.com/sharpchen/Eva-Theme.nvim/blob/master/lua/Eva-Theme/palette.lua)
 
