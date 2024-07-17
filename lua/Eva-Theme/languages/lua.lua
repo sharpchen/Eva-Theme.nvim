@@ -1,22 +1,19 @@
 local utils = require('Eva-Theme.utils')
 ---@type StaticImporter
 local function lua(h)
-  h:map_token(
-    'logical',
-    {
-      '@keyword.conditional.lua',
-      '@keyword.repeat.lua',
-      '@keyword.return.lua',
-      '@keyword.operator.lua',
-      '@constant.builtin.lua',
-    }
-  )
+  h:map_token('logical', {
+    '@keyword.conditional.lua',
+    '@keyword.repeat.lua',
+    '@keyword.return.lua',
+    '@keyword.operator.lua',
+    '@constant.builtin.lua',
+  })
     :map_token('type', { '@function.macro.luadoc', '@lsp.type.macro.lua' })
     :map_token(
       'NONE',
       { '@punctuation.bracket.luadoc', '@punctuation.bracket.lua', '@constructor.lua', '@punctuation.special.luadoc' },
       function(palette, _)
-        return { fg = utils.isDark(palette) and '#838FA7' or '#727376', nocombine = true }
+        return { fg = utils.is_dark(palette) and '#838FA7' or '#727376', nocombine = true }
       end
     )
     :map_token('parameter', { '@lsp.type.parameter.lua' })

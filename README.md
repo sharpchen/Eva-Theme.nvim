@@ -8,16 +8,13 @@ Supports both Dark and Light modes, with four styles available for each mode: No
 
 ![dark1](https://github.com/sharpchen/Eva-Theme.nvim/assets/77432836/66c72a69-146d-4232-b72f-4559916c7c20)
 
-
 ## Light
 
 ![light2](https://github.com/sharpchen/Eva-Theme.nvim/assets/77432836/77e98199-78fe-4725-8c9b-389a9ee0d8b2)
 
-
 ## 🛠 Installation
 
 ### [Lazy](https://github.com/folke/lazy.nvim)
-
 ```lua
 {
   'sharpchen/Eva-Theme.nvim',
@@ -26,11 +23,9 @@ Supports both Dark and Light modes, with four styles available for each mode: No
 }
 ```
 
-## 🎯 Setup
+## 🎯 Usage
 
-### Select Variants
-
-- VimScript
+### VimScript
 
 ```vim
 colo Eva-Dark " or any other variant
@@ -43,13 +38,51 @@ colo Eva-Dark " or any other variant
 " colo Eva-Light-Italic-Bold
 ```
 
-- Lua
+### Lua
 
 ```lua
 vim.cmd('colo Eva-Dark') -- or any variant
 ```
 
-### Options
+## ⚙ Options
 
-Currently no option is opened. If you need any, please create a feature request.
+### Override palette
 
+Specifiy colors for dark and light variants, specified values will be take while the rest remain default.
+
+**All highlight groups uses certain overrided color will be affected, to override more specificly, use `override_highlight`**
+
+> For palette structure, see: [palette.lua](https://github.com/sharpchen/Eva-Theme.nvim/blob/master/lua/Eva-Theme/palette.lua)
+
+```lua
+require('Eva-Theme').setup({
+  override_palette = {
+    dark = {
+      operator = '#RRGGBB'
+      git = {
+        diffAdded = '#RRGGBB'
+      }
+    },
+    light = {
+      declarative = '#RRGGBB'
+    }
+  }
+})
+```
+
+### Override highlight
+
+To customize any highlight group for different variants, you can put function callbacks or tables of key-value pair inside `override_highlight`.
+
+```lua
+require('Eva-Theme').setup({
+  override_highlight = {
+    dark = {
+      ['@foo'] = { fg = '#RRGGBB', bg = '#RRGGBB' },
+    },
+    ['@foo'] = function(variant)
+      return { fg = require('Eva-Theme.utils').is_dark(variant) and '#RRGGBB' or '#RRGGBB' }
+    end,
+  },
+})
+```

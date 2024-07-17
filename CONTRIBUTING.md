@@ -42,7 +42,7 @@ If to adapt a plugin that currently not supported, please add a new lua file as 
 local function plugin_name(h)
     h:map_ui('func', 'NeoTreeCursorLine') -- highlight `NeoTreeCursorLine` with the color `func` from a palette
      :map_ui('property', { 'some_group', 'other_group' }) -- can be a array that maps multiple highlight groups with a same rule
-     :map_ui('NONE', 'some_group', function(palette, _) return { bg = IsDark(palette) and 'red' or 'blue' } end)
+     :map_ui('NONE', 'some_group', function(palette, _) return { bg = require('Eva-Theme.utils').is_dark(palette) and 'red' or 'blue' } end)
     -- use any color to handle dark and light variants
 end
 
@@ -66,7 +66,7 @@ There's some global functions to check whether a palette is certain variants to 
 -- lua/Eva-Theme/ui/plugin_name.lua
 ---@type StaticImporter
 local function plugin_name(h)
-    h:map_ui('NONE', 'some_group', function(palette, as) return { bg = IsDark(palette) and 'red' or 'blue' } end)
+    h:map_ui('NONE', 'some_group', function(palette, as) return { bg = require('Eva-Theme.utils').is_dark(palette) and 'red' or 'blue' } end)
 end
 
 return plugin_name
@@ -138,8 +138,5 @@ return create_highlights()
 ### Font-style handeling
 
 - All highlight groups are *normal* by default in bold variants, to make it bold, include it in `lua/Eva-Theme/shouldbe_bold.lua`
-- All highlight groups are *normal* by default in italic variants, to remove italic, include it in `lua/Eva-Theme/shouldnotbe_italic.lua`
+- All highlight groups are *italic* by default in italic variants, to make it non-italic, include it in `lua/Eva-Theme/shouldnotbe_italic.lua`
 
-## Options specific issues
-
-To be continue...

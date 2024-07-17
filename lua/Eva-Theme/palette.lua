@@ -1,6 +1,8 @@
 local utils = require('Eva-Theme.utils')
+local M = {}
+
 ---@type Palette
-local light_base = {
+M.light_base = {
   declarative = '#7C4DFF',
   func = '#437AED',
   type = '#00BEC4',
@@ -32,7 +34,7 @@ local light_base = {
   },
 }
 ---@type Palette
-local dark_base = {
+M.dark_base = {
   git = {
     added = '#98C379',
     ignored = '#676E95',
@@ -59,28 +61,33 @@ local dark_base = {
   property = '#E06C75',
   logical = '#CF68E1',
   comment = '#676E95',
-  operator = utils.lighten('#56B7C3', 15),
+  operator = '#56B7C3',
   variable = '#B0B7C3',
   background = '#282C34',
 }
 
----@type Theme
-local Theme = {
-  ---@type Palette
-  light = vim.tbl_extend('force', light_base, { name = 'light' }),
-  ---@type Palette
-  light_bold = vim.tbl_extend('force', light_base, { name = 'light_bold' }),
-  ---@type Palette
-  light_italic = vim.tbl_extend('force', light_base, { name = 'light_italic' }),
-  ---@type Palette
-  light_italic_bold = vim.tbl_extend('force', light_base, { name = 'light_italic_bold' }),
-  ---@type Palette
-  dark = vim.tbl_extend('force', dark_base, { name = 'dark' }),
-  ---@type Palette
-  dark_bold = vim.tbl_extend('force', dark_base, { name = 'dark_bold' }),
-  ---@type Palette
-  dark_italic = vim.tbl_extend('force', dark_base, { name = 'dark_italic' }),
-  ---@type Palette
-  dark_italic_bold = vim.tbl_extend('force', dark_base, { name = 'dark_italic_bold' }),
-}
-return Theme
+---@param variant ThemeName
+---@return table
+function M:create_palette(variant)
+  return vim.tbl_extend('force', variant:find('light') ~= nil and self.light_base or self.dark_base, { name = variant })
+  -- return {
+  --   ---@type Palette
+  --   light = vim.tbl_extend('force', self.light_base, { name = 'light' }),
+  --   ---@type Palette
+  --   light_bold = vim.tbl_extend('force', self.light_base, { name = 'light_bold' }),
+  --   ---@type Palette
+  --   light_italic = vim.tbl_extend('force', self.light_base, { name = 'light_italic' }),
+  --   ---@type Palette
+  --   light_italic_bold = vim.tbl_extend('force', self.light_base, { name = 'light_italic_bold' }),
+  --   ---@type Palette
+  --   dark = vim.tbl_extend('force', self.dark_base, { name = 'dark' }),
+  --   ---@type Palette
+  --   dark_bold = vim.tbl_extend('force', self.dark_base, { name = 'dark_bold' }),
+  --   ---@type Palette
+  --   dark_italic = vim.tbl_extend('force', self.dark_base, { name = 'dark_italic' }),
+  --   ---@type Palette
+  --   dark_italic_bold = vim.tbl_extend('force', self.dark_base, { name = 'dark_italic_bold' }),
+  -- }
+end
+
+return M

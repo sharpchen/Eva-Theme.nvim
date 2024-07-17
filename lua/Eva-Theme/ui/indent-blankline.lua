@@ -6,7 +6,7 @@ local function indent_blankline(h)
       return { fg = '#C97760' }
     end)
     :map_ui('NONE', 'IblWhitespace', function(palette, _)
-      return { fg = utils.isDark(palette) and '#50567C' or '#C8CACE' }
+      return { fg = utils.is_dark(palette) and '#50567C' or '#C8CACE' }
     end)
 end
 

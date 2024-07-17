@@ -30,7 +30,7 @@ local function treesitter(h)
       'NONE',
       { '@punctuation.bracket', '@punctuation.delimiter', '@punctuation.special' },
       function(palette, _)
-        return { fg = utils.isDark(palette) and '#838FA7' or '#727376' }
+        return { fg = utils.is_dark(palette) and '#838FA7' or '#727376' }
       end
     )
     :map_token('operator', { '@operator' })
@@ -78,7 +78,7 @@ local function treesitter(h)
       return { fg = p[as], italic = true }
     end)
     :map_token('NONE', '@string.escape', function(palette, _)
-      return { fg = utils.isDark(palette) and '#8A97C3' or '#888888' }
+      return { fg = utils.is_dark(palette) and '#8A97C3' or '#888888' }
     end)
     :map_token('NONE', '@diff.minus.diff', function(palette, _)
       return { fg = palette['git']['diffDeleted'] }
@@ -102,10 +102,10 @@ local function treesitter(h)
       return { fg = '#C57BDB', italic = true }
     end)
     :map_token('NONE', '@markup.strong', function(p, _)
-      return { fg = utils.isDark(p) and '#E4BF7F' or '#F0AA0B', bold = true }
+      return { fg = utils.is_dark(p) and '#E4BF7F' or '#F0AA0B', bold = true }
     end)
     :map_token('NONE', '@markup.raw.block.markdown', function(palette, _)
-      return { fg = utils.isDark(palette) and '#8792AA' or '#A0A1A7' }
+      return { fg = utils.is_dark(palette) and '#8792AA' or '#A0A1A7' }
     end)
 end
 

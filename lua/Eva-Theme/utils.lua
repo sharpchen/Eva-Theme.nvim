@@ -1,32 +1,50 @@
 local M = {}
----@param palette Palette
-function M.isBold(palette)
-  return palette.name:find('bold') ~= nil and not palette.name:find('italic')
+---@param variant Palette | string
+function M.is_bold(variant)
+  if type(variant) == 'string' then
+    return (variant:find('bold') ~= nil and not variant:find('italic'))
+  end
+  return (variant.name:find('bold') ~= nil and not variant.name:find('italic'))
 end
 
----@param palette Palette
-function M.isItalic(palette)
-  return palette.name:find('italic') ~= nil and not palette.name:find('bold')
+---@param variant Palette | string
+function M.is_italic(variant)
+  if type(variant) == 'string' then
+    return (variant:find('italic') ~= nil and not variant:find('bold'))
+  end
+  return (variant.name:find('italic') ~= nil and not variant.name:find('bold'))
 end
 
----@param palette Palette
-function M.isItalicBold(palette)
-  return palette.name:find('italic') ~= nil and palette.name:find('bold') ~= nil
+---@param variant Palette | string
+function M.is_italicbold(variant)
+  if type(variant) == 'string' then
+    return (variant:find('italic') ~= nil and variant:find('bold') ~= nil)
+  end
+  return (variant.name:find('italic') ~= nil and variant.name:find('bold') ~= nil)
 end
 
----@param palette Palette
-function M.isNormal(palette)
-  return not palette.name:find('bold') and not palette.name:find('italic')
+---@param variant Palette | string
+function M.is_normal(variant)
+  if type(variant) == 'string' then
+    return (variant:find('bold') == nil and variant:find('italic') == nil)
+  end
+  return (not variant.name:find('bold') and not variant.name:find('italic'))
 end
 
----@param palette Palette
-function M.isDark(palette)
-  return palette.name:find('dark') ~= nil
+---@param variant Palette | string
+function M.is_dark(variant)
+  if type(variant) == 'string' then
+    return (variant:find('dark') ~= nil)
+  end
+  return (variant.name:find('dark') ~= nil)
 end
 
----@param palette Palette
-function M.isLight(palette)
-  return palette.name:find('light') ~= nil
+---@param variant Palette | string
+function M.is_light(variant)
+  if type(variant) == 'string' then
+    return (variant:find('light') ~= nil)
+  end
+  return (variant.name:find('light') ~= nil)
 end
 
 function M.lighten(color, percent)

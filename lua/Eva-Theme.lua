@@ -1,6 +1,6 @@
 -- Entry file of the theme
 local registration = require('Eva-Theme.highlight_registration')
-local Theme = require('Eva-Theme.palette')
+local Palette = require('Eva-Theme.palette')
 ---@param variant ThemeName
 local function variant_name(variant)
   local function capitalize_first_letter(word)
@@ -20,11 +20,19 @@ M.colorscheme = function(variant)
     vim.cmd('syntax reset')
   end
   vim.g.colors_name = variant_name(variant)
-  for group, style in pairs(registration:highlight_groups(Theme[variant])) do
+  require('Eva-Theme.options').emit_user_config()
+  local highlights = vim.tbl_extend(
+    'keep',
+    require('Eva-Theme.options'):user_highlights(variant),
+    registration:highlight_groups(Palette:create_palette(variant))
+  )
+  for group, style in pairs(highlights) do
     vim.api.nvim_set_hl(0, group, style)
   end
 end
-M.palettes = Theme
-M.setup = function(option) end
+
+M.setup = function(option)
+  require('Eva-Theme.options').option = option
+end
 
 return M

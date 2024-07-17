@@ -42,7 +42,7 @@ end
 local normal_handler = vim.tbl_extend('keep', handler_base, {
   ---@param palette Palette
   should_handle = function(palette)
-    return utils.isNormal(palette)
+    return utils.is_normal(palette)
   end,
   ---@type SelectorPicker
   get_selector = function(_)
@@ -53,7 +53,7 @@ local normal_handler = vim.tbl_extend('keep', handler_base, {
 local bold_handler = vim.tbl_extend('keep', handler_base, {
   ---@param palette Palette
   should_handle = function(palette)
-    return utils.isBold(palette)
+    return utils.is_bold(palette)
   end,
   ---@type SelectorPicker
   get_selector = function(group)
@@ -64,7 +64,7 @@ local bold_handler = vim.tbl_extend('keep', handler_base, {
 local italic_handler = vim.tbl_extend('keep', handler_base, {
   ---@param palette Palette
   should_handle = function(palette)
-    return utils.isItalic(palette)
+    return utils.is_italic(palette)
   end,
   ---@type SelectorPicker
   get_selector = function(group)
@@ -75,7 +75,7 @@ local italic_handler = vim.tbl_extend('keep', handler_base, {
 local italic_bold_handler = vim.tbl_extend('keep', handler_base, {
   ---@param palette Palette
   should_handle = function(palette)
-    return utils.isItalicBold(palette)
+    return utils.is_italicbold(palette)
   end,
   ---@type SelectorPicker
   get_selector = function(group)

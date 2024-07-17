@@ -26,7 +26,7 @@ local function builtin(h)
     :map_ui('variable', { 'CursorLineNr', 'Command', 'Directory', 'SpecialKey', 'Title', 'RedrawDebugNormal' })
     :map_ui('comment', { 'LineNr', 'ColorColumn' })
     :map_ui('NONE', { 'LineNrAbove', 'LineNrBelow' }, function(palette, _)
-      return { fg = utils.isDark(palette) and '#50567C' or '#C8CACE' }
+      return { fg = utils.is_dark(palette) and '#50567C' or '#C8CACE' }
     end)
     :map_ui('NONE', 'healthSuccess', function(palette, _) --neovim checkhealth report
       return { fg = palette['git']['diffAdded'] }
@@ -46,8 +46,8 @@ local function builtin(h)
     end)
     :map_ui('NONE', 'PmenuSel', function(palette, _)
       return {
-        bg = utils.isDark(palette) and '#2F3F5C' or '#CAD7ED',
-        fg = utils.isDark(palette) and '#D7DAE0' or '#5D5D5F',
+        bg = utils.is_dark(palette) and '#2F3F5C' or '#CAD7ED',
+        fg = utils.is_dark(palette) and '#D7DAE0' or '#5D5D5F',
       }
     end)
     :map_ui('digit', 'TermCursor')
@@ -64,10 +64,10 @@ local function builtin(h)
       return { fg = p['git']['diffDeleted'] }
     end)
     :map_ui('NONE', { 'VisualNOS', 'Visual' }, function(p, _) -- selection background in visual mode
-      return { bg = utils.isDark(p) and '#394E75' or '#B0CBF7' }
+      return { bg = utils.is_dark(p) and '#394E75' or '#B0CBF7' }
     end)
     :map_ui('NONE', 'CursorLine', function(p, _)
-      return { bg = utils.isDark(p) and '#2F323C' or '#E3E6ED' }
+      return { bg = utils.is_dark(p) and '#2F323C' or '#E3E6ED' }
     end)
     :map_ui('digit', { 'MatchParen' }, function(palette, as)
       return { fg = palette[as] }
@@ -86,16 +86,16 @@ local function builtin(h)
     end)
     --#region inline diagnostic
     :map_ui('NONE', 'DiagnosticVirtualTextError', function(p, _)
-      return { fg = utils.isDark(p) and '#F36464' or '#E45454', bg = utils.isDark(p) and '#3D3037' or '#EBDAE0' }
+      return { fg = utils.is_dark(p) and '#F36464' or '#E45454', bg = utils.is_dark(p) and '#3D3037' or '#EBDAE0' }
     end)
     :map_ui('NONE', 'DiagnosticVirtualTextWarn', function(p, _)
-      return { fg = utils.isDark(p) and '#EF973A' or '#FB942F', bg = utils.isDark(p) and '#463D3A' or '#E7DBD4' }
+      return { fg = utils.is_dark(p) and '#EF973A' or '#FB942F', bg = utils.is_dark(p) and '#463D3A' or '#E7DBD4' }
     end)
     :map_ui('text', 'DiagnosticVirtualTextHint', function(p, as)
-      return { fg = p[as], bg = utils.isDark(p) and '#495949' or '#BED7C5' }
+      return { fg = p[as], bg = utils.is_dark(p) and '#495949' or '#BED7C5' }
     end)
     :map_ui('NONE', 'DiagnosticVirtualTextInfo', function(p, _)
-      return { fg = utils.isDark(p) and '#00b7cb' or '#00c1ea', bg = utils.isDark(p) and '#233e4b' or '#cde7f3' }
+      return { fg = utils.is_dark(p) and '#00b7cb' or '#00c1ea', bg = utils.is_dark(p) and '#233e4b' or '#cde7f3' }
     end)
     --#endregion
     :map_ui('declarative', 'WinSeparator', function(p, as)
@@ -103,8 +103,8 @@ local function builtin(h)
     end)
     :map_ui('NONE', 'LspInlayHint', function(palette, _)
       return {
-        fg = utils.isDark(palette) and '#8A97C3' or '#888888',
-        bg = utils.isDark(palette) and '#343744' or '#e5e8ee',
+        fg = utils.is_dark(palette) and '#8A97C3' or '#888888',
+        bg = utils.is_dark(palette) and '#343744' or '#e5e8ee',
       }
     end)
 end
