@@ -4,11 +4,11 @@ A semantic coloring code colorscheme for [NeoVim](https://github.com/neovim/neov
 
 Supports both Dark and Light modes, with four styles available for each mode: Normal, Bold, Italic, and Italic Bold.
 
-## Dark
+## 🌙 Dark
 
 ![dark1](https://github.com/sharpchen/Eva-Theme.nvim/assets/77432836/66c72a69-146d-4232-b72f-4559916c7c20)
 
-## Light
+## ☀ Light
 
 ![light2](https://github.com/sharpchen/Eva-Theme.nvim/assets/77432836/77e98199-78fe-4725-8c9b-389a9ee0d8b2)
 
