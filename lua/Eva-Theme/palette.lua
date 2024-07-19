@@ -10,6 +10,7 @@ M.light_base = {
   primitive = '#EF8ED8',
   digit = '#FF6D12',
   parameter = '#F0AA0B',
+  typeparam = '#F0AA0B',
   text = '#53A053',
   logical = '#C838C6',
   operator = '#00BEC4',
@@ -57,6 +58,7 @@ M.dark_base = {
   primitive = '#FF6AB3',
   digit = '#FF9070',
   parameter = '#E4BF7F',
+  typeparam = '#E4BF7F',
   text = '#98C379',
   property = '#E06C75',
   logical = '#CF68E1',
@@ -65,7 +67,6 @@ M.dark_base = {
   variable = '#B0B7C3',
   background = '#282C34',
 }
-
 ---@param variant ThemeName
 ---@return table
 function M:create_palette(variant)
