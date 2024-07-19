@@ -21,10 +21,11 @@ M.colorscheme = function(variant)
   end
   vim.g.colors_name = variant_name(variant)
   require('Eva-Theme.options').emit_user_config()
+  local user_palette = Palette:from_variant(variant)
   local highlights = vim.tbl_extend(
     'force',
-    registration:highlight_groups(Palette:create_palette(variant)),
-    require('Eva-Theme.options'):user_highlights(variant)
+    registration:highlight_groups(user_palette),
+    require('Eva-Theme.options'):user_highlights(user_palette)
   )
   for group, style in pairs(highlights) do
     vim.api.nvim_set_hl(0, group, style)

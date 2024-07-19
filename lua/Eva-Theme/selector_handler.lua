@@ -1,6 +1,6 @@
----@alias SelectorHandler { handle: (fun(self, palette: Palette, group: string): Selector), should_handle: CanHandle, get_selector: SelectorPicker, next: SelectorHandler, chain: fun(self: SelectorHandler, next: SelectorHandler): SelectorHandler }
+---@alias SelectorHandler { handle: (fun(self, palette: Palette | string, group: string): Selector), should_handle: CanHandle, get_selector: SelectorPicker, next: SelectorHandler, chain: fun(self: SelectorHandler, next: SelectorHandler): SelectorHandler }
 ---@alias SelectorPicker fun(group: string): Selector
----@alias CanHandle fun(palette: Palette): boolean
+---@alias CanHandle fun(palette: Palette | string): boolean
 local utils = require('Eva-Theme.utils')
 local shouldbe_bold = require('Eva-Theme.shouldbe_bold')
 local shouldnotbe_italic = require('Eva-Theme.shouldnotbe_italic')
@@ -31,7 +31,7 @@ function handler_base:chain(next)
   return next
 end
 
----@param palette Palette
+---@param palette Palette | string
 ---@param group string
 ---@return Selector
 function handler_base:handle(palette, group)
@@ -40,7 +40,7 @@ end
 
 ---@type SelectorHandler
 local normal_handler = vim.tbl_extend('keep', handler_base, {
-  ---@param palette Palette
+  ---@param palette Palette | string
   should_handle = function(palette)
     return utils.is_normal(palette)
   end,
@@ -51,7 +51,7 @@ local normal_handler = vim.tbl_extend('keep', handler_base, {
 })
 
 local bold_handler = vim.tbl_extend('keep', handler_base, {
-  ---@param palette Palette
+  ---@param palette Palette | string
   should_handle = function(palette)
     return utils.is_bold(palette)
   end,
@@ -62,7 +62,7 @@ local bold_handler = vim.tbl_extend('keep', handler_base, {
 })
 
 local italic_handler = vim.tbl_extend('keep', handler_base, {
-  ---@param palette Palette
+  ---@param palette Palette | string
   should_handle = function(palette)
     return utils.is_italic(palette)
   end,
@@ -73,7 +73,7 @@ local italic_handler = vim.tbl_extend('keep', handler_base, {
 })
 
 local italic_bold_handler = vim.tbl_extend('keep', handler_base, {
-  ---@param palette Palette
+  ---@param palette Palette | string
   should_handle = function(palette)
     return utils.is_italicbold(palette)
   end,

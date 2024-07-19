@@ -12,26 +12,32 @@ function M:override_palette()
   if self.option.override_palette == nil then
     return
   end
-  palette.dark_base = vim.tbl_deep_extend('force', palette.dark_base, self.option.override_palette.dark or {})
-  palette.light_base = vim.tbl_deep_extend('force', palette.light_base, self.option.override_palette.light or {})
+  palette.user_dark = vim.tbl_deep_extend('force', palette.user_dark, self.option.override_palette.dark or {})
+  palette.user_light = vim.tbl_deep_extend('force', palette.user_light, self.option.override_palette.light or {})
 end
 
----@param variant ThemeName
+---@param p Palette
 ---@return { [string]: TokenStyle }
-function M:user_highlights(variant)
+function M:user_highlights(p)
   if self.option.override_highlight == nil or next(self.option.override_highlight) == nil then
     return {}
   end
+  local variant = type(p) == 'table' and p.name or p --[[@as string]]
   ---@type table<string, TokenStyle>
   local user_highlights = {}
-  for key, value in pairs(self.option.override_highlight) do
-    if type(value) == 'function' then
-      user_highlights[key] = value(variant)
+  for group_or_variant, func_or_pair in pairs(self.option.override_highlight) do
+    if type(func_or_pair) == 'function' then
+      user_highlights[group_or_variant] = vim.tbl_extend(
+        'keep',
+        func_or_pair(variant),
+        require('Eva-Theme.selector_handler'):handle(p, group_or_variant)(p, 'NONE')
+      )
     end
-    if key == variant then
-      local val = value --[[@as table<string, TokenStyle>]]
-      for k, v in pairs(val) do
-        user_highlights[k] = v
+    if group_or_variant == p then
+      local pair = func_or_pair --[[@as table<string, TokenStyle>]]
+      for group, style in pairs(pair) do
+        user_highlights[group] =
+          vim.tbl_extend('keep', style, require('Eva-Theme.selector_handler'):handle(p, group)(p, 'NONE'))
       end
     end
   end
