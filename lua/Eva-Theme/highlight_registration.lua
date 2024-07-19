@@ -44,7 +44,7 @@ local function create_highlights()
       for _, item in ipairs(group_list) do
         local style_selector = require('Eva-Theme.selector_handler'):handle(palette, item.group)
         highlight_group[item.group] = vim.tbl_deep_extend(
-          'keep',
+          'force',
           style_selector(palette, syntax_type),
           item.selector and item.selector(palette, syntax_type) or {}
         )
