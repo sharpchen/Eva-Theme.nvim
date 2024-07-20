@@ -22,7 +22,7 @@ function M:user_highlights(p)
   if self.option.override_highlight == nil or next(self.option.override_highlight) == nil then
     return {}
   end
-  local variant = type(p) == 'table' and p.name or p --[[@as string]]
+  local variant = p.name
   ---@type table<string, TokenStyle>
   local user_highlights = {}
   for group_or_variant, func_or_pair in pairs(self.option.override_highlight) do
@@ -33,7 +33,7 @@ function M:user_highlights(p)
         require('Eva-Theme.selector_handler'):handle(p, group_or_variant)(p, 'NONE')
       )
     end
-    if group_or_variant == p then
+    if group_or_variant == variant then
       local pair = func_or_pair --[[@as table<string, TokenStyle>]]
       for group, style in pairs(pair) do
         user_highlights[group] =
