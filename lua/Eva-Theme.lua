@@ -1,6 +1,7 @@
 -- Entry file of the theme
 local registration = require('Eva-Theme.highlight_registration')
 local Palette = require('Eva-Theme.palette')
+local utils = require('Eva-Theme.utils')
 ---@param variant ThemeName
 local function variant_name(variant)
   local function capitalize_first_letter(word)
@@ -14,6 +15,7 @@ local M = {}
 M.colorscheme = function(variant)
   variant = variant or 'dark'
   vim.opt.termguicolors = true
+  vim.o.background = utils.is_dark(variant) and 'dark' or 'light'
   vim.cmd('set cursorline')
   if vim.g.colors_name then
     vim.cmd('hi clear')
