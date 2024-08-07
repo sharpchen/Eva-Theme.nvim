@@ -1,8 +1,7 @@
 # Contributing to `Eva-Theme.nvim`
 
 PRs are welcomed if there's any issue about highlighting and options. The following guide shows you how to get your PR implemented in a recommended way.
-
-> **It's recommended to create a issue before you fix a bug or implementing a new feature**
+If you're contributing for a new feature, please open an issue before you push.
 
 ## Color semantics
 
@@ -10,20 +9,44 @@ PRs are welcomed if there's any issue about highlighting and options. The follow
 
 |dark|light|semantic|alias|
 |---|---|---|---|
-|`#6495EE`|`#437AED`|function-like names|func|
-|`#A78CFA`|`#7C4DFF`|declaration keywords|declarative|
-|`#E4BF7F`|`#F0AA0B`|parameter name and typeparameter|parameter|
-|`#FF6AB3`|`#EF8ED8`|primitive/builtin type names|primitive|
-|`#56B7C3`|`#00BEC4`|type names, arithmetic operators|type|
-|`#98C379`|`#53A053`|string context|text|
-|`#B0B7C3`|`#5D5D5F`|variable|variable|
-|`#FF9070`|`#FF6D12`|numbers, constants|digit|
-|`#CF68E1`|`#C838C6`|flow control keywords, comparsion operators, keyword operators|logical|
-|`#E06C75`|`#CD6069`|object members/properties, namespaces/modules|property|
-|`#676E95`|`#A9A9AA`|comment|comment|
-|`#F02B77`|`#FA278E`|builtin variables like `self`, `super`, `this`, `base`|instanceReference|
+|<span style="display:inline-block;width:20px;height:20px;background-color:#6495EE;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#437AED;"/>|function-like names|func|
+|<span style="display:inline-block;width:20px;height:20px;background-color:#A78CFA;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#7C4DFF;"/>|declaration keywords|declarative|
+|<span style="display:inline-block;width:20px;height:20px;background-color:#E4BF7F;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#F0AA0B;"/>|parameter name and typeparameter|parameter|
+|<span style="display:inline-block;width:20px;height:20px;background-color:#FF6AB3;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#EF8ED8;"/>|primitive/builtin type names|primitive|
+|<span style="display:inline-block;width:20px;height:20px;background-color:#56B7C3;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#00BEC4;"/>|type names, arithmetic operators|type|
+|<span style="display:inline-block;width:20px;height:20px;background-color:#98C379;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#53A053;"/>|string context|text|
+|<span style="display:inline-block;width:20px;height:20px;background-color:#B0B7C3;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#5D5D5F;"/>|variable|variable|
+|<span style="display:inline-block;width:20px;height:20px;background-color:#FF9070;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#FF6D12;"/>|numbers, constants|digit|
+|<span style="display:inline-block;width:20px;height:20px;background-color:#CF68E1;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#C838C6;"/>|flow control keywords, boolean literal, null literal,keyword operators|logical|
+|<span style="display:inline-block;width:20px;height:20px;background-color:#E06C75;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#CD6069;"/>|object members/properties, namespaces/modules|property|
+|<span style="display:inline-block;width:20px;height:20px;background-color:#676E95;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#A9A9AA;"/>|comment|comment|
+|<span style="display:inline-block;width:20px;height:20px;background-color:#F02B77;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#FA278E;"/>|builtin variables like self, super, this, base|instanceReference|
 
-- `alias` column shows the string union members in the code base.
+`alias` column shows the string union members in the code base:
+
+```lua
+---@alias SyntaxType
+--- | 'NONE'
+--- | 'error'
+--- | 'warning'
+--- | 'info'
+--- | 'declarative'
+--- | 'text'
+--- | 'func'
+--- | 'property'
+--- | 'primitive'
+--- | 'type'
+--- | 'digit'
+--- | 'parameter'
+--- | 'comment'
+--- | 'variable'
+--- | 'instanceReference'
+--- | 'logical'
+--- | 'operator'
+--- | 'background'
+--- | 'panelBackground'
+--- | 'typeparam'
+```
 
 ## Fix highlightings
 
@@ -42,7 +65,11 @@ If to adapt a plugin that currently not supported, please add a new lua file as 
 local function plugin_name(h)
     h:map_ui('func', 'NeoTreeCursorLine') -- highlight `NeoTreeCursorLine` with the color `func` from a palette
      :map_ui('property', { 'some_group', 'other_group' }) -- can be a array that maps multiple highlight groups with a same rule
-     :map_ui('NONE', 'some_group', function(palette, _) return { bg = require('Eva-Theme.utils').is_dark(palette) and 'red' or 'blue' } end)
+     :map_ui('NONE', 'some_group', function(palette, _) 
+        return { 
+            bg = require('Eva-Theme.utils').is_dark(palette) and 'red' or 'blue' 
+        }
+    end)
     -- use any color to handle dark and light variants
 end
 
@@ -55,7 +82,9 @@ The third paramter of `map_ui` is a callback typed as `fun(palette: Palette, as:
 The default callback is:
 
 ```lua
-function(palette, as) return { fg = palette[as] } end -- so it colors foreground by default using specific palette color
+function(palette, as) 
+    return { fg = palette[as] } 
+end -- so it colors foreground by default using specific palette color
 ```
 
 To use any color, simply overrides the callback, however, you might need to adapt for light and dark.
@@ -66,7 +95,11 @@ There's some global functions to check whether a palette is certain variants to 
 -- lua/Eva-Theme/ui/plugin_name.lua
 ---@type StaticImporter
 local function plugin_name(h)
-    h:map_ui('NONE', 'some_group', function(palette, as) return { bg = require('Eva-Theme.utils').is_dark(palette) and 'red' or 'blue' } end)
+    h:map_ui('NONE', 'some_group', function(palette, as) 
+        return { 
+            bg = require('Eva-Theme.utils').is_dark(palette) and 'red' or 'blue' 
+        }
+    end)
 end
 
 return plugin_name
