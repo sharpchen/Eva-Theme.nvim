@@ -50,7 +50,9 @@ local function builtin(h)
         fg = utils.is_dark(palette) and '#D7DAE0' or '#5D5D5F',
       }
     end)
-    :map_ui('digit', 'TermCursor')
+    :map_ui('digit', 'TermCursor', function(p, as)
+      return { bg = p[as] }
+    end)
     :map_ui('variable', 'DiagnosticUnderlineHint', function(palette, as)
       return { underdotted = true, sp = palette[as] }
     end)
