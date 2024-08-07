@@ -5,22 +5,22 @@ If you're contributing for a new feature, please open an issue before you push.
 
 ## Color semantics
 
-[Eva-Theme](https://github.com/fisheva/Eva-Theme) was created to fit the concept of *semantic highlighting*, different color has specific semantic in context.
+[Eva-Theme](https://github.com/fisheva/Eva-Theme) follows the concept of *semantic highlighting*, different colors has specific semantic in context.
 
 |dark|light|semantic|alias|
 |---|---|---|---|
-|<span style="display:inline-block;width:20px;height:20px;background-color:#6495EE;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#437AED;"/>|function-like names|func|
-|<span style="display:inline-block;width:20px;height:20px;background-color:#A78CFA;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#7C4DFF;"/>|declaration keywords|declarative|
-|<span style="display:inline-block;width:20px;height:20px;background-color:#E4BF7F;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#F0AA0B;"/>|parameter name and typeparameter|parameter|
-|<span style="display:inline-block;width:20px;height:20px;background-color:#FF6AB3;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#EF8ED8;"/>|primitive/builtin type names|primitive|
-|<span style="display:inline-block;width:20px;height:20px;background-color:#56B7C3;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#00BEC4;"/>|type names, arithmetic operators|type|
-|<span style="display:inline-block;width:20px;height:20px;background-color:#98C379;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#53A053;"/>|string context|text|
-|<span style="display:inline-block;width:20px;height:20px;background-color:#B0B7C3;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#5D5D5F;"/>|variable|variable|
-|<span style="display:inline-block;width:20px;height:20px;background-color:#FF9070;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#FF6D12;"/>|numbers, constants|digit|
-|<span style="display:inline-block;width:20px;height:20px;background-color:#CF68E1;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#C838C6;"/>|flow control keywords, boolean literal, null literal,keyword operators|logical|
-|<span style="display:inline-block;width:20px;height:20px;background-color:#E06C75;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#CD6069;"/>|object members/properties, namespaces/modules|property|
-|<span style="display:inline-block;width:20px;height:20px;background-color:#676E95;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#A9A9AA;"/>|comment|comment|
-|<span style="display:inline-block;width:20px;height:20px;background-color:#F02B77;"/>|<span style="display:inline-block;width:20px;height:20px;background-color:#FA278E;"/>|builtin variables like self, super, this, base|instanceReference|
+|`#6495EE`|`#437AED`|function-like names|func|
+|`#A78CFA`|`#7C4DFF`|declaration keywords|declarative|
+|`#E4BF7F`|`#F0AA0B`|parameter name and typeparameter|parameter|
+|`#FF6AB3`|`#EF8ED8`|primitive/builtin type names|primitive|
+|`#56B7C3`|`#00BEC4`|type names, arithmetic operators|type|
+|`#98C379`|`#53A053`|string context|text|
+|`#B0B7C3`|`#5D5D5F`|variable|variable|
+|`#FF9070`|`#FF6D12`|numbers, constants|digit|
+|`#CF68E1`|`#C838C6`|flow control keywords, boolean literal, null literal,keyword operators|logical|
+|`#E06C75`|`#CD6069`|object members/properties, namespaces/modules|property|
+|`#676E95`|`#A9A9AA`|comment|comment|
+|`#F02B77`|`#FA278E`|builtin variables like `self`, `super`, `this`, `base`|instanceReference|
 
 `alias` column shows the string union members in the code base:
 
