@@ -38,8 +38,11 @@ local function builtin(h)
     :map_ui('background', 'SignColumn', function(palette, as)
       return { bg = palette[as] }
     end)
-    :map_ui('panelBackground', { 'StatusLine', 'StatusLineNC', 'NormalFloat' }, function(palette, as)
+    :map_ui('panelBackground', { 'NormalFloat' }, function(palette, as)
       return { bg = palette[as], fg = palette['variable'] }
+    end)
+    :map_ui('NONE', { 'StatusLine', 'StatusLineNC' }, function(_, _)
+      return { link = 'CursorLine' }
     end)
     :map_ui('panelBackground', 'Pmenu', function(palette, as)
       return { bg = palette[as], fg = palette['variable'] }
