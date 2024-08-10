@@ -33,9 +33,17 @@ M.light_base = {
     stagedModified = '#D73BD5',
     untracked = '#3EC141',
   },
+  inlay_hint = {
+    fg = '#888888',
+    bg = '#e5e8ee',
+  },
 }
 ---@type Palette
 M.dark_base = {
+  inlay_hint = {
+    fg = '#8A97C3',
+    bg = '#343744',
+  },
   git = {
     added = '#98C379',
     ignored = '#676E95',
