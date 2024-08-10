@@ -38,8 +38,8 @@ local function builtin(h)
     :map_ui('background', 'SignColumn', function(palette, as)
       return { bg = palette[as] }
     end)
-    :map_ui('panelBackground', { 'NormalFloat' }, function(palette, as)
-      return { bg = palette[as], fg = palette['variable'] }
+    :map_ui('NONE', { 'NormalFloat' }, function(palette, as)
+      return { fg = palette.inlay_hint.fg }
     end)
     :map_ui('NONE', { 'StatusLine', 'StatusLineNC' }, function(_, _)
       return { link = 'CursorLine' }
@@ -86,8 +86,8 @@ local function builtin(h)
     :map_ui('panelBackground', 'TabLine', function(palette, as)
       return { bg = palette[as], fg = palette['comment'] }
     end)
-    :map_ui('declarative', { 'FloatBorder', 'FloatTitle' }, function(palatte, as)
-      return { fg = palatte[as], bg = palatte.panelBackground }
+    :map_ui('NONE', { 'FloatBorder', 'FloatTitle' }, function(palatte, as)
+      return { fg = palatte.inlay_hint.fg }
     end)
     --#region inline diagnostic
     :map_ui('NONE', 'DiagnosticVirtualTextError', function(p, _)
@@ -104,12 +104,12 @@ local function builtin(h)
     end)
     --#endregion
     :map_ui('declarative', 'WinSeparator', function(p, as)
-      return { fg = p[as] } --utils.isDark(p) and '#181A1F' or '#c4c7ce' }
+      return { fg = p.panelBackground }
     end)
     :map_ui('NONE', 'LspInlayHint', function(palette, _)
       return {
-        fg = utils.is_dark(palette) and '#8A97C3' or '#888888',
-        bg = utils.is_dark(palette) and '#343744' or '#e5e8ee',
+        fg = palette.inlay_hint.fg,
+        bg = palette.inlay_hint.bg,
       }
     end)
 end

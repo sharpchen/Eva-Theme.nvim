@@ -16,8 +16,8 @@ local function neo_tree(h)
     :map_ui('panelBackground', { 'NeoTreeNormal', 'NeoTreeNormalNC' }, function(palette, as)
       return { bg = palette[as] }
     end)
-    :map_ui('panelBackground', { 'NeoTreeStatusLine', 'NeoTreeStatusLineNC' }, function(palette, as)
-      return { bg = palette[as], fg = palette.variable }
+    :map_ui('NONE', { 'NeoTreeStatusLine', 'NeoTreeStatusLineNC' }, function(_, _)
+      return { link = 'StatusLine' }
     end)
     :map_ui('info', { 'NeoTreeDirectoryIcon', 'NeoTreeDirectoryName' })
     :map_ui('digit', 'NeoTreeTitleBar', function(palette, as)

@@ -1,7 +1,7 @@
 ---@type StaticImporter
 local function telescope(h)
-  h:map_ui('panelBackground', 'TelescopeNormal', function(palette, as)
-    return { bg = palette[as] }
+  h:map_ui('NONE', 'TelescopeNormal', function(_, _)
+    return { link = 'Normal' }
   end)
     :map_ui('NONE', 'TelescopeTitle', function(palette, _)
       return { fg = palette.panelBackground, bg = palette.func }
@@ -14,6 +14,9 @@ local function telescope(h)
     end)
     :map_ui('func', 'TelescopePromptTitle', function(palette, as)
       return { fg = palette.panelBackground, bg = palette[as] }
+    end)
+    :map_ui('NONE', 'TelescopeBorder', function(palette, _)
+      return { fg = palette.inlay_hint.fg }
     end)
 end
 
