@@ -2,7 +2,7 @@ local utils = require('Eva-Theme.utils')
 ---@type StaticImporter
 local function builtin(h)
   h
-    :map_ui('declarative', { 'DiagnosticOk', 'DiagnosticVirtualTextOk', 'DiagnosticFloatingOk', 'DiagnosticSignOk' })
+    :map_ui('text', { 'DiagnosticOk', 'DiagnosticVirtualTextOk', 'DiagnosticFloatingOk', 'DiagnosticSignOk' })
     :map_ui(
       'info',
       { 'MoreMsg', 'Question', 'DiagnosticInfo', 'DiagnosticFloatingInfo', 'DiagnosticSignInfo', 'RedrawDebugComposed' }
