@@ -54,7 +54,7 @@ local function builtin(h)
       }
     end)
     :map_ui('digit', 'TermCursor', function(p, as)
-      return { bg = p[as] }
+      return { bg = p[as], fg = p.background }
     end)
     :map_ui('variable', 'DiagnosticUnderlineHint', function(palette, as)
       return { underdotted = true, sp = palette[as] }
