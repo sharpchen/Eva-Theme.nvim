@@ -6,14 +6,11 @@ Supports both Dark and Light modes, with four styles available for each mode: No
 
 ## 🌙 Dark
 
-![image](https://github.com/user-attachments/assets/957f738f-0640-47c3-be71-28c4ea900cc4)
-
+![Snipaste_2024-08-14_20-20-16](https://github.com/user-attachments/assets/fdbc1cea-f07f-4488-a139-3e2032996e00)
 
 ## ☀ Light
 
-![image](https://github.com/user-attachments/assets/cb68afd5-baef-4408-81b8-f32292cf7814)
-
-
+![Snipaste_2024-08-14_17-42-18](https://github.com/user-attachments/assets/a744944e-8089-4636-806a-d4fdddb602ef)
 
 ## 🛠 Installation
 
