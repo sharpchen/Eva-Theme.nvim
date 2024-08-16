@@ -19,6 +19,7 @@ local function treesitter(h)
     )
     :map_token('logical', {
       '@boolean',
+      '@keyword.import',
       '@keyword.coroutine',
       '@keyword.repeat',
       '@keyword.return',
@@ -51,7 +52,6 @@ local function treesitter(h)
       '@keyword.directive.define',
       '@namespace.builtin',
       '@keyword',
-      '@keyword.import',
       '@keyword.function',
       '@keyword.function',
       '@keyword.type',
