@@ -103,8 +103,8 @@ local function builtin(h)
       return { fg = utils.is_dark(p) and '#00b7cb' or '#00c1ea', bg = utils.is_dark(p) and '#233e4b' or '#cde7f3' }
     end)
     --#endregion
-    :map_ui('declarative', 'WinSeparator', function(p, as)
-      return { fg = p.panelBackground }
+    :map_ui('NONE', 'WinSeparator', function(p, _)
+      return { fg = utils.is_dark(p) and p.panelBackground or p.comment }
     end)
     :map_ui('NONE', 'LspInlayHint', function(palette, _)
       return {
