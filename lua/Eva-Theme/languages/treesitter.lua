@@ -44,7 +44,6 @@ local function treesitter(h)
       '@variable.parameter',
       '@variable.parameter.builtin',
       '@local.definition.parameter',
-      '@character.special',
       '@string.regexp',
     })
     :map_token('primitive', { '@type.builtin', '@label.markdown' })
@@ -77,8 +76,8 @@ local function treesitter(h)
     :map_token('comment', '@comment.documentation', function(p, as)
       return { fg = p[as], italic = true }
     end)
-    :map_token('NONE', '@string.escape', function(palette, _)
-      return { fg = utils.is_dark(palette) and '#8A97C3' or '#888888' }
+    :map_token('NONE', { '@string.escape', '@character.special' }, function(palette, _)
+      return { fg = palette.escape }
     end)
     :map_token('NONE', '@diff.minus.diff', function(palette, _)
       return { fg = palette['git']['diffDeleted'] }

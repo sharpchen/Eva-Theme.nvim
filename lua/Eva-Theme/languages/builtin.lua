@@ -14,7 +14,7 @@ local function builtin(h)
       return { fg = p[as], italic = true }
     end)
     :map_token('NONE', 'Special', function(palette, _) -- escaped characters
-      return { fg = utils.is_dark(palette) and '#8A97C3' or '#888888' }
+      return { fg = palette.escape }
     end)
     :map_token('NONE', 'DiagnosticUnnecessary', function(palette, _)
       return { fg = utils.is_dark(palette) and '#50567C' or '#C8CACE', underdashed = true }

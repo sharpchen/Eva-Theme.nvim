@@ -18,10 +18,10 @@ local function lua(h)
     )
     :map_token('parameter', { '@lsp.type.parameter.lua' })
     :map_token('func', { '@function.builtin.lua', '@lsp.typemod.function.defaultLibrary.lua' })
-    :map_token('property', { '@lsp.type.property.lua', '@variable.member.lua' })
+    :map_token('property', { '@variable.member.lua' })
     :map_token('digit', '@lsp.mod.defaultLibrary.lua')
     :map_token('instanceReference', '@lsp.typemod.variable.definition.lua')
-  -- :map_token('declarative', '@comment.documentation.lua')
+    :map_token('NONE', '@lsp.type.property.lua')
 end
 
 return lua

@@ -37,6 +37,7 @@ M.light_base = {
     fg = '#888888',
     bg = '#e5e8ee',
   },
+  escape = '#888888',
 }
 ---@type Palette
 M.dark_base = {
@@ -74,6 +75,7 @@ M.dark_base = {
   operator = '#56B7C3',
   variable = '#B0B7C3',
   background = '#282C34',
+  escape = '#8A97C3',
 }
 
 M.user_light = vim.deepcopy(M.light_base)
