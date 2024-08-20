@@ -80,9 +80,37 @@ require('Eva-Theme').setup({
     dark = {
       ['@foo'] = { fg = '#RRGGBB', bg = '#RRGGBB' },
     },
+    light = {
+      ['@foo'] = { fg = '#RRGGBB', bg = '#RRGGBB' },
+    },
     ['@foo'] = function(variant)
       return { fg = require('Eva-Theme.utils').is_dark(variant) and '#RRGGBB' or '#RRGGBB' }
     end,
   },
 })
 ```
+
+### Ambiguity issue
+
+This port was intented to respect the [upstream](https://github.com/fisheva/Eva-Theme) where operators got different colors by their usages.
+While treesitter parsers generally don't classify operator into different usages, so there's no much I can do.
+If you find ambiguity between operator and type(pointer type `T*` for example), I suggest customize by yourself.
+
+This is what I prefer:
+
+```lua
+require('Eva-Theme').setup({
+  override_palette = {
+    dark = {
+      operator = require('Eva-Theme.palette').dark_base.logical,
+    },
+    light = {
+      operator = require('Eva-Theme.palette').light_base.logical,
+    },
+  },
+)
+```
+
+## Contributing
+
+See: [CONTRIBUTING.md](./CONTRIBUTING.md) 

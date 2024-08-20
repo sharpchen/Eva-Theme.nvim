@@ -43,9 +43,9 @@ If you're contributing for a new feature, please open an issue before you push.
 --- | 'instanceReference'
 --- | 'logical'
 --- | 'operator'
---- | 'background'
---- | 'panelBackground'
 --- | 'typeparam'
+--- | 'background' -- I know I should not include it but I already did.
+--- | 'panelBackground'
 ```
 
 ## Fix highlightings
@@ -172,4 +172,4 @@ return create_highlights()
 
 - All highlight groups are *normal* by default in bold variants, to make it bold, include it in `lua/Eva-Theme/shouldbe_bold.lua`
 - All highlight groups are *italic* by default in italic variants, to make it non-italic, include it in `lua/Eva-Theme/shouldnotbe_italic.lua`
-
+- Which should be certain font style? See: [font-style-rules](https://github.com/fisheva/Eva-Theme/blob/master/documents/font-style-rules.md)
