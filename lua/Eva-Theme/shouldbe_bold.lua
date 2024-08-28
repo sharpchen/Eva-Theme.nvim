@@ -44,4 +44,5 @@ return {
   '@lsp.typemod.variable.definition.lua',
   '@lsp.typemod.function.defaultLibrary.lua',
   '@lsp.typemod.keyword.controlFlow.rust',
+  '@keyword.conditional.c_sharp',
 }
