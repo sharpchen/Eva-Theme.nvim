@@ -96,8 +96,8 @@ local function builtin(h)
     :map_ui('NONE', 'DiagnosticVirtualTextWarn', function(p, _)
       return { fg = utils.is_dark(p) and '#EF973A' or '#FB942F', bg = utils.is_dark(p) and '#463D3A' or '#E7DBD4' }
     end)
-    :map_ui('text', 'DiagnosticVirtualTextHint', function(p, as)
-      return { fg = p[as], bg = utils.is_dark(p) and '#495949' or '#BED7C5' }
+    :map_ui('NONE', 'DiagnosticVirtualTextHint', function(p, _)
+      return { bg = p.inlay_hint.bg, fg = utils.is_dark(p) and '#50567C' or '#C8CACE' }
     end)
     :map_ui('NONE', 'DiagnosticVirtualTextInfo', function(p, _)
       return { fg = utils.is_dark(p) and '#00b7cb' or '#00c1ea', bg = utils.is_dark(p) and '#233e4b' or '#cde7f3' }
