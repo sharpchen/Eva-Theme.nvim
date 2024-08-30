@@ -31,7 +31,7 @@ local function treesitter(h)
       'NONE',
       { '@punctuation.bracket', '@punctuation.delimiter', '@punctuation.special' },
       function(palette, _)
-        return { fg = utils.is_dark(palette) and '#838FA7' or '#727376' }
+        return { fg = palette.punctuation }
       end
     )
     :map_token('operator', { '@operator' })
