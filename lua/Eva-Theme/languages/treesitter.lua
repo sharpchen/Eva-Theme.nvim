@@ -1,8 +1,17 @@
 local utils = require('Eva-Theme.utils')
 ---@type StaticImporter
 local function treesitter(h)
-  h:map_token('type', { '@attribute', '@constructor', '@type.definition', '@tag.attribute', '@markup.list.markdown' })
+  h:map_token('type', {
+    '@attribute',
+    '@attribute.builtin',
+    '@constructor',
+    '@type.definition',
+    '@tag.attribute',
+    '@markup.list.markdown',
+    '@type',
+  })
     :map_token('func', {
+      '@function.builtin',
       '@function.method',
       '@function.method.call',
       '@function',
@@ -13,10 +22,15 @@ local function treesitter(h)
       '@local.definition.method',
       '@markup.link.label',
     })
-    :map_token(
-      'digit',
-      { '@number', '@constant', '@constant.builtin', '@constant.macro', '@number.float', '@local.definition.constant' }
-    )
+    :map_token('digit', {
+      '@number',
+      '@constant',
+      '@constant.builtin',
+      '@constant.macro',
+      '@number.float',
+      '@local.definition.constant',
+      '@string.special',
+    })
     :map_token('logical', {
       '@boolean',
       '@keyword.import',
@@ -29,7 +43,7 @@ local function treesitter(h)
     })
     :map_token(
       'NONE',
-      { '@punctuation.bracket', '@punctuation.delimiter', '@punctuation.special' },
+      { '@markup', '@punctuation', '@punctuation.bracket', '@punctuation.delimiter', '@punctuation.special' },
       function(palette, _)
         return { fg = palette.punctuation }
       end
@@ -64,12 +78,14 @@ local function treesitter(h)
       '@string.special.path.diff',
       '@string.special.url',
       '@string.special.path',
+      '@markup.link',
       '@markup.link.url',
       '@markup.raw',
       '@markup.raw.block',
       '@markup.list',
+      '@character',
     })
-    :map_token('comment', { '@string.documentation' })
+    :map_token('comment', { '@string.documentation', '@comment' })
     :map_token('info', { '@comment.note' })
     :map_token('warning', { '@comment.warning' })
     :map_token('error', { '@comment.error' })
@@ -79,10 +95,10 @@ local function treesitter(h)
     :map_token('NONE', { '@string.escape', '@character.special' }, function(palette, _)
       return { fg = palette.escape }
     end)
-    :map_token('NONE', '@diff.minus.diff', function(palette, _)
+    :map_token('NONE', { '@diff.minus.diff', '@diff.minus' }, function(palette, _)
       return { fg = palette['git']['diffDeleted'] }
     end)
-    :map_token('NONE', '@diff.plus.diff', function(palette, _)
+    :map_token('NONE', { '@diff.plus.diff', '@diff.plus' }, function(palette, _)
       return { fg = palette['git']['diffAdded'] }
     end)
     :map_token('NONE', '@diff.delta', function(palette, _)
@@ -96,6 +112,7 @@ local function treesitter(h)
       '@markup.heading.4',
       '@markup.heading.5',
       '@markup.heading.6',
+      '@module',
     })
     :map_token('NONE', '@markup.italic', function(_, _)
       return { fg = '#C57BDB', italic = true }
