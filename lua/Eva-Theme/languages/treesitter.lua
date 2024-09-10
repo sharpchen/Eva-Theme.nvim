@@ -40,6 +40,7 @@ local function treesitter(h)
       '@keyword.exception',
       '@keyword.conditional',
       '@keyword.conditional.ternary',
+      '@keyword.operator',
     })
     :map_token(
       'NONE',
@@ -66,10 +67,8 @@ local function treesitter(h)
       '@namespace.builtin',
       '@keyword',
       '@keyword.function',
-      '@keyword.function',
       '@keyword.type',
       '@keyword.modifier',
-      '@keyword.operator',
     })
     :map_token('instanceReference', { '@variable.builtin', '@module.builtin' })
     :map_token('text', {
