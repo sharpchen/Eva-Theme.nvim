@@ -51,10 +51,15 @@ local function treesitter(h)
       end
     )
     :map_token('operator', { '@operator' })
-    :map_token(
-      'property',
-      { '@property', '@tag.xml', '@tag', '@tag.builtin', '@variable.member', '@local.definition.namespace' }
-    )
+    :map_token('property', {
+      '@property',
+      '@tag.xml',
+      '@tag',
+      '@tag.builtin',
+      '@variable.member',
+      '@variable.other.member',
+      '@local.definition.namespace',
+    })
     :map_token('variable', { '@variable', '@local.definition.var' })
     :map_token('parameter', {
       '@variable.parameter',
