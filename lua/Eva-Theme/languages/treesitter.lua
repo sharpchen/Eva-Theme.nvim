@@ -37,6 +37,7 @@ local function treesitter(h)
       '@keyword.coroutine',
       '@keyword.repeat',
       '@keyword.return',
+      '@keyword.control',
       '@keyword.control.return',
       '@keyword.exception',
       '@keyword.conditional',
