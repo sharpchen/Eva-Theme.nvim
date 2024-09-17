@@ -91,7 +91,9 @@ local function treesitter(h)
       '@markup.list',
       '@character',
     })
-    :map_token('comment', { '@string.documentation', '@comment' })
+    :map_token('comment', { '@string.documentation', '@comment' }, function(p, as)
+      return { fg = p[as], italic = true }
+    end)
     :map_token('info', { '@comment.note' })
     :map_token('warning', { '@comment.warning' })
     :map_token('error', { '@comment.error' })
