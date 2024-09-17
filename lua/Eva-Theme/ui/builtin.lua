@@ -23,7 +23,7 @@ local function builtin(h)
       'RedDebugRecompose',
       'NvimInternalError',
     })
-    :map_ui('variable', { 'CursorLineNr', 'Command', 'Directory', 'SpecialKey', 'Title', 'RedrawDebugNormal' })
+    :map_ui('variable', { 'CursorLineNr', 'Command', 'SpecialKey', 'Title', 'RedrawDebugNormal' })
     :map_ui('comment', { 'LineNr', 'ColorColumn' })
     :map_ui('NONE', { 'LineNrAbove', 'LineNrBelow' }, function(palette, _)
       return { fg = utils.is_dark(palette) and '#50567C' or '#C8CACE' }
@@ -51,6 +51,7 @@ local function builtin(h)
       return {
         bg = utils.is_dark(palette) and '#2F3F5C' or '#CAD7ED',
         fg = utils.is_dark(palette) and '#D7DAE0' or '#5D5D5F',
+        bold = true,
       }
     end)
     :map_ui('digit', 'TermCursor', function(p, as)
@@ -104,12 +105,19 @@ local function builtin(h)
     end)
     --#endregion
     :map_ui('NONE', 'WinSeparator', function(p, _)
-      return { fg = utils.is_dark(p) and p.panelBackground or p.comment }
+      return { fg = p.inlay_hint.fg }
     end)
     :map_ui('NONE', 'LspInlayHint', function(palette, _)
       return {
         fg = palette.inlay_hint.fg,
         bg = palette.inlay_hint.bg,
+      }
+    end)
+    :map_ui('func', 'Directory')
+    :map_ui('NONE', 'QuickFixLine', function(palette, _)
+      return {
+        bg = utils.is_dark(palette) and '#2F3F5C' or '#CAD7ED',
+        bold = true,
       }
     end)
 end
