@@ -12,17 +12,6 @@ Supports both Dark and Light modes, with four styles available for each mode: No
 
 ![Snipaste_2024-08-14_17-42-18](https://github.com/user-attachments/assets/a744944e-8089-4636-806a-d4fdddb602ef)
 
-## 🛠 Installation
-
-### [Lazy](https://github.com/folke/lazy.nvim)
-```lua
-{
-  'sharpchen/Eva-Theme.nvim',
-  lazy = false,
-  priority = 1000,
-}
-```
-
 ## 🎨 Palette
 
 |dark|light|semantic|
@@ -39,6 +28,17 @@ Supports both Dark and Light modes, with four styles available for each mode: No
 |$\color{#E06C75}{● \\#E06C75}$|$\color{#CD6069}{● \\#CD6069}$|object members/properties, namespaces/modules|
 |$\color{#676E95}{● \\#676E95}$|$\color{#A9A9AA}{● \\#A9A9AA}$|comment|
 |$\color{#F02B77}{● \\#F02B77}$|$\color{#FA278E}{● \\#FA278E}$|builtin variables like `self`, `super`, `this`, `base`|
+
+## 🛠 Installation
+
+### [Lazy](https://github.com/folke/lazy.nvim)
+```lua
+{
+  'sharpchen/Eva-Theme.nvim',
+  lazy = false,
+  priority = 1000,
+}
+```
 
 ## 🎯 Usage
 
