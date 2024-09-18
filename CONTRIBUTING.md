@@ -9,18 +9,18 @@ If you're contributing for a new feature, please open an issue before you push.
 
 |dark|light|semantic|alias|
 |---|---|---|---|
-|`#6495EE`|`#437AED`|function-like names|func|
-|`#A78CFA`|`#7C4DFF`|declaration keywords|declarative|
-|`#E4BF7F`|`#F0AA0B`|parameter name and typeparameter|parameter|
-|`#FF6AB3`|`#EF8ED8`|primitive/builtin type names|primitive|
-|`#56B7C3`|`#00BEC4`|type names, arithmetic operators|type|
-|`#98C379`|`#53A053`|string context|text|
-|`#B0B7C3`|`#5D5D5F`|variable|variable|
-|`#FF9070`|`#FF6D12`|numbers, constants|digit|
-|`#CF68E1`|`#C838C6`|flow control keywords, boolean literal, null literal,keyword operators|logical|
-|`#E06C75`|`#CD6069`|object members/properties, namespaces/modules|property|
-|`#676E95`|`#A9A9AA`|comment|comment|
-|`#F02B77`|`#FA278E`|builtin variables like `self`, `super`, `this`, `base`|instanceReference|
+|$\color{#6495EE}{● \\#6495EE}$|$\color{#437AED}{● \\#437AED}$|function-like names|func|
+|$\color{#A78CFA}{● \\#A78CFA}$|$\color{#7C4DFF}{● \\#7C4DFF}$|declaration keywords|declarative|
+|$\color{#E4BF7F}{● \\#E4BF7F}$|$\color{#F0AA0B}{● \\#F0AA0B}$|parameter name and typeparameter|parameter|
+|$\color{#FF6AB3}{● \\#FF6AB3}$|$\color{#EF8ED8}{● \\#EF8ED8}$|primitive/builtin type names|primitive|
+|$\color{#56B7C3}{● \\#56B7C3}$|$\color{#00BEC4}{● \\#00BEC4}$|type names, arithmetic operators|type|
+|$\color{#98C379}{● \\#98C379}$|$\color{#53A053}{● \\#53A053}$|string context|text|
+|$\color{#B0B7C3}{● \\#B0B7C3}$|$\color{#5D5D5F}{● \\#5D5D5F}$|variable|variable|
+|$\color{#FF9070}{● \\#FF9070}$|$\color{#FF6D12}{● \\#FF6D12}$|numbers, constants|digit|
+|$\color{#CF68E1}{● \\#CF68E1}$|$\color{#C838C6}{● \\#C838C6}$|flow control keywords, boolean literal, null literal,keyword operators|logical|
+|$\color{#E06C75}{● \\#E06C75}$|$\color{#CD6069}{● \\#CD6069}$|object members/properties, namespaces/modules|property|
+|$\color{#676E95}{● \\#676E95}$|$\color{#A9A9AA}{● \\#A9A9AA}$|comment|comment|
+|$\color{#F02B77}{● \\#F02B77}$|$\color{#FA278E}{● \\#FA278E}$|builtin variables like self, super, this, base|instanceReference|
 
 `alias` column shows the string union members in the code base:
 
