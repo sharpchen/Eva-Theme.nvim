@@ -69,7 +69,7 @@ Specifiy colors for dark and light variants, specified values will be taken whil
 
 > [!CAUTION]
 > All highlight groups uses certain overrided color will be affected, 
-> something unexpected might happen. To override more specificly, use [override_highlight](#override_highlight).
+> something unexpected might happen. To override more specificly, use [override_highlight](#override-highlight).
 
 > [!TIP]
 > For palette structure, see: [palette.lua](https://github.com/sharpchen/Eva-Theme.nvim/blob/master/lua/Eva-Theme/palette.lua)
