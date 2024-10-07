@@ -9,6 +9,9 @@ local function css(h)
     :map_token('NONE', '@operator.css', function(palette, _)
       return { fg = palette.punctuation }
     end)
+    :map_token('NONE', 'cssFontAttr', function(_, _)
+      return { fg = '#C57BDB' }
+    end)
 end
 
 return css
