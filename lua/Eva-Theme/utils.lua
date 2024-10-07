@@ -1,4 +1,6 @@
-local M = {}
+local M = {
+  isDark = nil,
+}
 ---@param variant Palette | string
 function M.is_bold(variant)
   if type(variant) == 'string' then
@@ -33,6 +35,9 @@ end
 
 ---@param variant Palette | string
 function M.is_dark(variant)
+  if M.isDark ~= nil then
+    return M.isDark
+  end
   if type(variant) == 'string' then
     return (variant:find('dark') ~= nil)
   end
@@ -41,10 +46,7 @@ end
 
 ---@param variant Palette | string
 function M.is_light(variant)
-  if type(variant) == 'string' then
-    return (variant:find('light') ~= nil)
-  end
-  return (variant.name:find('light') ~= nil)
+  return not M.is_dark(variant)
 end
 
 function M.lighten(color, percentage)
