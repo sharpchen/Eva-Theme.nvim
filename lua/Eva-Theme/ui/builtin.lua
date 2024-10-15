@@ -24,7 +24,10 @@ local function builtin(h)
       'NvimInternalError',
     })
     :map_ui('variable', { 'CursorLineNr', 'Command', 'SpecialKey', 'Title', 'RedrawDebugNormal' })
-    :map_ui('comment', { 'LineNr', 'ColorColumn' })
+    :map_ui('comment', { 'LineNr' })
+    :map_ui('NONE', 'ColorColumn', function(p, _)
+      return { bg = utils.is_dark(p) and '#495949' or '#bed7c5' }
+    end)
     :map_ui('NONE', { 'LineNrAbove', 'LineNrBelow' }, function(palette, _)
       return { fg = utils.is_dark(palette) and '#50567C' or '#C8CACE' }
     end)
