@@ -122,10 +122,10 @@ This is what I prefer:
 require('Eva-Theme').setup({
   override_palette = {
     dark = {
-      operator = require('Eva-Theme.palette').dark_base.logical,
+      operator = require('Eva-Theme.palette').dark_base.punctuation,
     },
     light = {
-      operator = require('Eva-Theme.palette').light_base.logical,
+      operator = require('Eva-Theme.palette').light_base.punctuation,
     },
   },
 )
