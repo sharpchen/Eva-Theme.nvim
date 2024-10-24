@@ -31,12 +31,17 @@ Supports both Dark and Light modes, with four styles available for each mode: No
 
 ## 🛠 Installation
 
+> [!NOTE]
+> For implementation downside, Eva-Theme.nvim uses file cache complation to improve loading speed.
+> Use `:EvaCompile` command to compile new cache if necessary.
+
 ### [Lazy](https://github.com/folke/lazy.nvim)
 ```lua
 {
   'sharpchen/Eva-Theme.nvim',
   lazy = false,
   priority = 1000,
+  build = 'EvaCompile'
 }
 ```
 
