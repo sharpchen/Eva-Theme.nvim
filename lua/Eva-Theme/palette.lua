@@ -85,7 +85,7 @@ M.user_dark = vim.deepcopy(M.dark_base)
 
 ---dynamically create a palette overriden by user
 ---@param variant ThemeName
----@return table
+---@return Palette
 function M:from_variant(variant)
   return vim.tbl_extend('force', variant:find('light') ~= nil and self.user_light or self.user_dark, { name = variant })
   -- return {

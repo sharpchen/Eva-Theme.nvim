@@ -34,6 +34,26 @@ M.colorscheme = function(variant)
   for group, style in pairs(compile.colo_cache(variant)) do
     vim.api.nvim_set_hl(0, group, style)
   end
+
+  local dark = require('Eva-Theme.palette'):from_variant('dark')
+  vim.g.terminal_color_0 = dark.background -- black
+  vim.g.terminal_color_1 = dark.property -- red
+  vim.g.terminal_color_2 = dark.text -- green
+  vim.g.terminal_color_3 = dark.parameter -- yellow
+  vim.g.terminal_color_4 = dark.func -- blue
+  vim.g.terminal_color_5 = dark.logical -- magenta
+  vim.g.terminal_color_6 = dark.operator -- cyan
+  vim.g.terminal_color_7 = dark.variable -- white
+
+  local light = require('Eva-Theme.palette'):from_variant('light')
+  vim.g.terminal_color_8 = light.variable -- bright black
+  vim.g.terminal_color_9 = light.property -- bright red
+  vim.g.terminal_color_10 = light.text -- bright green
+  vim.g.terminal_color_11 = light.parameter -- bright yellow
+  vim.g.terminal_color_12 = light.func -- bright blue
+  vim.g.terminal_color_13 = light.logical -- bright magenta
+  vim.g.terminal_color_14 = light.operator -- bright cyan
+  vim.g.terminal_color_15 = light.background -- bright white
 end
 
 M.setup = function(option)
