@@ -41,7 +41,7 @@ Supports both Dark and Light modes, with four styles available for each mode: No
   'sharpchen/Eva-Theme.nvim',
   lazy = false,
   priority = 1000,
-  build = 'EvaCompile'
+  build = ':EvaCompile'
 }
 ```
 
