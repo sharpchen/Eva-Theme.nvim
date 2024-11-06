@@ -38,7 +38,7 @@ local function builtin(h)
       return { bg = palette[as], fg = palette['variable'] }
     end)
     :map_ui('background', 'EndOfBuffer') -- ~ sign at th end of each buffer
-    :map_ui('background', 'SignColumn', function(palette, as)
+    :map_ui('background', { 'SignColumn', 'WinBar', 'WinBarNC' }, function(palette, as)
       return { bg = palette[as] }
     end)
     :map_ui('NONE', { 'NormalFloat' }, function(palette, as)
