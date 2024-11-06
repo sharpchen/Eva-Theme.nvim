@@ -7,6 +7,7 @@ local function dap_ui(h)
       return { fg = p.git.diffModified }
     end)
     :map_token('logical', { 'DapUIWatchesValue', 'DapUICurrentFrameName' })
+    :map_token('parameter', 'DapUIBreakpointsCurrentLine')
 end
 
 return dap_ui
