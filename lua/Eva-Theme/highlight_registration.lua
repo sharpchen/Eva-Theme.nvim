@@ -38,7 +38,7 @@ local function create_highlights()
   ---create highlight group by palette
   ---@param palette Palette theme variant
   function instance:highlight_groups(palette)
-    ---@type table<string, TokenStyle>
+    ---@type table<string, vim.api.keyset.highlight>
     local highlight_group = {}
     for syntax_type, group_list in pairs(self.syntax) do
       for _, item in ipairs(group_list) do

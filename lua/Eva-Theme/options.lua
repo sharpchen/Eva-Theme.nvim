@@ -1,6 +1,6 @@
 ---@class Options
----@field override_palette? table<ThemeName, { [string]: TokenStyle }>
----@field override_highlight? { dark: table<string, TokenStyle>, light: table<string, TokenStyle>, [string]: fun(v: ThemeName): TokenStyle }
+---@field override_palette? { ['dark' | 'light']: Palette }
+---@field override_highlight? { dark: table<string, vim.api.keyset.highlight>, light: table<string, vim.api.keyset.highlight>, [string]: fun(v: ThemeName): vim.api.keyset.highlight }
 
 local M = {}
 ---@type Options
@@ -17,13 +17,13 @@ function M:override_palette()
 end
 
 ---@param p Palette
----@return { [string]: TokenStyle }
+---@return { [string]: vim.api.keyset.highlight }
 function M:user_highlights(p)
   if self.option.override_highlight == nil or next(self.option.override_highlight) == nil then
     return {}
   end
   local variant = p.name
-  ---@type table<string, TokenStyle>
+  ---@type table<string, vim.api.keyset.highlight>
   local user_highlights = {}
   for group_or_variant, func_or_pair in pairs(self.option.override_highlight) do
     if type(func_or_pair) == 'function' then
@@ -34,7 +34,7 @@ function M:user_highlights(p)
       )
     end
     if group_or_variant == variant then
-      local pair = func_or_pair --[[@as table<string, TokenStyle>]]
+      local pair = func_or_pair --[[@as table<string, vim.api.keyset.highlight>]]
       for group, style in pairs(pair) do
         user_highlights[group] =
           vim.tbl_extend('keep', style, require('Eva-Theme.selector_handler'):handle(p, group)(p, 'NONE'))

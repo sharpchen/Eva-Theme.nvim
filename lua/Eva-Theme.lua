@@ -56,6 +56,7 @@ M.colorscheme = function(variant)
   vim.g.terminal_color_15 = light.background -- bright white
 end
 
+---@param option Options
 M.setup = function(option)
   require('Eva-Theme.options').option = vim.tbl_deep_extend('force', require('Eva-Theme.options').option, option)
 end
