@@ -78,12 +78,13 @@ Specifiy colors for dark and light variants, specified values will be taken whil
 
 > [!TIP]
 > For palette structure, see: [palette.lua](https://github.com/sharpchen/Eva-Theme.nvim/blob/master/lua/Eva-Theme/palette.lua)
+> Or use [lazydev.nvim](https://github.com/folke/lazydev.nvim) to get full intellisense from type annotations.
 
 ```lua
 require('Eva-Theme').setup({
   override_palette = {
     dark = {
-      operator = '#RRGGBB'
+      background = '#14161B',
       git = {
         diffAdded = '#RRGGBB'
       }
