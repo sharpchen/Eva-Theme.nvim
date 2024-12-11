@@ -101,9 +101,6 @@ require('Eva-Theme').setup({
 To customize any highlight group for different variants, you can put function callbacks or tables of key-value pair inside `override_highlight`.
 `Palette` and variant name is available for the function case.
 
-> [!tip]
-> Value returned from `override_highlight` will be merged with the default value. Set certain property to `nil` to cancel the default.
-
 ```lua
 require('Eva-Theme').setup({
   override_highlight = {
@@ -122,6 +119,12 @@ require('Eva-Theme').setup({
   },
 })
 ```
+
+> [!tip]
+> Value returned from `override_highlight` will be merged with the default value. Set certain property to `nil` to cancel the default.
+
+> [!NOTE]
+> `Palette` accessible here is the palette override by `override_palette`.
 
 ### Ambiguity issue
 
