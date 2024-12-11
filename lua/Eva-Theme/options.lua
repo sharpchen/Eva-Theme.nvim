@@ -1,6 +1,6 @@
 ---@class Options
 ---@field override_palette? { ['dark' | 'light']: Palette }
----@field override_highlight? { dark: table<string, vim.api.keyset.highlight>, light: table<string, vim.api.keyset.highlight>, [string]: fun(v: ThemeName): vim.api.keyset.highlight }
+---@field override_highlight? { dark: table<string, vim.api.keyset.highlight>, light: table<string, vim.api.keyset.highlight>, [string]: fun(v: ThemeName, p?: Palette): vim.api.keyset.highlight }
 
 local M = {}
 ---@type Options
@@ -25,15 +25,15 @@ function M:user_highlights(p)
   local variant = p.name
   ---@type table<string, vim.api.keyset.highlight>
   local user_highlights = {}
-  for group_or_variant, func_or_pair in pairs(self.option.override_highlight) do
+  for group, func_or_pair in pairs(self.option.override_highlight) do
     if type(func_or_pair) == 'function' then
-      user_highlights[group_or_variant] = vim.tbl_extend(
+      user_highlights[group] = vim.tbl_extend(
         'keep',
-        func_or_pair(variant),
-        require('Eva-Theme.selector_handler'):handle(p, group_or_variant)(p, 'NONE')
+        func_or_pair(variant, p),
+        require('Eva-Theme.selector_handler'):handle(p, group)(p, 'NONE')
       )
     end
-    if group_or_variant == variant then
+    if group == variant then
       local pair = func_or_pair --[[@as table<string, vim.api.keyset.highlight>]]
       for group, style in pairs(pair) do
         user_highlights[group] =
