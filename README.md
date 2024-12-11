@@ -99,6 +99,10 @@ require('Eva-Theme').setup({
 ### Override highlight
 
 To customize any highlight group for different variants, you can put function callbacks or tables of key-value pair inside `override_highlight`.
+`Palette` and variant name is available for the function case.
+
+> [!tip]
+> Value returned from `override_highlight` will be merged with the default value. Set certain property to `nil` to cancel the default.
 
 ```lua
 require('Eva-Theme').setup({
@@ -112,6 +116,9 @@ require('Eva-Theme').setup({
     ['@foo'] = function(variant)
       return { fg = require('Eva-Theme.utils').is_dark(variant) and '#RRGGBB' or '#RRGGBB' }
     end,
+    LspInlayHint = function(_, palette)
+      return { fg = palette.comment, bg = nil }
+    end
   },
 })
 ```
