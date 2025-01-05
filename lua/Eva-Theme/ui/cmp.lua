@@ -1,6 +1,12 @@
 ---@type StaticImporter
 local function cmp(h)
-  h:map_ui('info', { 'CmpItemAbbrMatch', 'CmpItemKindMatchFuzzy', 'CmpItemKindMatch', 'CmpItemKindFile' })
+  h:map_ui(
+    'info',
+    { 'CmpItemAbbrMatch', 'CmpItemKindMatchFuzzy', 'CmpItemKindMatch', 'CmpItemKindFile' },
+    function(p, as)
+      return { fg = p[as], bold = true }
+    end
+  )
     :map_ui('variable', { 'CmpItemKindVariable', 'CmpItemKindFolder' })
     :map_ui('func', {
       'CmpItemKindFunction',

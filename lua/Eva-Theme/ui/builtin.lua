@@ -53,7 +53,7 @@ local function builtin(h)
     :map_ui('NONE', 'PmenuSel', function(palette, _)
       return {
         bg = utils.is_dark(palette) and '#2F3F5C' or '#CAD7ED',
-        fg = utils.is_dark(palette) and '#D7DAE0' or '#5D5D5F',
+        -- fg = utils.is_dark(palette) and '#D7DAE0' or '#5D5D5F',
         bold = true,
       }
     end)
@@ -93,7 +93,7 @@ local function builtin(h)
     :map_ui('NONE', { 'FloatBorder', 'FloatTitle' }, function(palatte, as)
       return { fg = palatte.inlay_hint.fg }
     end)
-    --#region inline diagnostic
+    --#region NOTE: inline diagnostic
     :map_ui('NONE', 'DiagnosticVirtualTextError', function(p, _)
       return { fg = utils.is_dark(p) and '#F36464' or '#E45454', bg = utils.is_dark(p) and '#3D3037' or '#EBDAE0' }
     end)

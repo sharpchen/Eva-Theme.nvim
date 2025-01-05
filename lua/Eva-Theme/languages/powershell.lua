@@ -8,6 +8,7 @@ local function powershell(h)
       return { fg = '#C57BDB' }
     end)
     :map_token('text', '@variable.parameter.powershell')
+    :map_token('NONE', { '@lsp.type.keyword.ps1', '@lsp.type.operator.ps1' })
 end
 
 return powershell
