@@ -45,7 +45,7 @@ local function blink(h)
     :map_ui('NONE', 'BlinkCmpLabelDeprecated', function(p, _)
       return { fg = p.comment }
     end)
-    :map_ui('panelBackground', { 'BlinkCmpDoc', 'BlinkCmpSignatureHelp' }, function(p, as)
+    :map_ui('panelBackground', { 'BlinkCmpDoc', 'BlinkCmpDocBorder', 'BlinkCmpSignatureHelp' }, function(p, as)
       return { bg = p[as] }
     end)
     :map_ui('NONE', 'BlinkCmpLabelMatch', function(p, _)
