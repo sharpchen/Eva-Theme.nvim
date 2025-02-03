@@ -21,6 +21,7 @@ local function treesitter(h)
       '@local.definition.function',
       '@local.definition.method',
       '@markup.link.label',
+      '@punctuation.special',
     })
     :map_token('digit', {
       '@number',
@@ -46,7 +47,7 @@ local function treesitter(h)
     })
     :map_token(
       'NONE',
-      { '@markup', '@punctuation', '@punctuation.bracket', '@punctuation.delimiter', '@punctuation.special' },
+      { '@markup', '@punctuation', '@punctuation.bracket', '@punctuation.delimiter' },
       function(palette, _)
         return { fg = palette.punctuation }
       end
