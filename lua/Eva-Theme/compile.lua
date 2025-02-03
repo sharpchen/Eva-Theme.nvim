@@ -31,12 +31,13 @@ M.needs_compile = function()
     return true
   end
   local f = loadfile(_option_cache)
-  local cache
+  local option_prev
   if f then
-    cache = f()--[[@as Options]]
+    option_prev = f()--[[@as Options]]
   end
-  local current = {
+  local current_option = {
     user_highlights = {},
+    override_palette = require('Eva-Theme.options').option.override_palette,
   }
 
   for _, variant in ipairs(themes) do
@@ -46,13 +47,11 @@ M.needs_compile = function()
       _builtin_highlights[variant] = _registration:highlight_groups(palette)
     end
 
-    local current_user_highlights = require('Eva-Theme.options'):user_highlights(palette, _builtin_highlights[variant])
-    current.user_highlights[palette.name] = current_user_highlights
+    current_option.user_highlights[variant] =
+      require('Eva-Theme.options'):user_highlights(palette, _builtin_highlights[variant])
   end
 
-  current.user_palette = require('Eva-Theme.options').option.override_palette
-
-  return not vim.deep_equal(current, cache)
+  return not vim.deep_equal(current_option, option_prev)
 end
 
 ---compile cache of user config
@@ -75,9 +74,7 @@ M.option = function()
       _builtin_highlights[variant] = _registration:highlight_groups(palette)
     end
 
-    local current_user_highlights = require('Eva-Theme.options'):user_highlights(palette, _builtin_highlights[variant])
-
-    cache.user_highlights[variant] = current_user_highlights
+    cache.user_highlights[variant] = require('Eva-Theme.options'):user_highlights(palette, _builtin_highlights[variant])
   end
 
   local f, err = io.open(_option_cache, 'w')
