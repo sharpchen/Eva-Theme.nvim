@@ -1,6 +1,8 @@
+---@alias UserHightlightHandler fun(v: ThemeName, p?: Palette): vim.api.keyset.highlight
+
 ---@class Options
 ---@field override_palette? { ['dark' | 'light']: Palette }
----@field override_highlight? { dark: table<string, vim.api.keyset.highlight>, light: table<string, vim.api.keyset.highlight>, [string]: fun(v: ThemeName, p?: Palette): vim.api.keyset.highlight }
+---@field override_highlight? { [string]: UserHightlightHandler, [ThemeName]: { [string]: vim.api.keyset.highlight } }
 
 local M = {}
 ---@type Options
@@ -16,31 +18,34 @@ function M:override_palette()
   palette.user_light = vim.tbl_deep_extend('force', palette.user_light, self.option.override_palette.light or {})
 end
 
----@param p Palette
+---@param palette Palette
+---@param builtin_highlights { [string]: vim.api.keyset.highlight }
 ---@return { [string]: vim.api.keyset.highlight }
-function M:user_highlights(p)
+function M:user_highlights(palette, builtin_highlights)
   if self.option.override_highlight == nil or next(self.option.override_highlight) == nil then
     return {}
   end
-  local variant = p.name
+
+  local variant = palette.name
   ---@type table<string, vim.api.keyset.highlight>
   local user_highlights = {}
+
   for group, func_or_pair in pairs(self.option.override_highlight) do
+    local builtin_style = builtin_highlights[group] or {}
+
     if type(func_or_pair) == 'function' then
-      user_highlights[group] = vim.tbl_extend(
-        'keep',
-        func_or_pair(variant, p),
-        require('Eva-Theme.selector_handler'):handle(p, group)(p, 'NONE')
-      )
+      user_highlights[group] = vim.tbl_extend('keep', func_or_pair(variant, palette), builtin_style)
     end
+
     if group == variant then
       local pair = func_or_pair --[[@as table<string, vim.api.keyset.highlight>]]
+      local builtin_style = builtin_highlights[group] or {}
       for group, style in pairs(pair) do
-        user_highlights[group] =
-          vim.tbl_extend('keep', style, require('Eva-Theme.selector_handler'):handle(p, group)(p, 'NONE'))
+        user_highlights[group] = vim.tbl_extend('keep', style, builtin_style)
       end
     end
   end
+
   return user_highlights
 end
 
