@@ -9,6 +9,49 @@ local function variant_name(variant)
   return 'Eva-' .. result:gsub('_', '-')
 end
 
+---@param background 'dark' | 'light'
+local function set_termcolors(background)
+  if background == 'dark' then
+    vim.g.terminal_color_0 = '#000000' -- black
+    vim.g.terminal_color_1 = '#e51400' -- red
+    vim.g.terminal_color_2 = '#4ec150' -- green
+    vim.g.terminal_color_3 = '#e4bf7f' -- yellow
+    vim.g.terminal_color_4 = '#4283f5' -- blue
+    vim.g.terminal_color_5 = '#cf68e1' -- magenta
+    vim.g.terminal_color_6 = '#56b7c3' -- cyan
+    vim.g.terminal_color_7 = '#ffffff' -- white
+
+    vim.g.terminal_color_8 = '#676e95' -- bright black
+    vim.g.terminal_color_9 = '#f14c4c' -- bright red
+    vim.g.terminal_color_10 = '#41c150' -- bright green
+    vim.g.terminal_color_11 = '#ff8a4c' -- bright yellow
+    vim.g.terminal_color_12 = '#6495ee' -- bright blue
+    vim.g.terminal_color_13 = '#ff6ab3' -- bright magenta
+    vim.g.terminal_color_14 = '#56b7c3' -- bright cyan
+    vim.g.terminal_color_15 = '#8a97c3' -- bright white
+  else
+    vim.g.terminal_color_0 = '#fafafa' -- black
+    vim.g.terminal_color_1 = '#ec0000' -- red
+    vim.g.terminal_color_2 = '#44c145' -- green
+    vim.g.terminal_color_3 = '#f0aa0b' -- yellow
+    vim.g.terminal_color_4 = '#4480f4' -- blue
+    vim.g.terminal_color_5 = '#c838c6' -- magenta
+    vim.g.terminal_color_6 = '#00bec4' -- cyan
+    vim.g.terminal_color_7 = '#000000' -- white
+
+    vim.g.terminal_color_8 = '#aaadb4' -- bright black
+    vim.g.terminal_color_9 = '#f14c4c' -- bright red
+    vim.g.terminal_color_10 = '#44c145' -- bright green
+    vim.g.terminal_color_11 = '#ff6d12' -- bright yellow
+    vim.g.terminal_color_12 = '#4d91f8' -- bright blue
+    vim.g.terminal_color_13 = '#ef8ed8' -- bright magenta
+    vim.g.terminal_color_14 = '#00bec4' -- bright cyan
+    vim.g.terminal_color_15 = '#888888' -- bright white
+  end
+end
+
+local _checked_for_curr_session = false
+
 local M = {}
 ---@param variant? ThemeName
 M.colorscheme = function(variant)
@@ -26,34 +69,21 @@ M.colorscheme = function(variant)
   require('Eva-Theme.options').emit_user_config()
 
   local compile = require('Eva-Theme.compile')
-  if compile.needs_compile() then
-    compile.option()
-    compile.colo()
+
+  -- do not check whether needs compilation during same session ???
+  if not _checked_for_curr_session then
+    if compile.needs_compile() then
+      compile.option()
+      compile.colo()
+    end
+    _checked_for_curr_session = true
   end
 
   for group, style in pairs(compile.colo_cache(variant)) do
     vim.api.nvim_set_hl(0, group, style)
   end
 
-  local dark = require('Eva-Theme.palette'):from_variant('dark')
-  vim.g.terminal_color_0 = dark.background -- black
-  vim.g.terminal_color_1 = dark.property -- red
-  vim.g.terminal_color_2 = dark.text -- green
-  vim.g.terminal_color_3 = dark.parameter -- yellow
-  vim.g.terminal_color_4 = dark.func -- blue
-  vim.g.terminal_color_5 = dark.logical -- magenta
-  vim.g.terminal_color_6 = dark.operator -- cyan
-  vim.g.terminal_color_7 = dark.variable -- white
-
-  local light = require('Eva-Theme.palette'):from_variant('light')
-  vim.g.terminal_color_8 = light.variable -- bright black
-  vim.g.terminal_color_9 = light.property -- bright red
-  vim.g.terminal_color_10 = light.text -- bright green
-  vim.g.terminal_color_11 = light.parameter -- bright yellow
-  vim.g.terminal_color_12 = light.func -- bright blue
-  vim.g.terminal_color_13 = light.logical -- bright magenta
-  vim.g.terminal_color_14 = light.operator -- bright cyan
-  vim.g.terminal_color_15 = light.background -- bright white
+  set_termcolors(vim.o.background)
 end
 
 ---@param option Options
