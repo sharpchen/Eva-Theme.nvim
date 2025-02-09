@@ -34,7 +34,14 @@ function M:user_highlights(palette, builtin_highlights)
     local builtin_style = builtin_highlights[group] or {}
 
     if type(func_or_pair) == 'function' then
-      user_highlights[group] = vim.tbl_extend('keep', func_or_pair(variant, palette), builtin_style)
+      local custom_style = func_or_pair(variant, palette)
+      local merged = vim.tbl_extend('keep', custom_style, builtin_style)
+      for key, val in pairs(merged) do
+        if val == false or val == '' then
+          merged[key] = nil
+        end
+      end
+      user_highlights[group] = merged
     end
 
     if group == variant then

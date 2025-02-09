@@ -114,14 +114,14 @@ require('Eva-Theme').setup({
       return { fg = require('Eva-Theme.utils').is_dark(variant) and '#RRGGBB' or '#RRGGBB' }
     end,
     LspInlayHint = function(_, palette)
-      return { fg = palette.comment, bg = nil }
+      return { fg = palette.comment, bg = false }
     end
   },
 })
 ```
 
 > [!tip]
-> Value returned from `override_highlight` will be merged with the default value. Set certain property to `nil` to cancel the default.
+> Value returned from `override_highlight` will be merged with the default value. Set certain property to `false` or empty string to cancel the default.
 
 > [!NOTE]
 > `Palette` accessible here is the palette override by `override_palette`.
