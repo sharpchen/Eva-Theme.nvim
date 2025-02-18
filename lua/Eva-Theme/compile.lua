@@ -57,7 +57,7 @@ end
 ---compile cache of user config
 ---non literal values like functions in override_palette would be evaluated at build
 M.option = function()
-  vim.notify('Eva-Theme: Compiling user config...')
+  vim.notify('Compiling user config...', vim.log.levels.INFO, { title = 'Eva-Theme' })
 
   local cache = {
     user_highlights = {},
@@ -84,12 +84,12 @@ M.option = function()
   else
     vim.notify(err --[[@as string]], vim.log.levels.ERROR)
   end
-  vim.notify('Eva-Theme: User config compiled.')
+  vim.notify('User config compiled.', vim.log.levels.INFO, { title = 'Eva-Theme' })
 end
 
 ---compile all variants into a table stores in a lua file
 M.colo = function()
-  vim.notify('Eva-Theme: Compiling highlights...')
+  vim.notify('Compiling highlights...', vim.log.levels.INFO, { title = 'Eva-Theme' })
 
   local new_colo_cache = {}
 
@@ -117,7 +117,7 @@ M.colo = function()
     vim.notify(err --[[@as string]], vim.log.levels.ERROR)
   end
 
-  vim.notify('Eva-Theme: Highlights compiled.')
+  vim.notify('Highlights compiled.', vim.log.levels.INFO, { title = 'Eva-Theme' })
 end
 
 ---returns highlights of a variant
@@ -128,7 +128,7 @@ M.colo_cache = function(variant)
   if f then
     return f()[variant]
   else
-    vim.notify('Eva-Theme: colorscheme cache not found', vim.log.levels.ERROR)
+    vim.notify('colorscheme cache not found', vim.log.levels.ERROR, { title = 'Eva-Theme' })
     return {}
   end
 end
