@@ -5,7 +5,6 @@ local function lua(h)
     '@keyword.conditional.lua',
     '@keyword.repeat.lua',
     '@keyword.return.lua',
-    '@keyword.operator.lua',
     '@constant.builtin.lua',
   })
     :map_token('type', { '@function.macro.luadoc', '@lsp.type.macro.lua' })
