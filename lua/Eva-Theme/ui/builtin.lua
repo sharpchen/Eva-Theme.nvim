@@ -64,13 +64,16 @@ local function builtin(h)
       return { underdotted = true, sp = palette[as] }
     end)
     :map_ui('NONE', { 'DiffAdd' }, function(p, _)
-      return { fg = p['git']['diffAdded'] }
+      return { bg = p.git.bg.diffAdded }
+    end)
+    :map_ui('NONE', 'DiffText', function(p, _)
+      return { bg = utils.is_dark(p) and '#485b84' or '#bfd4f7' }
     end)
     :map_ui('NONE', { 'DiffChange' }, function(p, _)
-      return { fg = p['git']['diffModified'] }
+      return { bg = utils.is_dark(p) and '#343547' or '#e2e2f4' } -- 10% alpha of diffModified
     end)
     :map_ui('NONE', { 'DiffDelete' }, function(p, _)
-      return { fg = p['git']['diffDeleted'] }
+      return { fg = p.git.diffDeleted, bg = p.git.bg.diffDeleted }
     end)
     :map_ui('NONE', { 'VisualNOS', 'Visual' }, function(p, _) -- selection background in visual mode
       return { bg = utils.is_dark(p) and '#394E75' or '#B0CBF7' }

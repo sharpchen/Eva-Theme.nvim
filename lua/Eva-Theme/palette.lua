@@ -32,6 +32,12 @@ M.light_base = {
     stagedDeleted = '#CD6069',
     stagedModified = '#D73BD5',
     untracked = '#3EC141',
+    bg = {
+      diffDeleted = '#ECD9DF',
+      diffAdded = '#CAE5D2',
+      diffWordDeleted = '#edbdc1',
+      diffWordAdded = '#9cd8a1',
+    },
   },
   inlay_hint = {
     fg = '#888888',
@@ -56,6 +62,14 @@ M.dark_base = {
     diffAdded = '#40AD41',
     diffDeleted = '#F14C4C',
     diffModified = '#A78CFA',
+    bg = {
+      diffDeleted = '#503239',
+      diffAdded = '#2c3c37',
+      diffWordDeleted = '#813a3f',
+      diffWordAdded = '#33573c',
+      diffModified = '#4EC15019',
+      diffWordModified = '#4EC15033',
+    },
   },
   warning = '#EF973A',
   error = '#F36464',
