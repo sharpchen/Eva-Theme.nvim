@@ -2,7 +2,10 @@ local utils = require('Eva-Theme.utils')
 ---@type StaticImporter
 local function builtin(h)
   h
-    :map_ui('text', { 'DiagnosticOk', 'DiagnosticVirtualTextOk', 'DiagnosticFloatingOk', 'DiagnosticSignOk' })
+    :map_ui(
+      'text',
+      { 'DiagnosticOk', 'DiagnosticVirtualTextOk', 'DiagnosticFloatingOk', 'DiagnosticSignOk', 'manReference' }
+    )
     :map_ui(
       'info',
       { 'MoreMsg', 'Question', 'DiagnosticInfo', 'DiagnosticFloatingInfo', 'DiagnosticSignInfo', 'RedrawDebugComposed' }
@@ -125,6 +128,10 @@ local function builtin(h)
         bg = utils.is_dark(palette) and '#2F3F5C' or '#CAD7ED',
         bold = true,
       }
+    end)
+    :map_ui('property', { 'Title', 'manSubHeading' })
+    :map_ui('NONE', 'manOptionDesc', function(_, _)
+      return { fg = '#C57BDB' }
     end)
 end
 return builtin
