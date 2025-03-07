@@ -70,7 +70,7 @@ M.colorscheme = function(variant)
 
   local compile = require('Eva-Theme.compile')
 
-  -- do not check whether needs compilation during same session ???
+  -- check only once for one session?
   if not _checked_for_curr_session then
     if compile.needs_compile() then
       compile.option()
@@ -94,6 +94,9 @@ end
 vim.api.nvim_create_user_command('EvaCompile', function()
   require('Eva-Theme.compile').option()
   require('Eva-Theme.compile').colo()
+  if vim.g.colors_name:find('^Eva%-') then
+    vim.cmd.colorscheme(vim.g.colors_name)
+  end
 end, { desc = 'compiles highlight cache for Eva-Theme' })
 
 return M
