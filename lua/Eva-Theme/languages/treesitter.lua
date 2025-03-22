@@ -45,13 +45,9 @@ local function treesitter(h)
       '@keyword.conditional.ternary',
       '@keyword.operator',
     })
-    :map_token(
-      'NONE',
-      { '@markup', '@punctuation', '@punctuation.bracket', '@punctuation.delimiter' },
-      function(palette, _)
-        return { fg = palette.punctuation }
-      end
-    )
+    :map_token('NONE', { '@markup', '@punctuation', '@punctuation.bracket' }, function(palette, _)
+      return { fg = palette.punctuation }
+    end)
     :map_token('operator', { '@operator' })
     :map_token('property', {
       '@property',
@@ -132,6 +128,7 @@ local function treesitter(h)
     :map_token('NONE', '@markup.raw.block.markdown', function(palette, _)
       return { fg = utils.is_dark(palette) and '#8792AA' or '#A0A1A7' }
     end)
+    :map_token('comment', '@punctuation.delimiter')
 end
 
 return treesitter
