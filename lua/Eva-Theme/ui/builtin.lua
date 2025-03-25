@@ -66,7 +66,7 @@ local function builtin(h)
     :map_ui('variable', 'DiagnosticUnderlineHint', function(palette, as)
       return { underdotted = true, sp = palette[as] }
     end)
-    :map_ui('NONE', { 'DiffAdd' }, function(p, _)
+    :map_ui('NONE', { 'DiffAdd', 'diffAdded' }, function(p, _)
       return { bg = p.git.bg.diffAdded }
     end)
     :map_ui('NONE', 'DiffText', function(p, _)
@@ -75,7 +75,7 @@ local function builtin(h)
     :map_ui('NONE', { 'DiffChange' }, function(p, _)
       return { bg = utils.is_dark(p) and '#343547' or '#e2e2f4' } -- 10% alpha of diffModified
     end)
-    :map_ui('NONE', { 'DiffDelete' }, function(p, _)
+    :map_ui('NONE', { 'DiffDelete', 'diffRemoved' }, function(p, _)
       return { fg = p.git.diffDeleted, bg = p.git.bg.diffDeleted }
     end)
     :map_ui('NONE', { 'VisualNOS', 'Visual' }, function(p, _) -- selection background in visual mode
