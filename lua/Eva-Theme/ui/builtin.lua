@@ -81,7 +81,7 @@ local function builtin(h)
     :map_ui('NONE', { 'VisualNOS', 'Visual' }, function(p, _) -- selection background in visual mode
       return { bg = utils.is_dark(p) and '#394E75' or '#B0CBF7' }
     end)
-    :map_ui('NONE', 'CursorLine', function(p, _)
+    :map_ui('NONE', { 'CursorLine', 'Folded' }, function(p, _)
       return { bg = utils.is_dark(p) and '#2F323C' or '#E3E6ED' }
     end)
     :map_ui('digit', { 'MatchParen' }, function(palette, as)
