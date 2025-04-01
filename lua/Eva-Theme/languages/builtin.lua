@@ -16,9 +16,6 @@ local function builtin(h)
     :map_token('NONE', 'Special', function(palette, _) -- escaped characters
       return { fg = palette.escape }
     end)
-    :map_token('NONE', 'DiagnosticUnnecessary', function(palette, _)
-      return { fg = utils.is_dark(palette) and '#50567C' or '#C8CACE', underdashed = true }
-    end)
     :map_token('NONE', 'Delimiter', function(palette, _)
       return { fg = utils.is_dark(palette) and '#838FA7' or '#727376' }
     end)

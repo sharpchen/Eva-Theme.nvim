@@ -2,27 +2,12 @@ local utils = require('Eva-Theme.utils')
 ---@type StaticImporter
 local function builtin(h)
   h
-    :map_ui(
-      'text',
-      { 'DiagnosticOk', 'DiagnosticVirtualTextOk', 'DiagnosticFloatingOk', 'DiagnosticSignOk', 'manReference' }
-    )
-    :map_ui(
-      'info',
-      { 'MoreMsg', 'Question', 'DiagnosticInfo', 'DiagnosticFloatingInfo', 'DiagnosticSignInfo', 'RedrawDebugComposed' }
-    )
-    :map_ui(
-      'warning',
-      { 'DiagnosticWarn', 'DiagnosticFloatingWarn', 'DiagnosticSignWarn', 'RedrawDebugClear', 'WarningMsg' }
-    )
-    :map_ui('text', { 'DiagnosticHint', 'DiagnosticFloatingHint', 'DiagnosticSignHint' }, function(palette, as)
-      return { fg = palette[as] } --utils.isDark(palette) and '#50567C' or '#C8CACE' }
-    end)
+    :map_ui('text', { 'manReference' })
+    :map_ui('info', { 'MoreMsg', 'Question', 'RedrawDebugComposed' })
+    :map_ui('warning', { 'RedrawDebugClear', 'WarningMsg' })
     :map_ui('error', {
       'Error',
       'ErrorMsg',
-      'DiagnosticError',
-      'DiagnosticFloatingError',
-      'DiagnosticSignError',
       'RedDebugRecompose',
       'NvimInternalError',
     })
@@ -63,9 +48,6 @@ local function builtin(h)
     :map_ui('digit', 'TermCursor', function(p, as)
       return { bg = p[as], fg = p.background }
     end)
-    :map_ui('variable', 'DiagnosticUnderlineHint', function(palette, as)
-      return { underdotted = true, sp = palette[as] }
-    end)
     :map_ui('NONE', { 'DiffAdd', 'diffAdded' }, function(p, _)
       return { bg = p.git.bg.diffAdded }
     end)
@@ -96,23 +78,9 @@ local function builtin(h)
     :map_ui('panelBackground', 'TabLine', function(palette, as)
       return { bg = palette[as], fg = palette['comment'] }
     end)
-    :map_ui('NONE', { 'FloatBorder', 'FloatTitle' }, function(palatte, as)
+    :map_ui('NONE', { 'FloatBorder', 'FloatTitle' }, function(palatte, _)
       return { fg = palatte.inlay_hint.fg }
     end)
-    --#region NOTE: inline diagnostic
-    :map_ui('NONE', 'DiagnosticVirtualTextError', function(p, _)
-      return { fg = utils.is_dark(p) and '#F36464' or '#E45454', bg = utils.is_dark(p) and '#3D3037' or '#EBDAE0' }
-    end)
-    :map_ui('NONE', 'DiagnosticVirtualTextWarn', function(p, _)
-      return { fg = utils.is_dark(p) and '#EF973A' or '#FB942F', bg = utils.is_dark(p) and '#463D3A' or '#E7DBD4' }
-    end)
-    :map_ui('NONE', 'DiagnosticVirtualTextHint', function(p, _)
-      return { bg = p.inlay_hint.bg, fg = utils.is_dark(p) and '#50567C' or '#C8CACE' }
-    end)
-    :map_ui('NONE', 'DiagnosticVirtualTextInfo', function(p, _)
-      return { fg = utils.is_dark(p) and '#00b7cb' or '#00c1ea', bg = utils.is_dark(p) and '#233e4b' or '#cde7f3' }
-    end)
-    --#endregion
     :map_ui('NONE', 'WinSeparator', function(p, _)
       return { fg = p.inlay_hint.fg }
     end)
@@ -133,5 +101,58 @@ local function builtin(h)
     :map_ui('NONE', 'manOptionDesc', function(_, _)
       return { fg = '#C57BDB' }
     end)
+
+  --#region dignostic
+  h
+    :map_ui('error', {
+      'DiagnosticError',
+      'DiagnosticFloatingError',
+      'DiagnosticSignError',
+    })
+    :map_ui('NONE', 'DiagnosticUnnecessary', function(p, _)
+      return { fg = utils.is_dark(p) and '#50567C' or '#C8CACE' }
+    end)
+    :map_ui('text', { 'DiagnosticOk', 'DiagnosticVirtualTextOk', 'DiagnosticFloatingOk', 'DiagnosticSignOk' })
+    :map_ui('info', { 'DiagnosticInfo', 'DiagnosticFloatingInfo', 'DiagnosticSignInfo', 'RedrawDebugComposed' })
+    :map_ui('warning', { 'DiagnosticWarn', 'DiagnosticFloatingWarn', 'DiagnosticSignWarn' })
+    :map_ui('text', { 'DiagnosticHint', 'DiagnosticFloatingHint', 'DiagnosticSignHint' }, function(p, as)
+      return { fg = p[as] } --utils.isDark(palette) and '#50567C' or '#C8CACE' }
+    end)
+    :map_ui('text', { 'DiagnosticHint', 'DiagnosticFloatingHint', 'DiagnosticSignHint' }, function(palette, as)
+      return { fg = palette[as] } --utils.isDark(palette) and '#50567C' or '#C8CACE' }
+    end)
+    --#region underline
+    :map_ui('variable', 'DiagnosticUnderlineHint', function(p, as)
+      return { underdotted = true, sp = p[as] }
+    end)
+    :map_ui('error', 'DiagnosticUnderlineError', function(p, as)
+      return { fg = p[as], undercurl = true }
+    end)
+    :map_ui('warning', 'DiagnosticUnderlineWarn', function(p, as)
+      return { fg = p[as], undercurl = true }
+    end)
+    :map_ui('info', 'DiagnosticUnderlineInfo', function(p, as)
+      return { fg = p[as], undercurl = true }
+    end)
+    --#endregion underline
+    --#region NOTE: inline diagnostic
+    :map_ui(
+      'NONE',
+      'DiagnosticVirtualTextError',
+      function(p, _)
+        return { fg = utils.is_dark(p) and '#F36464' or '#E45454', bg = utils.is_dark(p) and '#3D3037' or '#EBDAE0' }
+      end
+    )
+    :map_ui('NONE', 'DiagnosticVirtualTextWarn', function(p, _)
+      return { fg = utils.is_dark(p) and '#EF973A' or '#FB942F', bg = utils.is_dark(p) and '#463D3A' or '#E7DBD4' }
+    end)
+    :map_ui('NONE', 'DiagnosticVirtualTextHint', function(p, _)
+      return { bg = p.inlay_hint.bg, fg = utils.is_dark(p) and '#50567C' or '#C8CACE' }
+    end)
+    :map_ui('NONE', 'DiagnosticVirtualTextInfo', function(p, _)
+      return { fg = utils.is_dark(p) and '#00b7cb' or '#00c1ea', bg = utils.is_dark(p) and '#233e4b' or '#cde7f3' }
+    end)
+  --#endregion
+  --#endregion
 end
 return builtin
