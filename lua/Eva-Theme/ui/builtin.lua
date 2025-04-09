@@ -109,17 +109,14 @@ local function builtin(h)
       'DiagnosticFloatingError',
       'DiagnosticSignError',
     })
-    :map_ui('NONE', 'DiagnosticUnnecessary', function(p, _)
+    :map_ui('NONE', { 'DiagnosticUnnecessary', 'DiagnosticHint' }, function(p, _)
       return { fg = utils.is_dark(p) and '#50567C' or '#C8CACE' }
     end)
     :map_ui('text', { 'DiagnosticOk', 'DiagnosticVirtualTextOk', 'DiagnosticFloatingOk', 'DiagnosticSignOk' })
     :map_ui('info', { 'DiagnosticInfo', 'DiagnosticFloatingInfo', 'DiagnosticSignInfo', 'RedrawDebugComposed' })
     :map_ui('warning', { 'DiagnosticWarn', 'DiagnosticFloatingWarn', 'DiagnosticSignWarn' })
-    :map_ui('text', { 'DiagnosticHint', 'DiagnosticFloatingHint', 'DiagnosticSignHint' }, function(p, as)
+    :map_ui('text', { 'DiagnosticFloatingHint', 'DiagnosticSignHint' }, function(p, as)
       return { fg = p[as] } --utils.isDark(palette) and '#50567C' or '#C8CACE' }
-    end)
-    :map_ui('text', { 'DiagnosticHint', 'DiagnosticFloatingHint', 'DiagnosticSignHint' }, function(palette, as)
-      return { fg = palette[as] } --utils.isDark(palette) and '#50567C' or '#C8CACE' }
     end)
     --#region underline
     :map_ui('variable', 'DiagnosticUnderlineHint', function(p, as)
