@@ -10,12 +10,13 @@ local function blink(h)
       'BlinkCmpKindConstructor',
       'BlinkCmpKindModule',
       'BlinkCmpKindStruct',
-      'BlinkCmpKindTypeParameter',
     })
-    :map_ui('text', {
+    :map_ui('NONE', {
       'BlinkCmpKindText',
       'BlinkCmpKindReference',
-    })
+    }, function(p, _)
+      return { fg = p.inlay_hint.bg }
+    end)
     :map_ui('variable', {
       'BlinkCmpKindVariable',
       'BlinkCmpKindFolder',
@@ -32,7 +33,7 @@ local function blink(h)
       'BlinkCmpKindEnumMember',
       'BlinkCmpKindConstant',
     })
-    :map_ui('primitive', { 'BlinkCmpKindEvent' })
+    :map_ui('primitive', { 'BlinkCmpKindEvent', 'BlinkCmpKindTypeParameter' })
     :map_ui('operator', { 'BlinkCmpKindOperator' })
     :map_ui('declarative', {
       'BlinkCmpKindKeyword',
@@ -49,7 +50,7 @@ local function blink(h)
       return { bg = p[as] }
     end)
     :map_ui('NONE', 'BlinkCmpLabelMatch', function(p, _)
-      return { fg = p.primitive, bold = true }
+      return { fg = p.info, bold = true }
     end)
     :map_ui('NONE', 'BlinkCmpMenuSelection', function(_, _)
       return { link = 'PmenuSel' }
