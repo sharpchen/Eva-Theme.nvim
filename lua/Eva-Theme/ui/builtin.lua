@@ -12,7 +12,7 @@ local function builtin(h)
       'NvimInternalError',
     })
     :map_ui('variable', { 'CursorLineNr', 'Command', 'SpecialKey', 'Title', 'RedrawDebugNormal' })
-    :map_ui('comment', { 'LineNr' })
+    :map_ui('comment', 'LineNr')
     :map_ui('NONE', 'ColorColumn', function(p, _)
       return { bg = utils.is_dark(p) and '#495949' or '#bed7c5' }
     end)
@@ -29,7 +29,7 @@ local function builtin(h)
     :map_ui('background', { 'SignColumn', 'WinBar', 'WinBarNC' }, function(palette, as)
       return { bg = palette[as] }
     end)
-    :map_ui('NONE', { 'NormalFloat' }, function(palette, as)
+    :map_ui('NONE', 'NormalFloat', function(palette, as)
       return { fg = palette.inlay_hint.fg }
     end)
     :map_ui('NONE', { 'StatusLine', 'StatusLineNC' }, function(_, _)
@@ -54,7 +54,7 @@ local function builtin(h)
     :map_ui('NONE', 'DiffText', function(p, _)
       return { bg = utils.is_dark(p) and '#485b84' or '#bfd4f7' }
     end)
-    :map_ui('NONE', { 'DiffChange' }, function(p, _)
+    :map_ui('NONE', 'DiffChange', function(p, _)
       return { bg = utils.is_dark(p) and '#343547' or '#e2e2f4' } -- 10% alpha of diffModified
     end)
     :map_ui('NONE', { 'DiffDelete', 'diffRemoved' }, function(p, _)
@@ -63,14 +63,17 @@ local function builtin(h)
     :map_ui('NONE', { 'VisualNOS', 'Visual' }, function(p, _) -- selection background in visual mode
       return { bg = utils.is_dark(p) and '#394E75' or '#B0CBF7' }
     end)
-    :map_ui('NONE', { 'CursorLine', 'Folded' }, function(p, _)
+    :map_ui('NONE', 'CursorLine', function(p, _)
       return { bg = utils.is_dark(p) and '#2F323C' or '#E3E6ED' }
     end)
-    :map_ui('digit', { 'MatchParen' }, function(palette, as)
+    :map_ui('NONE', 'Folded', function(p, _)
+      return { bg = utils.is_dark(p) and '#31394c' or '#d2daed' }
+    end)
+    :map_ui('digit', 'MatchParen', function(palette, as)
       return { fg = palette[as] }
     end)
     :map_ui('digit', { 'Cursor', 'iCursor' }, function(palette, as)
-      return { bg = palette[as], fg = palette[as] }
+      return { bg = palette[as], fg = 'white' }
     end)
     :map_ui('background', 'TabLineSel', function(palette, as)
       return { bg = palette[as], fg = palette['variable'] }
