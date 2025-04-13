@@ -70,7 +70,7 @@ local function builtin(h)
       return { bg = utils.is_dark(p) and '#31394c' or '#d2daed' }
     end)
     :map_ui('digit', 'MatchParen', function(palette, as)
-      return { fg = palette[as] }
+      return { fg = palette[as], bg = utils.is_dark(palette) and '#945e52' or '#f2c5b9' }
     end)
     :map_ui('digit', { 'Cursor', 'iCursor' }, function(palette, as)
       return { bg = palette[as], fg = 'white' }
