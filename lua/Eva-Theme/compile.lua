@@ -39,7 +39,6 @@ M.needs_compile = function()
     user_highlights = {},
     override_palette = require('Eva-Theme.options').option.override_palette,
   }
-
   for _, variant in ipairs(themes) do
     local palette = require('Eva-Theme.palette'):from_variant(variant)
 
@@ -57,8 +56,6 @@ end
 ---compile cache of user config
 ---non literal values like functions in override_palette would be evaluated at build
 M.option = function()
-  vim.notify('Compiling user config...', vim.log.levels.INFO, { title = 'Eva-Theme' })
-
   local cache = {
     user_highlights = {},
     override_palette = require('Eva-Theme.options').option.override_palette,
@@ -79,18 +76,17 @@ M.option = function()
 
   local f, err = io.open(_option_cache, 'w')
   if f then
+    f:write('-- generated at ' .. os.date('%Y-%m-%d %H:%M:%S') .. '\n')
     f:write('return ' .. vim.inspect(cache))
     f:close()
   else
-    vim.notify(err --[[@as string]], vim.log.levels.ERROR)
+    vim.notify(err --[[@as string]], vim.log.levels.ERROR or 4)
   end
-  vim.notify('User config compiled.', vim.log.levels.INFO, { title = 'Eva-Theme' })
+  vim.notify('User config compiled.', vim.log.levels.INFO or 2, { title = 'Eva-Theme' })
 end
 
 ---compile all variants into a table stores in a lua file
 M.colo = function()
-  vim.notify('Compiling highlights...', vim.log.levels.INFO, { title = 'Eva-Theme' })
-
   local new_colo_cache = {}
 
   for _, variant in pairs(themes) do
@@ -111,13 +107,14 @@ M.colo = function()
 
   local f, err = io.open(_colo_cache, 'w')
   if f then
+    f:write('-- generated at ' .. os.date('%Y-%m-%d %H:%M:%S') .. '\n')
     f:write('return ' .. vim.inspect(new_colo_cache))
     f:close()
   else
-    vim.notify(err --[[@as string]], vim.log.levels.ERROR)
+    vim.notify(err --[[@as string]], vim.log.levels.ERROR or 4)
   end
 
-  vim.notify('Highlights compiled.', vim.log.levels.INFO, { title = 'Eva-Theme' })
+  vim.notify('Highlights compiled.', vim.log.levels.INFO or 2, { title = 'Eva-Theme' })
 end
 
 ---returns highlights of a variant
@@ -128,7 +125,7 @@ M.colo_cache = function(variant)
   if f then
     return f()[variant]
   else
-    vim.notify('colorscheme cache not found', vim.log.levels.ERROR, { title = 'Eva-Theme' })
+    vim.notify('colorscheme cache not found', vim.log.levels.ERROR or 4, { title = 'Eva-Theme' })
     return {}
   end
 end
