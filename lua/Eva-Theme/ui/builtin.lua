@@ -126,13 +126,13 @@ local function builtin(h)
       return { underdotted = true, sp = p[as] }
     end)
     :map_ui('error', 'DiagnosticUnderlineError', function(p, as)
-      return { fg = p[as], undercurl = true }
+      return { sp = p[as], undercurl = true }
     end)
     :map_ui('warning', 'DiagnosticUnderlineWarn', function(p, as)
-      return { fg = p[as], undercurl = true }
+      return { sp = p[as], undercurl = true }
     end)
     :map_ui('info', 'DiagnosticUnderlineInfo', function(p, as)
-      return { fg = p[as], undercurl = true }
+      return { sp = p[as], undercurl = true }
     end)
     --#endregion underline
     --#region NOTE: inline diagnostic
