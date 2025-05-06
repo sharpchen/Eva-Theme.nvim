@@ -2,7 +2,7 @@
 
 ---@class Options
 ---@field override_palette? { ['dark' | 'light']: Palette }
----@field override_highlight? { [string]: UserHightlightHandler, [ThemeName]: { [string]: vim.api.keyset.highlight } }
+---@field override_highlight? table<string, UserHightlightHandler>
 
 local M = {}
 ---@type Options
@@ -18,15 +18,15 @@ function M:override_palette()
   palette.user_light = vim.tbl_deep_extend('force', palette.user_light, self.option.override_palette.light or {})
 end
 
----@param palette Palette
+---@param p Palette
 ---@param builtin_highlights { [string]: vim.api.keyset.highlight }
 ---@return { [string]: vim.api.keyset.highlight }
-function M:user_highlights(palette, builtin_highlights)
+function M:user_highlights(p, builtin_highlights)
   if self.option.override_highlight == nil or next(self.option.override_highlight) == nil then
     return {}
   end
 
-  local variant = palette.name
+  local variant = p.name
   ---@type table<string, vim.api.keyset.highlight>
   local user_highlights = {}
 
@@ -34,7 +34,7 @@ function M:user_highlights(palette, builtin_highlights)
     local builtin_style = builtin_highlights[group] or {}
 
     if type(func_or_pair) == 'function' then
-      local custom_style = func_or_pair(variant, palette)
+      local custom_style = func_or_pair(variant, p)
       local merged = vim.tbl_extend('keep', custom_style, builtin_style)
       for key, val in pairs(merged) do
         if
