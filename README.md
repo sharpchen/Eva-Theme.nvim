@@ -32,7 +32,7 @@ Supports both Dark and Light modes, with four styles available for each mode: No
 ## 🛠 Installation
 
 > [!NOTE]
-> For implementation downside, Eva-Theme.nvim uses file cache complation to improve loading speed.
+> For implementation downside, Eva-Theme.nvim uses file cache compilation to improve loading speed.
 > Use `:EvaCompile` command to compile new cache if necessary.
 
 ### [Lazy](https://github.com/folke/lazy.nvim)
@@ -63,17 +63,17 @@ colo Eva-Dark " or any other variant
 ### Lua
 
 ```lua
-vim.cmd('colo Eva-Dark') -- or any variant
+vim.cmd.colo 'Eva-Dark' -- or any variant
 ```
 
 ## ⚙ Options
 
 ### Override palette
 
-Specifiy colors for dark and light variants, specified values will be taken while the rest remains default.
+Specify colors for dark and light variants, specified values will be taken while the rest remains default.
 
 > [!CAUTION]
-> All highlight groups uses certain overrided color will be affected, 
+> All highlight groups uses certain overrided color will be affected,
 > something unexpected might happen. To override more specificly, use [override_highlight](#override-highlight).
 
 > [!TIP]
@@ -104,18 +104,23 @@ To customize any highlight group for different variants, you can put function ca
 ```lua
 require('Eva-Theme').setup({
   override_highlight = {
+    --#region for each variant
     dark = {
       ['@foo'] = { fg = '#RRGGBB', bg = '#RRGGBB' },
     },
     light = {
       ['@foo'] = { fg = '#RRGGBB', bg = '#RRGGBB' },
     },
-    ['@foo'] = function(variant)
+    --#endregion
+
+    --#region using callbacks can be more flexible
+    ['@foo'] = function(variant, _)
       return { fg = require('Eva-Theme.utils').is_dark(variant) and '#RRGGBB' or '#RRGGBB' }
     end,
     LspInlayHint = function(_, palette)
       return { fg = palette.comment, bg = false }
     end
+    --#endregion
   },
 })
 ```
@@ -128,7 +133,7 @@ require('Eva-Theme').setup({
 
 ### Ambiguity issue
 
-This port was intented to respect the [upstream](https://github.com/fisheva/Eva-Theme) where operators got different colors by their usages.
+This port was intended to respect the [upstream](https://github.com/fisheva/Eva-Theme) where operators got different colors by their usages.
 While treesitter parsers generally don't classify operator into different usages, so there's no much I can do.
 If you find ambiguity between operator and type(pointer type `T*` for example), I suggest customize by yourself.
 
@@ -149,4 +154,4 @@ require('Eva-Theme').setup({
 
 ## Contributing
 
-See: [CONTRIBUTING.md](./CONTRIBUTING.md) 
+See: [CONTRIBUTING.md](./CONTRIBUTING.md)
