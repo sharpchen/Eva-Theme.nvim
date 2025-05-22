@@ -1,4 +1,4 @@
----@type StaticImporter
+---@type Eva-Theme.StaticImporter
 local function telescope(h)
   h:map_ui('NONE', 'TelescopeNormal', function(_, _)
     return { link = 'Normal' }

@@ -1,4 +1,4 @@
----@type StaticImporter
+---@type Eva-Theme.StaticImporter
 local function css(h)
   h:map_token('parameter', '@variable.css')
     :map_token('instanceReference', '@keyword.modifier.css')

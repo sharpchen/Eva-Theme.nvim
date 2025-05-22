@@ -1,4 +1,4 @@
----@type StaticImporter
+---@type Eva-Theme.StaticImporter
 local function vim(h)
   h:map_token('property', '@variable.builtin.vim')
 end

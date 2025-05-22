@@ -1,4 +1,4 @@
----@type StaticImporter
+---@type Eva-Theme.StaticImporter
 local function typescript(h)
   h:map_token(
     'logical',

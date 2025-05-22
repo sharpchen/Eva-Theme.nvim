@@ -25,7 +25,7 @@ If you're contributing for a new feature, please open an issue before you push.
 `alias` column shows the string union members in the code base:
 
 ```lua
----@alias SyntaxType
+---@alias Eva-Theme.SyntaxType
 --- | 'NONE'
 --- | 'error'
 --- | 'warning'
@@ -61,13 +61,13 @@ If to adapt a plugin that currently not supported, please add a new lua file as 
 
 ```lua
 -- lua/Eva-Theme/ui/plugin_name.lua
----@type StaticImporter
+---@type Eva-Theme.StaticImporter
 local function plugin_name(h)
     h:map_ui('func', 'NeoTreeCursorLine') -- highlight `NeoTreeCursorLine` with the color `func` from a palette
      :map_ui('property', { 'some_group', 'other_group' }) -- can be a array that maps multiple highlight groups with a same rule
-     :map_ui('NONE', 'some_group', function(palette, _) 
-        return { 
-            bg = require('Eva-Theme.utils').is_dark(palette) and 'red' or 'blue' 
+     :map_ui('NONE', 'some_group', function(palette, _)
+        return {
+            bg = require('Eva-Theme.utils').is_dark(palette) and 'red' or 'blue'
         }
     end)
     -- use any color to handle dark and light variants
@@ -78,12 +78,12 @@ return plugin_name
 
 - **Default behavior of `map_ui`**
 
-The third paramter of `map_ui` is a callback typed as `fun(palette: Palette, as: SyntaxType)` where `SyntaxType` is a member name of every palette as the table mentioned above.
+The third paramter of `map_ui` is a callback typed as `fun(palette: Palette, as: Eva-Theme.SyntaxType)` where `Eva-Theme.SyntaxType` is a member name of every palette as the table mentioned above.
 The default callback is:
 
 ```lua
-function(palette, as) 
-    return { fg = palette[as] } 
+function(palette, as)
+    return { fg = palette[as] }
 end -- so it colors foreground by default using specific palette color
 ```
 
@@ -93,11 +93,11 @@ There's some global functions to check whether a palette is certain variants to 
 ```lua
 
 -- lua/Eva-Theme/ui/plugin_name.lua
----@type StaticImporter
+---@type Eva-Theme.StaticImporter
 local function plugin_name(h)
-    h:map_ui('NONE', 'some_group', function(palette, as) 
-        return { 
-            bg = require('Eva-Theme.utils').is_dark(palette) and 'red' or 'blue' 
+    h:map_ui('NONE', 'some_group', function(palette, as)
+        return {
+            bg = require('Eva-Theme.utils').is_dark(palette) and 'red' or 'blue'
         }
     end)
 end
@@ -127,18 +127,18 @@ Fixing or adding support for a language is basically the same as the `map_ui` bu
 
 - **Default behavior of `map_token`**
 
-The third paramter of `map_token` is a callback typed as `fun(palette: Palette, as: SyntaxType)` where `SyntaxType` is a member name of every palette as the table mentioned above.
+The third paramter of `map_token` is a callback typed as `fun(palette: Palette, as: Eva-Theme.SyntaxType)` where `Eva-Theme.SyntaxType` is a member name of every palette as the table mentioned above.
 The default callback is really dependent on the `lua/Eva-Theme/seletor_handler.lua`, but it doesn't matter. Simply add your custom style, the font style should be handelled automatically.
 
 To use any color, simply overrides the callback, however, you might need to adapt for light and dark.
 There's some global functions to check whether a palette is certain variants to make sure everything colors.
 
 ```lua
----@type StaticImporter
+---@type Eva-Theme.StaticImporter
 local function javascript(h)
     h:map_token('logical', { '@constant.builtin.javascript' })
         :map_token('func', { '@punctuation.special.javascript' }, function(p, as)
-            return { fg = p[as], nocombine = true } -- `as` is 'func' here 
+            return { fg = p[as], nocombine = true } -- `as` is 'func' here
         end)
         :map_token('declarative', '@keyword.operator.javascript')
 end

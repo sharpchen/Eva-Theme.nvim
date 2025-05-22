@@ -1,4 +1,4 @@
----@type StaticImporter
+---@type Eva-Theme.StaticImporter
 local function neo_tree(h)
   h:map_ui('comment', 'NeoTreeDimText')
     :map_ui('NONE', { 'NeoTreeGitAdded' }, function(p, _)

@@ -1,4 +1,4 @@
----@type StaticImporter
+---@type Eva-Theme.StaticImporter
 local function cmp(h)
   h:map_ui(
     'info',

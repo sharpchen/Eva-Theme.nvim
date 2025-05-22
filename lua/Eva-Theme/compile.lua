@@ -12,7 +12,7 @@ if vim.fn.isdirectory(M.cache_folder) == 0 then
   vim.fn.mkdir(M.cache_folder, 'p')
 end
 
----@type ThemeName[]
+---@type Eva-Theme.ThemeName[]
 local themes = {
   'dark',
   'light',
@@ -118,7 +118,7 @@ M.colo = function()
 end
 
 ---returns highlights of a variant
----@param variant ThemeName
+---@param variant Eva-Theme.ThemeName
 ---@return table
 M.colo_cache = function(variant)
   local f = loadfile(_colo_cache)

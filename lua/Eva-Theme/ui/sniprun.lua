@@ -1,5 +1,5 @@
 local utils = require('Eva-Theme.utils')
----@type StaticImporter
+---@type Eva-Theme.StaticImporter
 local function sniprun(h)
   h:map_ui('NONE', 'SniprunVirtualTextOk', function(_, _)
     return { link = 'LspInlayHint' }

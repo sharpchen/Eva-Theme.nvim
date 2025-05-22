@@ -1,7 +1,7 @@
 local M = {
   isDark = nil,
 }
----@param variant Palette | string
+---@param variant Eva-Theme.Palette | string
 function M.is_bold(variant)
   if type(variant) == 'string' then
     return (variant:find('bold') ~= nil and not variant:find('italic'))
@@ -9,7 +9,7 @@ function M.is_bold(variant)
   return (variant.name:find('bold') ~= nil and not variant.name:find('italic'))
 end
 
----@param variant Palette | string
+---@param variant Eva-Theme.Palette | string
 function M.is_italic(variant)
   if type(variant) == 'string' then
     return (variant:find('italic') ~= nil and not variant:find('bold'))
@@ -17,7 +17,7 @@ function M.is_italic(variant)
   return (variant.name:find('italic') ~= nil and not variant.name:find('bold'))
 end
 
----@param variant Palette | string
+---@param variant Eva-Theme.Palette | string
 function M.is_italicbold(variant)
   if type(variant) == 'string' then
     return (variant:find('italic') ~= nil and variant:find('bold') ~= nil)
@@ -25,7 +25,7 @@ function M.is_italicbold(variant)
   return (variant.name:find('italic') ~= nil and variant.name:find('bold') ~= nil)
 end
 
----@param variant Palette | string
+---@param variant Eva-Theme.Palette | string
 function M.is_normal(variant)
   if type(variant) == 'string' then
     return (variant:find('bold') == nil and variant:find('italic') == nil)
@@ -33,7 +33,7 @@ function M.is_normal(variant)
   return (not variant.name:find('bold') and not variant.name:find('italic'))
 end
 
----@param variant Palette | string
+---@param variant Eva-Theme.Palette | string
 function M.is_dark(variant)
   if M.isDark ~= nil then
     return M.isDark
@@ -44,7 +44,7 @@ function M.is_dark(variant)
   return (variant.name:find('dark') ~= nil)
 end
 
----@param variant Palette | string
+---@param variant Eva-Theme.Palette | string
 function M.is_light(variant)
   return not M.is_dark(variant)
 end

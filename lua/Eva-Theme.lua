@@ -1,6 +1,6 @@
 -- Entry file of the theme
 local utils = require('Eva-Theme.utils')
----@param variant ThemeName
+---@param variant Eva-Theme.ThemeName
 local function variant_name(variant)
   local function capitalize_first_letter(word)
     return word:sub(1, 1):upper() .. word:sub(2):lower()
@@ -53,7 +53,7 @@ end
 local _checked_for_curr_session = false
 
 local M = {}
----@param variant? ThemeName
+---@param variant? Eva-Theme.ThemeName
 M.colorscheme = function(variant)
   variant = variant or 'dark'
 
@@ -86,7 +86,7 @@ M.colorscheme = function(variant)
   set_termcolors(vim.o.background)
 end
 
----@param option Options
+---@param option Eva-Theme.Options
 M.setup = function(option)
   require('Eva-Theme.options').option = vim.tbl_deep_extend('force', require('Eva-Theme.options').option, option)
 end
