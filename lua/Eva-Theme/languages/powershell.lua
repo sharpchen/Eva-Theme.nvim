@@ -1,4 +1,4 @@
----@type StaticImporter
+---@type Eva-Theme.StaticImporter
 local function powershell(h)
   h:map_token('func', '@function.builtin.powershell')
     :map_token('primitive', '@type.builtin.powershell')

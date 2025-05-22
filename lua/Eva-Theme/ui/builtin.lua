@@ -1,5 +1,5 @@
 local utils = require('Eva-Theme.utils')
----@type StaticImporter
+---@type Eva-Theme.StaticImporter
 local function builtin(h)
   h
     :map_ui('text', { 'manReference' })

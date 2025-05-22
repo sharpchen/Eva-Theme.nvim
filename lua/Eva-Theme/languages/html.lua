@@ -1,5 +1,5 @@
 local utils = require('Eva-Theme.utils')
----@type StaticImporter
+---@type Eva-Theme.StaticImporter
 local function html(h)
   h:map_token('text', { '@string.special.url.html', '@markup.link.label.html' })
     :map_token('NONE', '@tag.delimiter.html', function(palette, _)

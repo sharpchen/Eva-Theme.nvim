@@ -1,4 +1,4 @@
----@type StaticImporter
+---@type Eva-Theme.StaticImporter
 local function blink(h)
   h:map_ui('func', {
     'BlinkCmpKindMethod',

@@ -1,5 +1,5 @@
 local utils = require('Eva-Theme.utils')
----@type StaticImporter
+---@type Eva-Theme.StaticImporter
 local function indent_blankline(h)
   h:map_ui('comment', 'IblIndent')
     :map_ui('NONE', 'IblScope', function(_, _) -- indent line match

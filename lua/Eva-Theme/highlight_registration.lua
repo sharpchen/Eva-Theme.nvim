@@ -1,11 +1,11 @@
 local function create_highlights()
-  ---@type HighlightRegistrationWithFunction
+  ---@type Eva-Theme.HighlightRegistrationWithFunction
   local instance = {
     syntax = {},
     ui = {},
   }
   ---Add highlight group to syntax type
-  ---@type MapProc
+  ---@type Eva-Theme.MapProc
   function instance:map_token(syntax, group, selector)
     if not self.syntax[syntax] then
       self.syntax[syntax] = {}
@@ -20,7 +20,7 @@ local function create_highlights()
     return self
   end
 
-  ---@type MapProc
+  ---@type Eva-Theme.MapProc
   function instance:map_ui(group_type, group, selector)
     if not self.ui[group_type] then
       self.ui[group_type] = {}
@@ -36,7 +36,7 @@ local function create_highlights()
   end
 
   ---create highlight group by palette
-  ---@param palette Palette theme variant
+  ---@param palette Eva-Theme.Palette theme variant
   function instance:highlight_groups(palette)
     ---@type table<string, vim.api.keyset.highlight>
     local highlight_group = {}
@@ -61,7 +61,7 @@ local function create_highlights()
     return highlight_group
   end
 
-  ---@type Import
+  ---@type Eva-Theme.Import
   function instance:with(procedure)
     procedure(self)
     return self
