@@ -73,8 +73,8 @@ vim.cmd.colo 'Eva-Dark' -- or any variant
 Specify colors for dark and light variants, specified values will be taken while the rest remains default.
 
 > [!CAUTION]
-> All highlight groups uses certain overrided color will be affected,
-> something unexpected might happen. To override more specificly, use [override_highlight](#override-highlight).
+> All highlight groups uses certain overridden color will be affected,
+> something unexpected might happen. To override more specifically, use [override_highlight](#override-highlight).
 
 > [!TIP]
 > For palette structure, see: [palette.lua](https://github.com/sharpchen/Eva-Theme.nvim/blob/master/lua/Eva-Theme/palette.lua)
@@ -118,7 +118,7 @@ require('Eva-Theme').setup({
       return { fg = require('Eva-Theme.utils').is_dark(variant) and '#RRGGBB' or '#RRGGBB' }
     end,
     LspInlayHint = function(_, palette)
-      return { fg = palette.comment, bg = false }
+      return { fg = palette.comment, bg = 'none' }
     end
     --#endregion
   },
