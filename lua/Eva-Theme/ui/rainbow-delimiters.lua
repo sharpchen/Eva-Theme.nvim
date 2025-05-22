@@ -1,4 +1,4 @@
----@type StaticImporter
+---@type Eva-Theme.StaticImporter
 local function rainbow(h)
   h:map_ui('digit', 'RainbowDelimiterRed')
     :map_ui('logical', 'RainbowDelimiterYellow')

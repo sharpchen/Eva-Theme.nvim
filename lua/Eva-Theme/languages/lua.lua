@@ -1,5 +1,5 @@
 local utils = require('Eva-Theme.utils')
----@type StaticImporter
+---@type Eva-Theme.StaticImporter
 local function lua(h)
   h:map_token('logical', {
     '@keyword.conditional.lua',

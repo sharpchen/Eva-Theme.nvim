@@ -1,4 +1,4 @@
----@type StaticImporter
+---@type Eva-Theme.StaticImporter
 local function rust(h)
     h:map_token('logical', '@lsp.typemod.keyword.controlFlow.rust')
         :map_token('primitive', '@lsp.type.builtinType.rust')

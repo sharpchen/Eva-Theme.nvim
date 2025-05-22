@@ -1,4 +1,4 @@
----@alias SyntaxType
+---@alias Eva-Theme.SyntaxType
 --- | 'NONE'
 --- | 'error'
 --- | 'warning'
@@ -19,15 +19,10 @@
 --- | 'background'
 --- | 'panelBackground'
 --- | 'typeparam'
----@alias Palette { punctuation: string, escape: string, inlay_hint: InlayHintPalette, git: GitPalette, name: string, text: string, declarative: string, func: string, digit: string, primitive: string, property: string, operator: string, variable: string, logical: string, parameter: string, instanceReference: string, type: string, comment: string, typeparam: string, panelBackground: string, background: string }
----@alias ThemeName 'light' | 'light_bold' | 'light_italic' | 'light_italic_bold' | 'dark' | 'dark_bold' | 'dark_italic' | 'dark_italic_bold'
----@alias Theme table<ThemeName, Palette>
----@alias Selector fun(palette: Palette, as: SyntaxType): vim.api.keyset.highlight
----@alias Import fun(self, h: StaticImporter): HighlightRegistrationWithFunction
----@alias StaticImporter fun(h: HighlightRegistrationWithFunction)
----@alias MapProc fun(self, syntax: SyntaxType, group: string | string[], selector?: Selector): HighlightRegistrationWithFunction
----@alias HighlightCreator fun(self, palette: Palette): table<string, vim.api.keyset.highlight>
----@alias HighlightRegistartion table<SyntaxType, { group: string, selector?: Selector }[]>
----@alias HighlightRegistrationWithFunction { map_token: MapProc, map_ui: MapProc, with: Import, highlight_groups: HighlightCreator }
----@alias GitPalette { diffAdded: string, diffDeleted: string, diffModified: string, stagedAdded: string, ignored: string, renamed: string, stagedDeleted: string, stagedModified: string, untracked: string }
----@alias InlayHintPalette { fg: string, bg: string }
+---@alias Eva-Theme.ThemeName 'light' | 'light_bold' | 'light_italic' | 'light_italic_bold' | 'dark' | 'dark_bold' | 'dark_italic' | 'dark_italic_bold'
+---@alias Eva-Theme.Selector fun(palette: Eva-Theme.Palette, as: Eva-Theme.SyntaxType): vim.api.keyset.highlight
+---@alias Eva-Theme.Import fun(self, h: Eva-Theme.StaticImporter): Eva-Theme.HighlightRegistrationWithFunction
+---@alias Eva-Theme.StaticImporter fun(h: Eva-Theme.HighlightRegistrationWithFunction)
+---@alias Eva-Theme.MapProc fun(self, syntax: Eva-Theme.SyntaxType, group: string | string[], selector?: Eva-Theme.Selector): Eva-Theme.HighlightRegistrationWithFunction
+---@alias Eva-Theme.HighlightCreator fun(self, palette: Eva-Theme.Palette): table<string, vim.api.keyset.highlight>
+---@alias Eva-Theme.HighlightRegistrationWithFunction { map_token: Eva-Theme.MapProc, map_ui: Eva-Theme.MapProc, with: Eva-Theme.Import, highlight_groups: Eva-Theme.HighlightCreator }

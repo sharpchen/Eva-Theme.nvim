@@ -1,5 +1,5 @@
 local utils = require('Eva-Theme.utils')
----@type StaticImporter
+---@type Eva-Theme.StaticImporter
 local function gitsigns(h)
   h:map_ui('NONE', { 'GitSignsUntracked' }, function(palette, _)
     return { fg = palette['git']['untracked'] }
