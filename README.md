@@ -72,25 +72,20 @@ vim.cmd.colo 'Eva-Dark' -- or any variant
 
 Specify colors for dark and light variants, specified values will be taken while the rest remains default.
 
-> [!CAUTION]
-> All highlight groups uses certain overridden color will be affected,
-> something unexpected might happen. To override more specifically, use [override_highlight](#override-highlight).
-
 > [!TIP]
 > For palette structure, see: [palette.lua](https://github.com/sharpchen/Eva-Theme.nvim/blob/master/lua/Eva-Theme/palette.lua)
-> Or use [lazydev.nvim](https://github.com/folke/lazydev.nvim) to get full intellisense from type annotations.
+> Or use [lazydev.nvim](https://github.com/folke/lazydev.nvim) to get completions from type annotations.
 
 ```lua
 require('Eva-Theme').setup({
   override_palette = {
     dark = {
       background = '#14161B',
-      git = {
-        diffAdded = '#RRGGBB'
-      }
+      -- ...
     },
     light = {
       declarative = '#RRGGBB'
+      -- ...
     }
   }
 })
@@ -98,46 +93,45 @@ require('Eva-Theme').setup({
 
 ### Override highlight
 
-To customize any highlight group for different variants, you can put function callbacks or tables of key-value pair inside `override_highlight`.
-`Palette` and variant name is available for the function case.
+To customize any highlight group for each variants, you can use
+- value pairs `[Eva-Theme.ThemeName]: table<string, vim.keyset.highlight>`
+- function callbacks `[string]: fun(variant: Eva-Theme.ThemeName, palette: Eva-Theme.Palette): vim.keyset.highlight`
+    - `variant`: theme name such as `dark_bold`, `dark_italic_bold`
+    - `palette`: the palette overridden after `override_palette`
 
 ```lua
 require('Eva-Theme').setup({
   override_highlight = {
     --#region for each variant
     dark = {
-      ['@foo'] = { fg = '#RRGGBB', bg = '#RRGGBB' },
+      ['@foo.bar.baz'] = { fg = '#RRGGBB', bg = '#RRGGBB' },
     },
     light = {
-      ['@foo'] = { fg = '#RRGGBB', bg = '#RRGGBB' },
+      ['@foo.bar.baz'] = { fg = '#RRGGBB', bg = '#RRGGBB' },
     },
+    dark_bold = { --[[...]] },
+    dark_italic_bold = { --[[...]] },
     --#endregion
 
     --#region using callbacks can be more flexible
-    ['@foo'] = function(variant, _)
-      return { fg = require('Eva-Theme.utils').is_dark(variant) and '#RRGGBB' or '#RRGGBB' }
+    ['@foo.bar.baz'] = function(variant, _)
+      return { fg = variant == 'dark_bold' and '#RRGGBB' or '#RRGGBB' }
     end,
     LspInlayHint = function(_, palette)
-      return { fg = palette.comment, bg = 'none' }
+      return { fg = palette.comment, bg = 'none' } -- use `none` to cancel the default value
     end
     --#endregion
   },
 })
 ```
 
-> [!tip]
-> Value returned from `override_highlight` will be merged with the default value. Set certain property to `false` or empty string to cancel the default.
-
-> [!NOTE]
-> `Palette` accessible here is the palette override by `override_palette`.
-
 ### Ambiguity issue
 
 This port was intended to respect the [upstream](https://github.com/fisheva/Eva-Theme) where operators got different colors by their usages.
-While treesitter parsers generally don't classify operator into different usages, so there's no much I can do.
+While treesitter parsers generally don't classify operator into different usages, so there's no much I can do(might be approachable by treesitter query but I've not got time to learn it).
 If you find ambiguity between operator and type(pointer type `T*` for example), I suggest customize by yourself.
 
-This is what I prefer:
+For example:
 
 ```lua
 require('Eva-Theme').setup({
