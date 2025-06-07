@@ -1,8 +1,8 @@
----@alias Eva-Theme.UserHightlightHandler fun(v: Eva-Theme.ThemeName, p?: Eva-Theme.Palette): vim.api.keyset.highlight
+---@alias Eva-Theme.UserHighlightHandler fun(v: Eva-Theme.ThemeName, p?: Eva-Theme.Palette): vim.api.keyset.highlight
 
 ---@class Eva-Theme.Options
 ---@field override_palette? { ['dark' | 'light']: Eva-Theme.Palette }
----@field override_highlight? table<string, Eva-Theme.UserHightlightHandler>
+---@field override_highlight? table<string, Eva-Theme.UserHighlightHandler>
 
 local M = {}
 ---@type Eva-Theme.Options
@@ -26,7 +26,7 @@ function M:user_highlights(p, builtin_highlights)
     return {}
   end
 
-  local variant = p.name
+  local variant = p.name --[[@as string]]
   ---@type table<string, vim.api.keyset.highlight>
   local user_highlights = {}
 
