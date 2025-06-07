@@ -55,5 +55,8 @@ local function blink(h)
     :map_ui('NONE', 'BlinkCmpMenuSelection', function(_, _)
       return { link = 'PmenuSel' }
     end)
+    :map_ui('NONE', 'BlinkCmpMenu', function()
+      return { link = 'Pmenu' }
+    end)
 end
 return blink
