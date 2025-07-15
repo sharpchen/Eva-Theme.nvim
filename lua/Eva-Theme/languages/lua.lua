@@ -20,7 +20,7 @@ local function lua(h)
     :map_token('property', { '@variable.member.lua' })
     :map_token('digit', '@lsp.mod.defaultLibrary.lua')
     :map_token('instanceReference', '@lsp.typemod.variable.definition.lua')
-    :map_token('NONE', '@lsp.type.property.lua')
+    :map_token('NONE', { '@lsp.type.property.lua', '@lsp.type.variable.lua' })
     :map_token('text', '@string.regexp.lua')
 end
 
