@@ -2,7 +2,9 @@ local utils = require('Eva-Theme.utils')
 ---@type Eva-Theme.StaticImporter
 local function builtin(h)
   h
-    :map_ui('text', { 'manReference' })
+    :map_ui('text', { 'manReference', 'Underlined' }, function(p, as)
+      return { fg = p[as], underline = true }
+    end)
     :map_ui('info', { 'MoreMsg', 'Question', 'RedrawDebugComposed' })
     :map_ui('warning', { 'RedrawDebugClear', 'WarningMsg' })
     :map_ui('error', {

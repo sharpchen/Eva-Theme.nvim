@@ -81,13 +81,17 @@ local function treesitter(h)
       '@string.special.path.diff',
       '@string.special.url',
       '@string.special.path',
-      '@markup.link',
-      '@markup.link.url',
       '@markup.raw',
       '@markup.raw.block',
       '@markup.list',
       '@character',
     })
+    :map_token('text', {
+      '@markup.link',
+      '@markup.link.url',
+    }, function(p, as)
+      return { fg = p[as], underline = true }
+    end)
     :map_token('comment', { '@string.documentation', '@comment', '@comment.documentation' }, function(p, as)
       return { fg = p[as], italic = true }
     end)
