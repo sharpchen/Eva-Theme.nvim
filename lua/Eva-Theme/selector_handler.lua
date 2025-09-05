@@ -1,11 +1,10 @@
 ---@class Eva-Theme.SelectorHandler
 ---@field handle fun(self, palette: Eva-Theme.Palette | string, group: string): Eva-Theme.Selector
 ---@field should_handle fun(palette: Eva-Theme.Palette | string): boolean
----@field get_selector Eva-Theme.SelectorPicker
+---@field get_selector fun(group: string): Eva-Theme.Selector
 ---@field next Eva-Theme.SelectorHandler
 ---@field chain fun(self: Eva-Theme.SelectorHandler, next: Eva-Theme.SelectorHandler): Eva-Theme.SelectorHandler
 
----@alias Eva-Theme.SelectorPicker fun(group: string): Eva-Theme.Selector
 local utils = require('Eva-Theme.utils')
 local shouldbe_bold = require('Eva-Theme.shouldbe_bold')
 local shouldnotbe_italic = require('Eva-Theme.shouldnotbe_italic')
@@ -50,7 +49,6 @@ local normal_handler = vim.tbl_extend('keep', handler_base, {
   should_handle = function(palette)
     return utils.is_normal(palette)
   end,
-  ---@type Eva-Theme.SelectorPicker
   get_selector = function(_)
     return normal_selector
   end,
@@ -61,7 +59,6 @@ local bold_handler = vim.tbl_extend('keep', handler_base, {
   should_handle = function(palette)
     return utils.is_bold(palette)
   end,
-  ---@type Eva-Theme.SelectorPicker
   get_selector = function(group)
     return vim.list_contains(shouldbe_bold, group) and bold_selector or normal_selector
   end,
@@ -72,7 +69,6 @@ local italic_handler = vim.tbl_extend('keep', handler_base, {
   should_handle = function(palette)
     return utils.is_italic(palette)
   end,
-  ---@type Eva-Theme.SelectorPicker
   get_selector = function(group)
     return not vim.list_contains(shouldnotbe_italic, group) and italic_selector or normal_selector
   end,
@@ -83,7 +79,6 @@ local italic_bold_handler = vim.tbl_extend('keep', handler_base, {
   should_handle = function(palette)
     return utils.is_italicbold(palette)
   end,
-  ---@type Eva-Theme.SelectorPicker
   get_selector = function(group)
     local be_bold = vim.list_contains(shouldbe_bold, group)
     local be_italic = not vim.list_contains(shouldnotbe_italic, group)

@@ -1,5 +1,7 @@
 local M = {}
 
+---@alias Eva-Theme.ThemeName 'light' | 'light_bold' | 'light_italic' | 'light_italic_bold' | 'dark' | 'dark_bold' | 'dark_italic' | 'dark_italic_bold'
+
 ---@class Eva-Theme.GitPalette
 ---@field stagedModified? string
 ---@field stagedDeleted? string
