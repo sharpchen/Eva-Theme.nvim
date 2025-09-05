@@ -35,39 +35,7 @@ function M:user_highlights(p, builtin_highlights)
 
     if type(func_or_pair) == 'function' then
       local custom_style = func_or_pair(variant, p)
-      local merged = vim.tbl_extend('keep', custom_style, builtin_style)
-      for key, val in pairs(merged) do
-        if
-          vim.tbl_contains({
-            'bold',
-            'standout',
-            'strikethrough',
-            'underline',
-            'undercurl',
-            'underdouble',
-            'underdotted',
-            'underdashed',
-            'italic',
-            'reverse',
-            'altfont',
-            'nocombine',
-            'default',
-            'fallback',
-            'fg_indexed',
-            'bg_indexed',
-            'force',
-          }, key)
-        then
-          goto continue
-        end
-
-        if val == false or val == '' then
-          merged[key] = nil
-        end
-
-        ::continue::
-      end
-      user_highlights[group] = merged
+      user_highlights[group] = vim.tbl_extend('keep', custom_style, builtin_style)
     end
 
     if group == variant then
