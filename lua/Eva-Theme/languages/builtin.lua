@@ -1,13 +1,16 @@
 local utils = require('Eva-Theme.utils')
 ---@type Eva-Theme.StaticImporter
 local function builtin(h)
-  h:map_token('type', { 'Type', 'StorageClass', 'Structure' })
+  h:map_token('type', { 'Type', 'Structure' })
     :map_token('func', 'Function')
     :map_token('text', { 'String', 'Character', 'SpecialComment', 'Todo' })
     :map_token('digit', { 'Constant', 'Number', 'Float', 'SpecialChar', 'Format' })
     :map_token('logical', { 'Boolean', 'Conditional', 'Repeat', 'Label', 'Exception', 'PreCondit' })
     :map_token('operator', 'Operator')
-    :map_token('declarative', { 'Keyword', 'Preproc', 'Include', 'Define', 'Macro', 'Typedef', 'Statement' })
+    :map_token(
+      'declarative',
+      { 'StorageClass', 'Keyword', 'Preproc', 'Include', 'Define', 'Macro', 'Typedef', 'Statement' }
+    )
     :map_token('variable', 'Identifier')
     :map_token('instanceReference', {})
     :map_token('comment', 'Comment', function(p, as)
