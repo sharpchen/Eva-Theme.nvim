@@ -33,7 +33,7 @@ M.needs_compile = function()
   local f = loadfile(_option_cache)
   local option_prev
   if f then
-    option_prev = f()--[[@as Options]]
+    option_prev = f()--[[@as Eva-Theme.Options]]
   end
   local current_option = {
     user_highlights = {},
