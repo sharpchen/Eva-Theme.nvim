@@ -102,17 +102,6 @@ To customize any highlight group for each variants, you can use
 ```lua
 require('Eva-Theme').setup({
   override_highlight = {
-    --#region for each variant
-    dark = {
-      ['@foo.bar.baz'] = { fg = '#RRGGBB', bg = '#RRGGBB' },
-    },
-    light = {
-      ['@foo.bar.baz'] = { fg = '#RRGGBB', bg = '#RRGGBB' },
-    },
-    dark_bold = { --[[...]] },
-    dark_italic_bold = { --[[...]] },
-    --#endregion
-
     --#region using callbacks can be more flexible
     ['@foo.bar.baz'] = function(variant, _)
       return { fg = variant == 'dark_bold' and '#RRGGBB' or '#RRGGBB' }
