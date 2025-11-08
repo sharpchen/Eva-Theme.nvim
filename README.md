@@ -94,10 +94,9 @@ require('Eva-Theme').setup({
 ### Override highlight
 
 To customize any highlight group for each variants, you can use
-- value pairs `[Eva-Theme.ThemeName]: table<string, vim.keyset.highlight>`
-- function callbacks `[string]: fun(variant: Eva-Theme.ThemeName, palette: Eva-Theme.Palette): vim.keyset.highlight`
-    - `variant`: theme name such as `dark_bold`, `dark_italic_bold`
-    - `palette`: the palette overridden after `override_palette`
+function callbacks `[string]: fun(variant: Eva-Theme.ThemeName, palette: Eva-Theme.Palette): vim.keyset.highlight`
+  - `variant`: theme name such as `dark_bold`, `dark_italic_bold`
+  - `palette`: the palette overridden after `override_palette`
 
 ```lua
 require('Eva-Theme').setup({
