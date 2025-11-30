@@ -5,6 +5,9 @@ local function javascript(h)
       return { fg = p[as], nocombine = true }
     end)
     :map_token('property', '@lsp.type.namespace.javascript')
+    :map_token('NONE', '@tag.delimiter.javascript', function(p, _)
+      return { fg = p.punctuation }
+    end)
 end
 
 return javascript
