@@ -116,7 +116,7 @@ require('Eva-Theme').setup({
 ### Ambiguity issue
 
 This port was intended to respect the [upstream](https://github.com/fisheva/Eva-Theme) where operators got different colors by their usages.
-While treesitter parsers generally don't classify operator into different usages, so there's no much I can do(might be approachable by treesitter query but I've not got time to learn it).
+Treesitter queries presets from [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) generally don't classify operator by semantic, although it's approachable by custom query but I currently don't like to added it(pr welcome!).
 If you find ambiguity between operator and type(pointer type `T*` for example), I suggest customize by yourself.
 
 For example:
