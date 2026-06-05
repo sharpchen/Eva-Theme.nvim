@@ -1,6 +1,6 @@
----@type Eva-Theme.StaticImporter
-local function neo_tree(h)
-  h:map_ui('comment', 'NeoTreeDimText')
+---@param s Eva-Theme.HighlightSource
+local function neo_tree(s)
+  s:map_ui('comment', 'NeoTreeDimText')
     :map_ui('NONE', { 'NeoTreeGitAdded' }, function(p, _)
       return { fg = p.git.diffAdded }
     end)

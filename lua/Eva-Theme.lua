@@ -1,5 +1,7 @@
--- Entry file of the theme
-local utils = require('Eva-Theme.utils')
+local M = {}
+local U = require('Eva-Theme.utils')
+local C = require('Eva-Theme.config')
+
 ---@param variant Eva-Theme.ThemeName
 local function variant_name(variant)
   local function capitalize_first_letter(word)
@@ -50,53 +52,45 @@ local function set_termcolors(background)
   end
 end
 
-local _checked_for_curr_session = false
-
-local M = {}
 ---@param variant? Eva-Theme.ThemeName
-M.colorscheme = function(variant)
+function M.colorscheme(variant)
   variant = variant or 'dark'
 
+  vim.g.colors_name = variant_name(variant)
+
   vim.opt.termguicolors = true
-  vim.o.background = utils.is_dark(variant) and 'dark' or 'light'
+  vim.o.background = U.is_dark(variant) and 'dark' or 'light'
+
   vim.cmd('set cursorline')
+
   if vim.g.colors_name then
     vim.cmd('hi clear')
     vim.cmd('syntax reset')
   end
 
-  vim.g.colors_name = variant_name(variant)
-  require('Eva-Theme.options').emit_user_config()
+  local P = require('Eva-Theme.palette')
+  local H = require('Eva-Theme.highlight')
 
-  local compile = require('Eva-Theme.compile')
+  local palette = P:from_variant(variant)
 
-  -- check only once for one session?
-  if not _checked_for_curr_session then
-    if compile.needs_compile() then
-      compile.option()
-      compile.colo()
-    end
-    _checked_for_curr_session = true
+  for hl_name, hl in H:iter_hl(palette) do
+    vim.api.nvim_set_hl(0, hl_name, hl)
   end
 
-  for group, style in pairs(compile.colo_cache(variant)) do
-    vim.api.nvim_set_hl(0, group, style)
+  -- override with user highlights
+  for hl_name, uhl in pairs(C:eval_user_hl(palette)) do
+    local builtin_hl = vim.api.nvim_get_hl(0, { name = hl_name, link = false, create = false })
+    local merged_hl = vim.tbl_extend('force', builtin_hl, uhl)
+    vim.api.nvim_set_hl(0, hl_name, merged_hl)
   end
 
   set_termcolors(vim.o.background)
 end
 
----@param option Eva-Theme.Options
-M.setup = function(option)
-  require('Eva-Theme.options').option = vim.tbl_deep_extend('force', require('Eva-Theme.options').option, option)
+---@param opts Eva-Theme.Config
+function M.setup(opts)
+  C.config = vim.tbl_deep_extend('force', C.config, opts)
+  C:apply_palette_override()
 end
-
-vim.api.nvim_create_user_command('EvaCompile', function()
-  require('Eva-Theme.compile').option()
-  require('Eva-Theme.compile').colo()
-  if vim.g.colors_name:find('^Eva%-') then
-    vim.cmd.colorscheme(vim.g.colors_name)
-  end
-end, { desc = 'compiles highlight cache for Eva-Theme' })
 
 return M

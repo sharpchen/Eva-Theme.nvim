@@ -1,7 +1,7 @@
 local utils = require('Eva-Theme.utils')
----@type Eva-Theme.StaticImporter
-local function treesitter(h)
-  h:map_token('type', {
+---@param s Eva-Theme.HighlightSource
+local function treesitter(s)
+  s:map_token('type', {
     '@attribute',
     '@attribute.builtin',
     '@constructor',

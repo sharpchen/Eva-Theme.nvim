@@ -1,7 +1,7 @@
 local utils = require('Eva-Theme.utils')
----@type Eva-Theme.StaticImporter
-local function lua(h)
-  h:map_token('logical', {
+---@param s Eva-Theme.HighlightSource
+local function lua(s)
+  s:map_token('logical', {
     '@keyword.conditional.lua',
     '@keyword.repeat.lua',
     '@keyword.return.lua',

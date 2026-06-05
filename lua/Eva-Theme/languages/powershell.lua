@@ -1,6 +1,6 @@
----@type Eva-Theme.StaticImporter
-local function powershell(h)
-  h:map_token('func', '@function.builtin.powershell')
+---@param s Eva-Theme.HighlightSource
+local function powershell(s)
+  s:map_token('func', '@function.builtin.powershell')
     :map_token('primitive', '@type.builtin.powershell')
     :map_token('property', '@variable.builtin.powershell')
     :map_token('NONE', { '@variable.parameter.builtin.powershell', '@lsp.type.parameter.ps1' }, function(_, _)

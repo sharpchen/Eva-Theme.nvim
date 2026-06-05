@@ -1,6 +1,6 @@
----@type Eva-Theme.StaticImporter
-local function typescript(h)
-  h:map_token(
+---@param s Eva-Theme.HighlightSource
+local function typescript(s)
+  s:map_token(
     'logical',
     { '@keyword.return.typescript', '@keyword.conditional.typescript', '@constant.builtin.typescript' }
   )

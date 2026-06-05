@@ -129,7 +129,9 @@ M.dark_base = {
   punctuation = '#838FA7',
 }
 
+---@type Eva-Theme.Palette
 M.user_light = vim.deepcopy(M.light_base)
+---@type Eva-Theme.Palette
 M.user_dark = vim.deepcopy(M.dark_base)
 
 ---dynamically create a palette overridden by user

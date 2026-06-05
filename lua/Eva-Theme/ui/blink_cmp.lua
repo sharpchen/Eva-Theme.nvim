@@ -1,6 +1,6 @@
----@type Eva-Theme.StaticImporter
-local function blink(h)
-  h:map_ui('func', {
+---@param s Eva-Theme.HighlightSource
+local function blink(s)
+  s:map_ui('func', {
     'BlinkCmpKindMethod',
     'BlinkCmpKindFunction',
   })

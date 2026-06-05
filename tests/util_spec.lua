@@ -1,0 +1,10 @@
+describe('util', function()
+  it('variant-check', function()
+    local U = require('Eva-Theme.utils')
+
+    assert(U.is_italicbold('light_italic_bold'))
+    assert(U.is_italic_only('light_italic'))
+    assert(U.is_bold_only('light_bold'))
+    assert(U.is_normal('light'))
+  end)
+end)

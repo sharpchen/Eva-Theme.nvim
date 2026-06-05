@@ -1,6 +1,6 @@
----@type Eva-Theme.StaticImporter
-local function cmp(h)
-  h:map_ui(
+---@param s Eva-Theme.HighlightSource
+local function cmp(s)
+  s:map_ui(
     'info',
     { 'CmpItemAbbrMatch', 'CmpItemKindMatchFuzzy', 'CmpItemKindMatch', 'CmpItemKindFile' },
     function(p, as)

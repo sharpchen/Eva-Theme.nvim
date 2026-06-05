@@ -1,7 +1,7 @@
 local utils = require('Eva-Theme.utils')
----@type Eva-Theme.StaticImporter
-local function vim_illuminate(h)
-  h:map_ui('NONE', { 'IlluminatedWordText', 'IlluminatedWordRead', 'IlluminatedWordWrite' }, function(palette, _)
+---@param s Eva-Theme.HighlightSource
+local function vim_illuminate(s)
+  s:map_ui('NONE', { 'IlluminatedWordText', 'IlluminatedWordRead', 'IlluminatedWordWrite' }, function(palette, _)
     return { bg = utils.is_dark(palette) and '#17596B' or '#7FD8DE' }
   end):map_ui('NONE', 'IlluminatedWordWrite', function(p, _)
     return { bg = utils.is_dark(p) and '#66609f' or '#c9bff2' }

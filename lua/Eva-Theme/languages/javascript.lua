@@ -1,6 +1,6 @@
----@type Eva-Theme.StaticImporter
-local function javascript(h)
-  h:map_token('logical', { '@constant.builtin.javascript' })
+---@param s Eva-Theme.HighlightSource
+local function javascript(s)
+  s:map_token('logical', { '@constant.builtin.javascript' })
     :map_token('func', { '@punctuation.special.javascript' }, function(p, as) -- string interpolation
       return { fg = p[as], nocombine = true }
     end)

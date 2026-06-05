@@ -1,6 +1,6 @@
----@type Eva-Theme.StaticImporter
-local function c(h)
-    h:map_token('logical', { '@keyword.return.c', '@keyword.conditional.c', '@keyword.repeat.c' })
+---@param s Eva-Theme.HighlightSource
+local function c(s)
+  s:map_token('logical', { '@keyword.return.c', '@keyword.conditional.c', '@keyword.repeat.c' })
 end
 
 return c

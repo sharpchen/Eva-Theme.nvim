@@ -1,50 +1,41 @@
 local M = {
   isDark = nil,
 }
----@param variant Eva-Theme.Palette | string
-function M.is_bold(variant)
-  if type(variant) == 'string' then
-    return (variant:find('bold') ~= nil and not variant:find('italic'))
-  end
-  return (variant.name:find('bold') ~= nil and not variant.name:find('italic'))
+---@param variant Eva-Theme.Palette | Eva-Theme.ThemeName
+function M.is_bold_only(variant)
+  local name = type(variant) == 'string' and variant or variant.name
+  return not not name:match('bold') and not name:match('italic')
 end
 
----@param variant Eva-Theme.Palette | string
-function M.is_italic(variant)
-  if type(variant) == 'string' then
-    return (variant:find('italic') ~= nil and not variant:find('bold'))
-  end
-  return (variant.name:find('italic') ~= nil and not variant.name:find('bold'))
+---@param variant Eva-Theme.Palette | Eva-Theme.ThemeName
+function M.is_italic_only(variant)
+  local name = type(variant) == 'string' and variant or variant.name
+  return not not name:match('italic') and not name:match('bold')
 end
 
----@param variant Eva-Theme.Palette | string
+---@param variant Eva-Theme.Palette | Eva-Theme.ThemeName
 function M.is_italicbold(variant)
-  if type(variant) == 'string' then
-    return (variant:find('italic') ~= nil and variant:find('bold') ~= nil)
-  end
-  return (variant.name:find('italic') ~= nil and variant.name:find('bold') ~= nil)
+  local name = type(variant) == 'string' and variant or variant.name
+  return not not name:match('italic') and not not name:match('bold')
 end
 
----@param variant Eva-Theme.Palette | string
+---@param variant Eva-Theme.Palette | Eva-Theme.ThemeName
 function M.is_normal(variant)
-  if type(variant) == 'string' then
-    return (variant:find('bold') == nil and variant:find('italic') == nil)
-  end
-  return (not variant.name:find('bold') and not variant.name:find('italic'))
+  local name = type(variant) == 'string' and variant or variant.name
+  return not name:match('bold') and not name:match('italic')
 end
 
----@param variant Eva-Theme.Palette | string
+---@param variant Eva-Theme.Palette | Eva-Theme.ThemeName
 function M.is_dark(variant)
   if M.isDark ~= nil then
     return M.isDark
   end
-  if type(variant) == 'string' then
-    return (variant:find('dark') ~= nil)
-  end
-  return (variant.name:find('dark') ~= nil)
+
+  local name = type(variant) == 'string' and variant or variant.name
+  return not not name:match('dark')
 end
 
----@param variant Eva-Theme.Palette | string
+---@param variant Eva-Theme.Palette | Eva-Theme.ThemeName
 function M.is_light(variant)
   return not M.is_dark(variant)
 end
@@ -141,6 +132,42 @@ function M.HSLtoRGB(h, s, l)
     b = math.floor(255 * hue2rgb(v1, v2, hue - 1 / 3) + 0.5)
   end
   return r, g, b
+end
+
+---@generic T
+---@param fov (T | fun(...): T)?
+---@param ... unknown params for function
+---@return T?
+function M.fn_or_val(fov, ...)
+  if vim.is_callable(fov) then
+    return fov(...)
+  else
+    return fov
+  end
+end
+
+---@param msg string
+function M.notify(msg)
+  vim.notify(string.format('[Eva-Theme]: %s', msg), vim.log.levels.INFO, { title = ' Eva-Theme' })
+end
+
+--- Exclude fields by keys from table
+--- metatable will be discarded!
+---@param tbl table
+---@param keys string | string[]
+---@return table
+function M.tbl_exclude(tbl, keys)
+  vim.validate('tbl', tbl, 'table')
+  local new = vim.deepcopy(tbl)
+  keys = type(keys) == 'string' and { keys } or keys
+
+  for k, _ in pairs(new) do
+    if vim.list_contains(keys, k) then
+      new[k] = nil
+    end
+  end
+
+  return new
 end
 
 return M

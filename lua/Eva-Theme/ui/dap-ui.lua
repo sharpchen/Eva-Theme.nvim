@@ -1,7 +1,7 @@
 local utils = require('Eva-Theme.utils')
----@type Eva-Theme.StaticImporter
-local function dap_ui(h)
-  h:map_ui(
+---@param s Eva-Theme.HighlightSource
+local function dap_ui(s)
+  s:map_ui(
     'type',
     { 'DapUIType', 'DapUIStepOverNC', 'DapUIStepIntoNC', 'DapUIStepOutNC', 'DapUIStepBackNC' },
     function(p, as)

@@ -1,7 +1,7 @@
 local utils = require('Eva-Theme.utils')
----@type Eva-Theme.StaticImporter
-local function builtin(h)
-  h
+---@param s Eva-Theme.HighlightSource
+local function builtin(s)
+  s
     :map_ui('text', { 'manReference', 'Underlined' }, function(p, as)
       return { fg = p[as], underline = true }
     end)
@@ -108,7 +108,7 @@ local function builtin(h)
     end)
 
   --#region dignostic
-  h
+  s
     :map_ui('error', {
       'DiagnosticError',
       'DiagnosticFloatingError',

@@ -1,2 +1,2 @@
-package.loaded['Eva-Theme.highlight_registration'] = nil;
+package.loaded['Eva-Theme.highlight'] = nil
 require('Eva-Theme').colorscheme('light_italic')

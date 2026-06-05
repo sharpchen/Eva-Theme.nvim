@@ -1,6 +1,6 @@
----@type Eva-Theme.StaticImporter
-local function vim(h)
-  h:map_token('property', '@variable.builtin.vim')
+---@param s Eva-Theme.HighlightSource
+local function vim(s)
+  s:map_token('property', '@variable.builtin.vim')
 end
 
 return vim

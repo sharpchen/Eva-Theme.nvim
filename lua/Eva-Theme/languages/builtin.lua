@@ -1,7 +1,7 @@
 local utils = require('Eva-Theme.utils')
----@type Eva-Theme.StaticImporter
-local function builtin(h)
-  h:map_token('type', { 'Type', 'Structure' })
+---@param s Eva-Theme.HighlightSource
+local function builtin(s)
+  s:map_token('type', { 'Type', 'Structure' })
     :map_token('func', 'Function')
     :map_token('text', { 'String', 'Character', 'SpecialComment', 'Todo' })
     :map_token('digit', { 'Constant', 'Number', 'Float', 'SpecialChar', 'Format' })

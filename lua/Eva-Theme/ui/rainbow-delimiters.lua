@@ -1,6 +1,6 @@
----@type Eva-Theme.StaticImporter
-local function rainbow(h)
-  h:map_ui('digit', 'RainbowDelimiterRed')
+---@param s Eva-Theme.HighlightSource
+local function rainbow(s)
+  s:map_ui('digit', 'RainbowDelimiterRed')
     :map_ui('logical', 'RainbowDelimiterYellow')
     :map_ui('func', 'RainbowDelimiterBlue')
     :map_ui('digit', 'RainbowDelimiterOrange')

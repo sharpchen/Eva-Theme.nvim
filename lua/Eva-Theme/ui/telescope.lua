@@ -1,6 +1,6 @@
----@type Eva-Theme.StaticImporter
-local function telescope(h)
-  h:map_ui('NONE', 'TelescopeNormal', function(_, _)
+---@param s Eva-Theme.HighlightSource
+local function telescope(s)
+  s:map_ui('NONE', 'TelescopeNormal', function(_, _)
     return { link = 'Normal' }
   end)
     :map_ui('NONE', 'TelescopeTitle', function(palette, _)

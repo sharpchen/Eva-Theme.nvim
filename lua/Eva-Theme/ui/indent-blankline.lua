@@ -1,7 +1,7 @@
 local utils = require('Eva-Theme.utils')
----@type Eva-Theme.StaticImporter
-local function indent_blankline(h)
-  h:map_ui('comment', 'IblIndent')
+---@param s Eva-Theme.HighlightSource
+local function indent_blankline(s)
+  s:map_ui('comment', 'IblIndent')
     :map_ui('NONE', 'IblScope', function(_, _) -- indent line match
       return { fg = '#C97760' }
     end)
