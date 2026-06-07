@@ -85,7 +85,7 @@ M.light_base = {
 M.dark_base = {
   inlay_hint = {
     fg = '#8A97C3',
-    bg = '#343744',
+    bg = '#2D323C',
   },
   git = {
     added = '#98C379',

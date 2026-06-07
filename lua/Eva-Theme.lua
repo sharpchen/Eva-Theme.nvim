@@ -77,6 +77,9 @@ function M.colorscheme(variant)
     vim.api.nvim_set_hl(0, hl_name, hl)
   end
 
+  -- TODO: generate as whole table on CI
+  -- and compile user config
+
   -- override with user highlights
   for hl_name, uhl in pairs(C:eval_user_hl(palette)) do
     local builtin_hl = vim.api.nvim_get_hl(0, { name = hl_name, link = false, create = false })
