@@ -12,7 +12,6 @@ local function builtin(s)
       { 'StorageClass', 'Keyword', 'Preproc', 'Include', 'Define', 'Macro', 'Typedef', 'Statement' }
     )
     :map_token('variable', 'Identifier')
-    :map_token('instanceReference', {})
     :map_token('comment', 'Comment', function(p, as)
       return { fg = p[as], italic = true }
     end)

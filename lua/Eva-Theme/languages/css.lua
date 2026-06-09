@@ -1,7 +1,7 @@
 ---@param s Eva-Theme.HighlightSource
 local function css(s)
   s:map_token('parameter', '@variable.css')
-    :map_token('instanceReference', '@keyword.modifier.css')
+    :map_token('this', '@keyword.modifier.css')
     :map_token('text', '@type.css')
     :map_token('NONE', '@property.css', function(palette, _)
       return { fg = palette.escape }

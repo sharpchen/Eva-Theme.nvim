@@ -15,7 +15,7 @@ local function blink(s)
       'BlinkCmpKindText',
       'BlinkCmpKindReference',
     }, function(p, _)
-      return { fg = p.inlay_hint.bg }
+      return { fg = p.text }
     end)
     :map_ui('variable', {
       'BlinkCmpKindVariable',
@@ -47,7 +47,7 @@ local function blink(s)
       return { fg = p.comment }
     end)
     :map_ui('panelBackground', { 'BlinkCmpDoc', 'BlinkCmpDocBorder', 'BlinkCmpSignatureHelp' }, function(p, as)
-      return { bg = p[as] }
+      return { bg = p.list_widget_bg }
     end)
     :map_ui('NONE', 'BlinkCmpLabelMatch', function(p, _)
       return { fg = p.info, bold = true }

@@ -74,7 +74,7 @@ local function treesitter(s)
       '@keyword.type',
       '@keyword.modifier',
     })
-    :map_token('instanceReference', { '@variable.builtin', '@module.builtin' })
+    :map_token('this', { '@variable.builtin', '@module.builtin' })
     :map_token('text', {
       '@label',
       '@string',

@@ -1,4 +1,5 @@
 local utils = require('Eva-Theme.utils')
+
 ---@param s Eva-Theme.HighlightSource
 local function builtin(s)
   s
@@ -18,32 +19,38 @@ local function builtin(s)
     :map_ui('NONE', 'ColorColumn', function(p, _)
       return { bg = utils.is_dark(p) and '#495949' or '#bed7c5' }
     end)
-    :map_ui('NONE', { 'LineNrAbove', 'LineNrBelow' }, function(palette, _)
-      return { fg = utils.is_dark(palette) and '#50567C' or '#C8CACE' }
+    :map_ui('NONE', { 'LineNrAbove', 'LineNrBelow' }, function(p, _)
+      return { fg = utils.is_dark(p) and '#50567C' or '#C8CACE' }
     end)
-    :map_ui('NONE', 'healthSuccess', function(palette, _) --neovim checkhealth report
-      return { fg = palette['git']['diffAdded'] }
+    :map_ui('NONE', 'healthSuccess', function(p, _) --neovim checkhealth report
+      return { fg = p['git']['diffAdded'] }
     end)
-    :map_ui('background', 'Normal', function(palette, as)
-      return { bg = palette[as], fg = palette['variable'] }
+    :map_ui('background', 'Normal', function(p, as)
+      return { bg = p[as], fg = p['variable'] }
     end)
     :map_ui('background', 'EndOfBuffer') -- ~ sign at th end of each buffer
-    :map_ui('background', { 'SignColumn', 'WinBar', 'WinBarNC' }, function(palette, as)
-      return { bg = palette[as] }
+    :map_ui('background', { 'SignColumn', 'WinBar', 'WinBarNC' }, function(p, as)
+      return { bg = p[as] }
     end)
-    :map_ui('NONE', 'NormalFloat', function(palette, as)
-      return { fg = palette.inlay_hint.fg }
+    :map_ui('NONE', 'NormalFloat', function(p, as)
+      return { fg = p.inlay_hint.fg, bg = p.list_widget_bg }
     end)
     :map_ui('NONE', { 'StatusLine', 'StatusLineNC' }, function(_, _)
       return { link = 'CursorLine' }
     end)
-    :map_ui('panelBackground', 'Pmenu', function(palette, as)
-      return { bg = palette[as], fg = palette['variable'] }
+    :map_ui('NONE', 'Pmenu', function(p, as)
+      return { bg = p.list_widget_bg, fg = p['variable'] }
     end)
-    :map_ui('NONE', 'PmenuSel', function(palette, _)
+    :map_ui('NONE', 'PmenuMatch', function(p, as)
       return {
-        bg = utils.is_dark(palette) and '#2F3F5C' or '#CAD7ED',
-        -- fg = utils.is_dark(palette) and '#D7DAE0' or '#5D5D5F',
+        fg = p.info,
+        bold = true,
+      }
+    end)
+    :map_ui('NONE', 'PmenuSel', function(p, _)
+      return {
+        bg = utils.is_dark(p) and '#2F3F5C' or '#CAD7ED',
+        -- fg = utils.is_dark(p) and '#D7DAE0' or '#5D5D5F',
         bold = true,
       }
     end)
@@ -71,34 +78,34 @@ local function builtin(s)
     :map_ui('NONE', 'Folded', function(p, _)
       return { bg = utils.is_dark(p) and '#31394c' or '#d2daed' }
     end)
-    :map_ui('digit', 'MatchParen', function(palette, as)
-      return { fg = palette[as], bg = utils.is_dark(palette) and '#945e52' or '#f2c5b9' }
+    :map_ui('digit', 'MatchParen', function(p, as)
+      return { fg = p[as], bg = utils.is_dark(p) and '#945e52' or '#f2c5b9' }
     end)
-    :map_ui('digit', { 'Cursor', 'iCursor' }, function(palette, as)
-      return { bg = palette[as], fg = 'white' }
+    :map_ui('digit', { 'Cursor', 'iCursor' }, function(p, as)
+      return { bg = p[as], fg = 'white' }
     end)
-    :map_ui('background', 'TabLineSel', function(palette, as)
-      return { bg = palette[as], fg = palette['variable'] }
+    :map_ui('background', 'TabLineSel', function(p, as)
+      return { bg = p[as], fg = p['variable'] }
     end)
-    :map_ui('panelBackground', 'TabLine', function(palette, as)
-      return { bg = palette[as], fg = palette['comment'] }
+    :map_ui('panelBackground', 'TabLine', function(p, as)
+      return { bg = p[as], fg = p['comment'] }
     end)
-    :map_ui('NONE', { 'FloatBorder', 'FloatTitle' }, function(palatte, _)
-      return { fg = palatte.inlay_hint.fg }
+    :map_ui('NONE', { 'FloatBorder', 'FloatTitle' }, function(p, _)
+      return { fg = p.inlay_hint.fg }
     end)
     :map_ui('NONE', 'WinSeparator', function(p, _)
       return { fg = p.inlay_hint.fg }
     end)
-    :map_ui('NONE', 'LspInlayHint', function(palette, _)
+    :map_ui('NONE', 'LspInlayHint', function(p, _)
       return {
-        fg = palette.inlay_hint.fg,
-        bg = palette.inlay_hint.bg,
+        fg = p.inlay_hint.fg,
+        bg = p.inlay_hint.bg,
       }
     end)
     :map_ui('func', 'Directory')
-    :map_ui('NONE', 'QuickFixLine', function(palette, _)
+    :map_ui('NONE', 'QuickFixLine', function(p, _)
       return {
-        bg = utils.is_dark(palette) and '#2F3F5C' or '#CAD7ED',
+        bg = utils.is_dark(p) and '#2F3F5C' or '#CAD7ED',
         bold = true,
       }
     end)
@@ -121,7 +128,7 @@ local function builtin(s)
     :map_ui('info', { 'DiagnosticInfo', 'DiagnosticFloatingInfo', 'DiagnosticSignInfo', 'RedrawDebugComposed' })
     :map_ui('warning', { 'DiagnosticWarn', 'DiagnosticFloatingWarn', 'DiagnosticSignWarn' })
     :map_ui('text', { 'DiagnosticFloatingHint', 'DiagnosticSignHint' }, function(p, as)
-      return { fg = p[as] } --utils.isDark(palette) and '#50567C' or '#C8CACE' }
+      return { fg = p[as] } --utils.isDark(p) and '#50567C' or '#C8CACE' }
     end)
     --#region underline
     :map_ui('variable', 'DiagnosticUnderlineHint', function(p, as)
@@ -153,6 +160,12 @@ local function builtin(s)
     end)
     :map_ui('NONE', 'DiagnosticVirtualTextInfo', function(p, _)
       return { fg = utils.is_dark(p) and '#00b7cb' or '#00c1ea', bg = utils.is_dark(p) and '#233e4b' or '#cde7f3' }
+    end)
+    :map_ui('NONE', { 'Search' }, function(p)
+      return { bg = p.search_match_bg }
+    end)
+    :map_ui('NONE', { 'CurSearch' }, function(p)
+      return { bg = p.current_search_match_bg }
     end)
   --#endregion
   --#endregion

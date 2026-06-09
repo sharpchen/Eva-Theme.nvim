@@ -13,7 +13,7 @@
 --- | 'parameter'
 --- | 'comment'
 --- | 'variable'
---- | 'instanceReference'
+--- | 'this'
 --- | 'logical'
 --- | 'operator'
 --- | 'background'
@@ -22,7 +22,7 @@
 
 ---@param palette Eva-Theme.Palette
 ---@param kind Eva-Theme.SyntaxType
----@param selector fun(p: Eva-Theme.Palette, kind: Eva-Theme.SyntaxType)
+---@param selector fun(p: Eva-Theme.Palette, kind: Eva-Theme.SyntaxType): vim.api.keyset.highlight
 ---@param hl_name string
 ---@return string, vim.api.keyset.highlight
 local function gen_hl_from_ui_spec(palette, kind, selector, hl_name)
@@ -34,7 +34,7 @@ end
 
 ---@param palette Eva-Theme.Palette
 ---@param kind Eva-Theme.SyntaxType
----@param selector fun(p: Eva-Theme.Palette, kind: Eva-Theme.SyntaxType)
+---@param selector fun(p: Eva-Theme.Palette, kind: Eva-Theme.SyntaxType): vim.api.keyset.highlight
 ---@param hl_name string
 ---@return string, vim.api.keyset.highlight
 local function gen_hl_from_token_spec(palette, kind, selector, hl_name)
@@ -53,7 +53,7 @@ local function create_source()
 
   ---@param kind Eva-Theme.SyntaxType
   ---@param hl_names string | string[]
-  ---@param selector function
+  ---@param selector fun(p: Eva-Theme.Palette, kind: Eva-Theme.SyntaxType): vim.api.keyset.highlight
   ---@return self
   function S:map_token(kind, hl_names, selector)
     for _, hl_name in ipairs(type(hl_names) == 'string' and { hl_names } or hl_names or {}) do
@@ -67,7 +67,7 @@ local function create_source()
 
   ---@param kind Eva-Theme.SyntaxType
   ---@param hl_names string | string[]
-  ---@param selector function
+  ---@param selector fun(p: Eva-Theme.Palette, kind: Eva-Theme.SyntaxType): vim.api.keyset.highlight
   ---@return self
   function S:map_ui(kind, hl_names, selector)
     for _, hl_name in ipairs(type(hl_names) == 'string' and { hl_names } or hl_names or {}) do

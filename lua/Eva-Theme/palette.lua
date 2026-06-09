@@ -19,7 +19,7 @@ local M = {}
 ---@field typeparam? string
 ---@field comment? string
 ---@field type? string
----@field instanceReference? string
+---@field this? string
 ---@field parameter? string
 ---@field logical? string
 ---@field variable? string
@@ -35,13 +35,15 @@ local M = {}
 ---@field escape? string
 ---@field punctuation? string
 ---@field background? string
+---@field list_widget_bg? string
+---@field current_search_match_bg? string
 
 ---@type Eva-Theme.Palette
 M.light_base = {
   declarative = '#7C4DFF',
   func = '#437AED',
   type = '#00BEC4',
-  instanceReference = '#FA278E',
+  this = '#FA278E',
   primitive = '#EF8ED8',
   digit = '#FF6D12',
   parameter = '#F0AA0B',
@@ -80,6 +82,10 @@ M.light_base = {
   },
   escape = '#888888',
   punctuation = '#727376',
+  list_widget_bg = '#F1F4FB',
+  search_match_bg = '#EDF0F7',
+  current_search_match_bg = '#F8F900',
+  search_match_bg = '#CFD2D9',
 }
 ---@type Eva-Theme.Palette
 M.dark_base = {
@@ -113,7 +119,7 @@ M.dark_base = {
   declarative = '#A78CFA',
   func = '#6495EE',
   type = '#56B7C3',
-  instanceReference = '#F02B77',
+  this = '#F02B77',
   primitive = '#FF6AB3',
   digit = '#FF9070',
   parameter = '#E4BF7F',
@@ -127,6 +133,9 @@ M.dark_base = {
   background = '#282C34',
   escape = '#8A97C3',
   punctuation = '#838FA7',
+  list_widget_bg = '#23272F',
+  current_search_match_bg = '#F8F900',
+  search_match_bg = '#324464',
 }
 
 ---@type Eva-Theme.Palette
