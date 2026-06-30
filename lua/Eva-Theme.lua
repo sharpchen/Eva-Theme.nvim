@@ -56,17 +56,15 @@ end
 function M.colorscheme(variant)
   variant = variant or 'dark'
 
-  vim.g.colors_name = variant_name(variant)
-
   vim.opt.termguicolors = true
   vim.o.background = U.is_dark(variant) and 'dark' or 'light'
 
   vim.cmd('set cursorline')
 
-  if vim.g.colors_name then
-    vim.cmd('hi clear')
-    vim.cmd('syntax reset')
-  end
+  vim.cmd('hi clear')
+  vim.cmd('syntax reset')
+
+  vim.g.colors_name = variant_name(variant)
 
   local P = require('Eva-Theme.palette')
   local H = require('Eva-Theme.highlight')
