@@ -6,7 +6,10 @@ local function typescript(s)
   )
     :map_token('property', { '@lsp.type.namespace.typescript', '@variable.member.typescript' })
     :map_token('func', '@constructor.typescript')
-    :map_token('func', '@punctuation.special.typescript', function(p, as)
+    :map_token('func', {
+      '@punctuation.special.typescript',
+      '@punctuation.delimiter.typescript',
+    }, function(p, as)
       return { fg = p[as], nocombine = true }
     end)
     :map_token('digit', '@lsp.typemod.variable.defaultLibrary.typescript')
