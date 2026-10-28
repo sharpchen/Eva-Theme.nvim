@@ -11,8 +11,10 @@ local M = {}
 ---@class Eva-Theme.Config
 ---@field override_palette? table<'dark' | 'light', Partial<Eva-Theme.Palette> | fun(p: Eva-Theme.PaletteContext): Partial<Eva-Theme.Palette>>
 ---@field override_highlight? fun(variant: Eva-Theme.ThemeName, palettes: Eva-Theme.PaletteContext): table<string, vim.api.keyset.highlight>
+---@field extra_highlight? boolean | table<string, boolean>
 M.config = {
   override_highlight = function(_, _) end,
+  extra_highlight = true,
 }
 
 function M:apply_palette_override()
@@ -57,6 +59,29 @@ function M:eval_user_hl(p)
   }
 
   return self.config.override_highlight(variant, palette_context) or {}
+end
+
+function M:apply_extra_hl()
+  vim.validate('extra_highlight', self.config.extra_highlight, { 'boolean', 'table' })
+
+  if self.config.extra_highlight == false then
+    return
+  end
+
+  local Q = require('Eva-Theme.query')
+  if type(self.config.extra_highlight) == 'table' then
+    for lang, query_loader in pairs(Q) do
+      -- only disabled when false
+      if self.config.extra_highlight[lang] ~= false then
+        query_loader()
+      end
+    end
+  else
+    -- if true, load them all
+    for _, query_loader in pairs(Q) do
+      query_loader()
+    end
+  end
 end
 
 return M

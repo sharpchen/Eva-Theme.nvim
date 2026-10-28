@@ -1,7 +1,10 @@
 ---@param s Eva-Theme.HighlightSource
 local function javascript(s)
   s:map_token('logical', { '@constant.builtin.javascript' })
-    :map_token('func', { '@punctuation.special.javascript' }, function(p, as) -- string interpolation
+    :map_token('func', {
+      '@punctuation.special.javascript',
+      '@constructor.javascript',
+    }, function(p, as) -- string interpolation
       return { fg = p[as], nocombine = true }
     end)
     :map_token('property', '@lsp.type.namespace.javascript')

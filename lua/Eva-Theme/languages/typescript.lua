@@ -8,7 +8,7 @@ local function typescript(s)
     :map_token('func', '@constructor.typescript')
     :map_token('func', {
       '@punctuation.special.typescript',
-      '@punctuation.delimiter.typescript',
+      -- '@punctuation.delimiter.typescript',
     }, function(p, as)
       return { fg = p[as], nocombine = true }
     end)

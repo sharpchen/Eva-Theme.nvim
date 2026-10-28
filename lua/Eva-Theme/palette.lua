@@ -37,6 +37,7 @@ local M = {}
 ---@field background? string
 ---@field list_widget_bg? string
 ---@field current_search_match_bg? string
+---@field assignment? string
 
 ---@type Eva-Theme.Palette
 M.light_base = {
@@ -86,6 +87,7 @@ M.light_base = {
   search_match_bg = '#EDF0F7',
   current_search_match_bg = '#F8F900',
   search_match_bg = '#CFD2D9',
+  assignment = '#717174',
 }
 ---@type Eva-Theme.Palette
 M.dark_base = {
@@ -136,6 +138,7 @@ M.dark_base = {
   list_widget_bg = '#23272F',
   current_search_match_bg = '#F8F900',
   search_match_bg = '#324464',
+  assignment = '#838fa7',
 }
 
 ---@type Eva-Theme.Palette

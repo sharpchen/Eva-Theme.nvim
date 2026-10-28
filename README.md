@@ -14,29 +14,33 @@ Supports both Dark and Light modes, with four styles available for each mode: No
 
 ## Palette
 
-|dark|light|semantic|
-|---|---|---|
-|$\color{#56B7C3}{● \\#56B7C3}$|$\color{#00BEC4}{● \\#00BEC4}$|type names, arithmetic operators|
-|$\color{#98C379}{● \\#98C379}$|$\color{#53A053}{● \\#53A053}$|string context|
-|$\color{#E4BF7F}{● \\#E4BF7F}$|$\color{#F0AA0B}{● \\#F0AA0B}$|parameter name and typeparameter|
-|$\color{#FF9070}{● \\#FF9070}$|$\color{#FF6D12}{● \\#FF6D12}$|numbers, constants|
-|$\color{#E06C75}{● \\#E06C75}$|$\color{#CD6069}{● \\#CD6069}$|object members/properties, namespaces/modules|
-|$\color{#F02B77}{● \\#F02B77}$|$\color{#FA278E}{● \\#FA278E}$|builtin variables like `self`, `super`, `this`, `base`|
-|$\color{#CF68E1}{● \\#CF68E1}$|$\color{#C838C6}{● \\#C838C6}$|flow control keywords, boolean literal, null literal,keyword operators|
-|$\color{#A78CFA}{● \\#A78CFA}$|$\color{#7C4DFF}{● \\#7C4DFF}$|declaration keywords|
-|$\color{#6495EE}{● \\#6495EE}$|$\color{#437AED}{● \\#437AED}$|function-like names|
-|$\color{#B0B7C3}{● \\#B0B7C3}$|$\color{#5D5D5F}{● \\#5D5D5F}$|variable|
-|$\color{#676E95}{● \\#676E95}$|$\color{#A9A9AA}{● \\#A9A9AA}$|comment|
-|$\color{#FF6AB3}{● \\#FF6AB3}$|$\color{#EF8ED8}{● \\#EF8ED8}$|primitive/builtin type names|
+| dark                           | light                          | semantic                                                               |
+| ------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
+| $\color{#56B7C3}{● \\#56B7C3}$ | $\color{#00BEC4}{● \\#00BEC4}$ | type names, arithmetic operators                                       |
+| $\color{#98C379}{● \\#98C379}$ | $\color{#53A053}{● \\#53A053}$ | string context                                                         |
+| $\color{#E4BF7F}{● \\#E4BF7F}$ | $\color{#F0AA0B}{● \\#F0AA0B}$ | parameter name and typeparameter                                       |
+| $\color{#FF9070}{● \\#FF9070}$ | $\color{#FF6D12}{● \\#FF6D12}$ | numbers, constants                                                     |
+| $\color{#E06C75}{● \\#E06C75}$ | $\color{#CD6069}{● \\#CD6069}$ | object members/properties, namespaces/modules                          |
+| $\color{#F02B77}{● \\#F02B77}$ | $\color{#FA278E}{● \\#FA278E}$ | builtin variables like `self`, `super`, `this`, `base`                 |
+| $\color{#CF68E1}{● \\#CF68E1}$ | $\color{#C838C6}{● \\#C838C6}$ | flow control keywords, boolean literal, null literal,keyword operators |
+| $\color{#A78CFA}{● \\#A78CFA}$ | $\color{#7C4DFF}{● \\#7C4DFF}$ | declaration keywords                                                   |
+| $\color{#6495EE}{● \\#6495EE}$ | $\color{#437AED}{● \\#437AED}$ | function-like names                                                    |
+| $\color{#B0B7C3}{● \\#B0B7C3}$ | $\color{#5D5D5F}{● \\#5D5D5F}$ | variable                                                               |
+| $\color{#676E95}{● \\#676E95}$ | $\color{#A9A9AA}{● \\#A9A9AA}$ | comment                                                                |
+| $\color{#FF6AB3}{● \\#FF6AB3}$ | $\color{#EF8ED8}{● \\#EF8ED8}$ | primitive/builtin type names                                           |
 
 ## Installation
 
 ### [Lazy](https://github.com/folke/lazy.nvim)
+
 ```lua
 {
   'sharpchen/Eva-Theme.nvim',
   lazy = false,
   priority = 1000,
+  config = function()
+    require('Eva-Theme').setup()
+  end
 }
 ```
 
@@ -115,6 +119,26 @@ require('Eva-Theme').setup({
       SnacksPickerMatch = { fg = palette.current.property, bold = true },
       StatusLine = { bg = palette.current.variable, fg = palette.current.panelBackground },
     }
+})
+```
+
+### Extra Highlights
+
+`extra_highlight` enables highlights to reach the effect of the upstream theme as much as possible.
+It's enabled by default, set it to `false` to disable, or use a table to disable specific languages.
+The possible keys of the table form are the names of treesitter parsers, correspond to function names in [the source file](./lua/Eva-Theme/query.lua)
+
+```lua
+require('Eva-Theme').setup({
+  -- disable extra_highlight
+  extra_highlight = false
+})
+
+require('Eva-Theme').setup({
+  extra_highlight = {
+    -- dedicatedly disable extra_highlight for certain lang
+    c_sharp = false
+  }
 })
 ```
 

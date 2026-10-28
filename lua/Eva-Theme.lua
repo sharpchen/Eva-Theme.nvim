@@ -92,6 +92,7 @@ end
 function M.setup(opts)
   C.config = vim.tbl_deep_extend('force', C.config, opts)
   C:apply_palette_override()
+  C:apply_extra_hl()
 end
 
 return M
